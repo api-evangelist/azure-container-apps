@@ -1,0 +1,165 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: azure-container-apps-container-app
+title: Azure Container App
+description: An Azure Container App resource representing a containerized application.
+type: object
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: Fully qualified resource ID.
+  name:
+    type: string
+    readOnly: true
+    description: The name of the container app.
+  type:
+    type: string
+    readOnly: true
+    description: The resource type.
+  location:
+    type: string
+    description: The geo-location where the resource lives.
+  tags:
+    type: object
+    additionalProperties:
+      type: string
+    description: Resource tags.
+  identity:
+    type: object
+    description: Managed identities for the container app.
+    properties:
+      type:
+        type: string
+        enum:
+          - None
+          - SystemAssigned
+          - UserAssigned
+          - SystemAssigned,UserAssigned
+      principalId:
+        type: string
+        readOnly: true
+      tenantId:
+        type: string
+        readOnly: true
+  properties:
+    type: object
+    properties:
+      provisioningState:
+        type: string
+        readOnly: true
+        enum:
+          - InProgress
+          - Succeeded
+          - Failed
+          - Canceled
+          - Deleting
+      managedEnvironmentId:
+        type: string
+        description: Resource ID of the Container App's managed environment.
+      environmentId:
+        type: string
+        description: Resource ID of the environment.
+      workloadProfileName:
+        type: string
+        description: Workload profile name to pin for container app execution.
+      latestRevisionName:
+        type: string
+        readOnly: true
+      latestReadyRevisionName:
+        type: string
+        readOnly: true
+      latestRevisionFqdn:
+        type: string
+        readOnly: true
+      configuration:
+        type: object
+        description: Non-versioned container app configuration properties.
+        properties:
+          activeRevisionsMode:
+            type: string
+            enum:
+              - Multiple
+              - Single
+          ingress:
+            type: object
+            properties:
+              external:
+                type: boolean
+              targetPort:
+                type: integer
+              transport:
+                type: string
+                enum:
+                  - auto
+                  - http
+                  - http2
+                  - tcp
+              traffic:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    revisionName:
+                      type: string
+                    weight:
+                      type: integer
+                    latestRevision:
+                      type: boolean
+                    label:
+                      type: string
+          dapr:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              appId:
+                type: string
+              appProtocol:
+                type: string
+                enum:
+                  - http
+                  - grpc
+              appPort:
+                type: integer
+      template:
+        type: object
+        description: Container app versioned application definition.
+        properties:
+          revisionSuffix:
+            type: string
+          containers:
+            type: array
+            items:
+              type: object
+              properties:
+                image:
+                  type: string
+                name:
+                  type: string
+                resources:
+                  type: object
+                  properties:
+                    cpu:
+                      type: number
+                    memory:
+                      type: string
+                env:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      value:
+                        type: string
+                      secretRef:
+                        type: string
+          scale:
+            type: object
+            properties:
+              minReplicas:
+                type: integer
+              maxReplicas:
+                type: integer
+required:
+  - location

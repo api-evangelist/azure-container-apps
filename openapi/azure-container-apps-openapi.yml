@@ -1,0 +1,1550 @@
+openapi: 3.1.0
+info:
+  title: Azure Container Apps API
+  description: >-
+    Azure Container Apps allows you to run microservices and containerized
+    applications on a serverless platform. The API provides operations for
+    managing container apps, managed environments, revisions, jobs, and
+    related resources through Azure Resource Manager.
+  version: '2023-05-01'
+  contact:
+    name: Microsoft Azure
+    url: https://azure.microsoft.com/en-us/products/container-apps
+servers:
+  - url: https://management.azure.com
+    description: Azure Resource Manager endpoint
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.App/containerApps:
+    get:
+      operationId: ContainerApps_ListBySubscription
+      summary: List container apps by subscription
+      description: Get the Container Apps in a given subscription.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerAppCollection'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps:
+    get:
+      operationId: ContainerApps_ListByResourceGroup
+      summary: List container apps by resource group
+      description: Get the Container Apps in a given resource group.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerAppCollection'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}:
+    get:
+      operationId: ContainerApps_Get
+      summary: Get a container app
+      description: Get the properties of a Container App.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerApp'
+    put:
+      operationId: ContainerApps_CreateOrUpdate
+      summary: Create or update a container app
+      description: Create or update a Container App.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContainerApp'
+      responses:
+        '200':
+          description: Container app updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerApp'
+        '201':
+          description: Container app created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerApp'
+    patch:
+      operationId: ContainerApps_Update
+      summary: Update a container app
+      description: Patches a Container App using JSON merge patch.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContainerApp'
+      responses:
+        '200':
+          description: Container app updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerApp'
+        '202':
+          description: Patch request accepted
+    delete:
+      operationId: ContainerApps_Delete
+      summary: Delete a container app
+      description: Delete a Container App.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Container app deleted
+        '202':
+          description: Delete request accepted
+        '204':
+          description: Container app does not exist
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions:
+    get:
+      operationId: ContainerAppsRevisions_ListRevisions
+      summary: List revisions
+      description: Get the Revisions for a given Container App.
+      tags:
+        - Revisions
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+        - name: $filter
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevisionCollection'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}:
+    get:
+      operationId: ContainerAppsRevisions_GetRevision
+      summary: Get a revision
+      description: Get a revision of a Container App.
+      tags:
+        - Revisions
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: revisionName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/activate:
+    post:
+      operationId: ContainerAppsRevisions_ActivateRevision
+      summary: Activate a revision
+      description: Activates a revision for a Container App.
+      tags:
+        - Revisions
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: revisionName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Revision activated
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/deactivate:
+    post:
+      operationId: ContainerAppsRevisions_DeactivateRevision
+      summary: Deactivate a revision
+      description: Deactivates a revision for a Container App.
+      tags:
+        - Revisions
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: revisionName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Revision deactivated
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/restart:
+    post:
+      operationId: ContainerAppsRevisions_RestartRevision
+      summary: Restart a revision
+      description: Restarts a revision for a Container App.
+      tags:
+        - Revisions
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: revisionName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Revision restarted
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments:
+    get:
+      operationId: ManagedEnvironments_ListByResourceGroup
+      summary: List managed environments
+      description: Get all the Managed Environments in a resource group.
+      tags:
+        - Managed Environments
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedEnvironmentCollection'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}:
+    get:
+      operationId: ManagedEnvironments_Get
+      summary: Get a managed environment
+      description: Get the properties of a Managed Environment used to host container apps.
+      tags:
+        - Managed Environments
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: environmentName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedEnvironment'
+    put:
+      operationId: ManagedEnvironments_CreateOrUpdate
+      summary: Create or update a managed environment
+      description: Creates or updates a Managed Environment.
+      tags:
+        - Managed Environments
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: environmentName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedEnvironment'
+      responses:
+        '200':
+          description: Environment updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedEnvironment'
+        '201':
+          description: Environment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedEnvironment'
+    delete:
+      operationId: ManagedEnvironments_Delete
+      summary: Delete a managed environment
+      description: Delete a Managed Environment.
+      tags:
+        - Managed Environments
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: environmentName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Environment deleted
+        '202':
+          description: Delete request accepted
+        '204':
+          description: Environment does not exist
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs:
+    get:
+      operationId: Jobs_ListByResourceGroup
+      summary: List jobs by resource group
+      description: Get the Container Apps Jobs in a given resource group.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCollection'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}:
+    get:
+      operationId: Jobs_Get
+      summary: Get a job
+      description: Get the properties of a Container Apps Job.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+    put:
+      operationId: Jobs_CreateOrUpdate
+      summary: Create or update a job
+      description: Create or Update a Container Apps Job.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          description: Job updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '201':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+    delete:
+      operationId: Jobs_Delete
+      summary: Delete a job
+      description: Delete a Container Apps Job.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Job deleted
+        '202':
+          description: Delete request accepted
+        '204':
+          description: Job does not exist
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/start:
+    post:
+      operationId: Jobs_Start
+      summary: Start a job execution
+      description: Start a Container Apps Job execution.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template:
+                  $ref: '#/components/schemas/JobExecutionTemplate'
+      responses:
+        '200':
+          description: Job execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobExecution'
+        '202':
+          description: Start request accepted
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listSecrets:
+    post:
+      operationId: ContainerApps_ListSecrets
+      summary: List secrets
+      description: List secrets for a container app.
+      tags:
+        - Container Apps
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContainerAppSecret'
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs:
+    get:
+      operationId: ContainerAppsAuthConfigs_ListByContainerApp
+      summary: List auth configs
+      description: Get the Container App AuthConfigs in a given Container App.
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/SubscriptionId'
+        - $ref: '#/components/parameters/ResourceGroupName'
+        - name: containerAppName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuthConfig'
+                  nextLink:
+                    type: string
+components:
+  parameters:
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
+    ResourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group.
+      schema:
+        type: string
+    ApiVersion:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2023-05-01'
+  schemas:
+    ContainerApp:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        identity:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - None
+                - SystemAssigned
+                - UserAssigned
+                - SystemAssigned,UserAssigned
+            principalId:
+              type: string
+              readOnly: true
+            tenantId:
+              type: string
+              readOnly: true
+            userAssignedIdentities:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  principalId:
+                    type: string
+                    readOnly: true
+                  clientId:
+                    type: string
+                    readOnly: true
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+                - InProgress
+                - Succeeded
+                - Failed
+                - Canceled
+                - Deleting
+            managedEnvironmentId:
+              type: string
+              description: Resource ID of the Container App's environment.
+            environmentId:
+              type: string
+              description: Resource ID of the environment.
+            workloadProfileName:
+              type: string
+            latestRevisionName:
+              type: string
+              readOnly: true
+            latestReadyRevisionName:
+              type: string
+              readOnly: true
+            latestRevisionFqdn:
+              type: string
+              readOnly: true
+            customDomainVerificationId:
+              type: string
+              readOnly: true
+            outboundIpAddresses:
+              type: array
+              readOnly: true
+              items:
+                type: string
+            eventStreamEndpoint:
+              type: string
+              readOnly: true
+            configuration:
+              $ref: '#/components/schemas/Configuration'
+            template:
+              $ref: '#/components/schemas/Template'
+    ContainerAppCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContainerApp'
+        nextLink:
+          type: string
+          readOnly: true
+    Configuration:
+      type: object
+      description: Non-versioned Container App configuration properties.
+      properties:
+        secrets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Secret'
+        activeRevisionsMode:
+          type: string
+          enum:
+            - Multiple
+            - Single
+        ingress:
+          type: object
+          properties:
+            fqdn:
+              type: string
+              readOnly: true
+            external:
+              type: boolean
+              default: false
+            targetPort:
+              type: integer
+            exposedPort:
+              type: integer
+            transport:
+              type: string
+              enum:
+                - auto
+                - http
+                - http2
+                - tcp
+              default: auto
+            traffic:
+              type: array
+              items:
+                type: object
+                properties:
+                  revisionName:
+                    type: string
+                  weight:
+                    type: integer
+                  latestRevision:
+                    type: boolean
+                  label:
+                    type: string
+            customDomains:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  bindingType:
+                    type: string
+                    enum:
+                      - Disabled
+                      - SniEnabled
+                  certificateId:
+                    type: string
+            allowInsecure:
+              type: boolean
+              default: false
+            ipSecurityRestrictions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  ipAddressRange:
+                    type: string
+                  action:
+                    type: string
+                    enum:
+                      - Allow
+                      - Deny
+            stickySessions:
+              type: object
+              properties:
+                affinity:
+                  type: string
+                  enum:
+                    - sticky
+                    - none
+            clientCertificateMode:
+              type: string
+              enum:
+                - accept
+                - require
+                - ignore
+            corsPolicy:
+              type: object
+              properties:
+                allowedOrigins:
+                  type: array
+                  items:
+                    type: string
+                allowedMethods:
+                  type: array
+                  items:
+                    type: string
+                allowedHeaders:
+                  type: array
+                  items:
+                    type: string
+                exposeHeaders:
+                  type: array
+                  items:
+                    type: string
+                maxAge:
+                  type: integer
+                allowCredentials:
+                  type: boolean
+        registries:
+          type: array
+          items:
+            type: object
+            properties:
+              server:
+                type: string
+              username:
+                type: string
+              passwordSecretRef:
+                type: string
+              identity:
+                type: string
+        dapr:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            appId:
+              type: string
+            appProtocol:
+              type: string
+              enum:
+                - http
+                - grpc
+            appPort:
+              type: integer
+            httpReadBufferSize:
+              type: integer
+            httpMaxRequestSize:
+              type: integer
+            logLevel:
+              type: string
+              enum:
+                - info
+                - debug
+                - warn
+                - error
+            enableApiLogging:
+              type: boolean
+        maxInactiveRevisions:
+          type: integer
+    Template:
+      type: object
+      description: Container App versioned application definition.
+      properties:
+        revisionSuffix:
+          type: string
+        terminationGracePeriodSeconds:
+          type: integer
+          format: int64
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        scale:
+          type: object
+          properties:
+            minReplicas:
+              type: integer
+            maxReplicas:
+              type: integer
+            rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  azureQueue:
+                    type: object
+                    properties:
+                      queueName:
+                        type: string
+                      queueLength:
+                        type: integer
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  custom:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  http:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  tcp:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+        volumes:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              storageType:
+                type: string
+                enum:
+                  - AzureFile
+                  - EmptyDir
+                  - Secret
+              storageName:
+                type: string
+              secrets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    secretRef:
+                      type: string
+                    path:
+                      type: string
+              mountOptions:
+                type: string
+        serviceBinds:
+          type: array
+          items:
+            type: object
+            properties:
+              serviceId:
+                type: string
+              name:
+                type: string
+    Container:
+      type: object
+      properties:
+        image:
+          type: string
+        name:
+          type: string
+        command:
+          type: array
+          items:
+            type: string
+        args:
+          type: array
+          items:
+            type: string
+        env:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              secretRef:
+                type: string
+        resources:
+          type: object
+          properties:
+            cpu:
+              type: number
+            memory:
+              type: string
+            ephemeralStorage:
+              type: string
+              readOnly: true
+        volumeMounts:
+          type: array
+          items:
+            type: object
+            properties:
+              volumeName:
+                type: string
+              mountPath:
+                type: string
+              subPath:
+                type: string
+        probes:
+          type: array
+          items:
+            type: object
+            properties:
+              failureThreshold:
+                type: integer
+              httpGet:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  httpHeaders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        value:
+                          type: string
+                  path:
+                    type: string
+                  port:
+                    type: integer
+                  scheme:
+                    type: string
+                    enum:
+                      - HTTP
+                      - HTTPS
+              initialDelaySeconds:
+                type: integer
+              periodSeconds:
+                type: integer
+              successThreshold:
+                type: integer
+              tcpSocket:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  port:
+                    type: integer
+              terminationGracePeriodSeconds:
+                type: integer
+                format: int64
+              timeoutSeconds:
+                type: integer
+              type:
+                type: string
+                enum:
+                  - Liveness
+                  - Readiness
+                  - Startup
+    Revision:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        properties:
+          type: object
+          properties:
+            createdTime:
+              type: string
+              format: date-time
+              readOnly: true
+            lastActiveTime:
+              type: string
+              format: date-time
+              readOnly: true
+            fqdn:
+              type: string
+              readOnly: true
+            template:
+              $ref: '#/components/schemas/Template'
+            active:
+              type: boolean
+              readOnly: true
+            replicas:
+              type: integer
+              readOnly: true
+            trafficWeight:
+              type: integer
+              readOnly: true
+            provisioningError:
+              type: string
+              readOnly: true
+            healthState:
+              type: string
+              readOnly: true
+              enum:
+                - Healthy
+                - Unhealthy
+                - None
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+                - Provisioning
+                - Provisioned
+                - Failed
+                - Deprovisioning
+                - Deprovisioned
+            runningState:
+              type: string
+              readOnly: true
+              enum:
+                - Running
+                - Processing
+                - Stopped
+                - Degraded
+                - Failed
+                - Unknown
+    RevisionCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        nextLink:
+          type: string
+          readOnly: true
+    ManagedEnvironment:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+                - Succeeded
+                - Failed
+                - Canceled
+                - Waiting
+                - InitializationInProgress
+                - InfrastructureSetupInProgress
+                - InfrastructureSetupComplete
+                - ScheduledForDelete
+                - UpgradeRequested
+                - UpgradeFailed
+            daprAIInstrumentationKey:
+              type: string
+            daprAIConnectionString:
+              type: string
+            vnetConfiguration:
+              type: object
+              properties:
+                internal:
+                  type: boolean
+                infrastructureSubnetId:
+                  type: string
+                dockerBridgeCidr:
+                  type: string
+                platformReservedCidr:
+                  type: string
+                platformReservedDnsIP:
+                  type: string
+            defaultDomain:
+              type: string
+              readOnly: true
+            staticIp:
+              type: string
+              readOnly: true
+            appLogsConfiguration:
+              type: object
+              properties:
+                destination:
+                  type: string
+                logAnalyticsConfiguration:
+                  type: object
+                  properties:
+                    customerId:
+                      type: string
+                    sharedKey:
+                      type: string
+            zoneRedundant:
+              type: boolean
+            customDomainConfiguration:
+              type: object
+              properties:
+                dnsSuffix:
+                  type: string
+                certificateValue:
+                  type: string
+                  format: byte
+                certificatePassword:
+                  type: string
+                customDomainVerificationId:
+                  type: string
+                  readOnly: true
+                expirationDate:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                thumbprint:
+                  type: string
+                  readOnly: true
+                subjectName:
+                  type: string
+                  readOnly: true
+            workloadProfiles:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  workloadProfileType:
+                    type: string
+                  minimumCount:
+                    type: integer
+                  maximumCount:
+                    type: integer
+            infrastructureResourceGroup:
+              type: string
+              readOnly: true
+            peerAuthentication:
+              type: object
+              properties:
+                mtls:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+    ManagedEnvironmentCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedEnvironment'
+        nextLink:
+          type: string
+          readOnly: true
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+                - InProgress
+                - Succeeded
+                - Failed
+                - Canceled
+                - Deleting
+            environmentId:
+              type: string
+            workloadProfileName:
+              type: string
+            configuration:
+              type: object
+              properties:
+                secrets:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Secret'
+                triggerType:
+                  type: string
+                  enum:
+                    - Schedule
+                    - Event
+                    - Manual
+                replicaTimeout:
+                  type: integer
+                replicaRetryLimit:
+                  type: integer
+                manualTriggerConfig:
+                  type: object
+                  properties:
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                scheduleTriggerConfig:
+                  type: object
+                  properties:
+                    cronExpression:
+                      type: string
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                eventTriggerConfig:
+                  type: object
+                  properties:
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                    scale:
+                      type: object
+                      properties:
+                        minExecutions:
+                          type: integer
+                        maxExecutions:
+                          type: integer
+                        pollingInterval:
+                          type: integer
+                        rules:
+                          type: array
+                          items:
+                            type: object
+                registries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      server:
+                        type: string
+                      username:
+                        type: string
+                      passwordSecretRef:
+                        type: string
+                      identity:
+                        type: string
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
+            outboundIpAddresses:
+              type: array
+              readOnly: true
+              items:
+                type: string
+            eventStreamEndpoint:
+              type: string
+              readOnly: true
+    JobCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextLink:
+          type: string
+          readOnly: true
+    JobExecution:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        properties:
+          type: object
+          properties:
+            status:
+              type: string
+              readOnly: true
+              enum:
+                - Running
+                - Processing
+                - Stopped
+                - Degraded
+                - Failed
+                - Unknown
+                - Succeeded
+            startTime:
+              type: string
+              format: date-time
+              readOnly: true
+            endTime:
+              type: string
+              format: date-time
+              readOnly: true
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
+    JobExecutionTemplate:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+    Secret:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        identity:
+          type: string
+        keyVaultUrl:
+          type: string
+    ContainerAppSecret:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    AuthConfig:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        properties:
+          type: object
+          properties:
+            platform:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                runtimeVersion:
+                  type: string
+            globalValidation:
+              type: object
+              properties:
+                unauthenticatedClientAction:
+                  type: string
+                  enum:
+                    - RedirectToLoginPage
+                    - AllowAnonymous
+                    - Return401
+                    - Return403
+                redirectToProvider:
+                  type: string
+            identityProviders:
+              type: object
+              properties:
+                azureActiveDirectory:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    registration:
+                      type: object
+                      properties:
+                        openIdIssuer:
+                          type: string
+                        clientId:
+                          type: string
+                        clientSecretSettingName:
+                          type: string
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+          scopes:
+            user_impersonation: Impersonate your user account
+security:
+  - azure_auth:
+      - user_impersonation
+tags:
+  - name: Container Apps
+    description: Manage container apps
+  - name: Revisions
+    description: Manage container app revisions
+  - name: Managed Environments
+    description: Manage container app environments
+  - name: Jobs
+    description: Manage container app jobs
+  - name: Authentication
+    description: Manage container app authentication

@@ -35,7 +35,13 @@ apis:
       - Azure
       - Microservices
       - Kubernetes
-    properties: []
+    properties:
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/openapi/azure-container-apps-openapi.yml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-container-app.yml
 common:
   - type: Website
     url: https://azure.microsoft.com/en-us/products/container-apps
