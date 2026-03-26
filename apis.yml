@@ -1,0 +1,28 @@
+aid: azure-container-apps
+name: Azure Container Apps
+description: >-
+  Azure Container Apps is a serverless container service for running microservices and containerized applications with built-in scaling.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Microservices
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: azure-container-apps:azure-container-apps
+    name: Azure Container Apps
+    description: >-
+      Azure Container Apps is a serverless container service for running microservices and containerized applications with built-in scaling.
+    humanURL: https://azure.microsoft.com/
+    tags:
+      - Microservices
+    properties: []
+common:
+  - type: Website
+    url: https://azure.microsoft.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
