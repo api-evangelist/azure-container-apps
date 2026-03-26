@@ -1,11 +1,19 @@
 aid: azure-container-apps
 name: Azure Container Apps
 description: >-
-  Azure Container Apps is a serverless container service for running microservices and containerized applications with built-in scaling.
+  Azure Container Apps is a serverless container service for running
+  microservices and containerized applications with built-in autoscaling,
+  traffic splitting, and Dapr integration. It enables developers to deploy
+  containers without managing complex infrastructure while supporting
+  event-driven architectures and microservices patterns.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Containers
+  - Serverless
+  - Azure
   - Microservices
+  - Kubernetes
 url: >-
   https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +23,32 @@ apis:
   - aid: azure-container-apps:azure-container-apps
     name: Azure Container Apps
     description: >-
-      Azure Container Apps is a serverless container service for running microservices and containerized applications with built-in scaling.
-    humanURL: https://azure.microsoft.com/
+      Azure Container Apps is a serverless container service for running
+      microservices and containerized applications with built-in autoscaling,
+      traffic splitting, and Dapr integration. It enables developers to deploy
+      containers without managing complex infrastructure while supporting
+      event-driven architectures and microservices patterns.
+    humanURL: https://azure.microsoft.com/en-us/products/container-apps
     tags:
+      - Containers
+      - Serverless
+      - Azure
       - Microservices
+      - Kubernetes
     properties: []
 common:
   - type: Website
-    url: https://azure.microsoft.com/
+    url: https://azure.microsoft.com/en-us/products/container-apps
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/azure/container-apps/
+  - type: Getting Started
+    url: https://learn.microsoft.com/en-us/azure/container-apps/quickstart-portal
+  - type: GitHub
+    url: https://github.com/microsoft/azure-container-apps
+  - type: Blog
+    url: https://techcommunity.microsoft.com/blog/appsonazureblog/
+  - type: Pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/container-apps/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
