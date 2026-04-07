@@ -17,7 +17,7 @@ paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.App/containerApps:
     get:
       operationId: ContainerApps_ListBySubscription
-      summary: List container apps by subscription
+      summary: Azure Container Apps List container apps by subscription
       description: Get the Container Apps in a given subscription.
       tags:
         - Container Apps
@@ -34,7 +34,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps:
     get:
       operationId: ContainerApps_ListByResourceGroup
-      summary: List container apps by resource group
+      summary: Azure Container Apps List container apps by resource group
       description: Get the Container Apps in a given resource group.
       tags:
         - Container Apps
@@ -49,10 +49,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerAppCollection'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}
+  : get:
       operationId: ContainerApps_Get
-      summary: Get a container app
+      summary: Azure Container Apps Get a container app
       description: Get the properties of a Container App.
       tags:
         - Container Apps
@@ -74,7 +74,7 @@ paths:
                 $ref: '#/components/schemas/ContainerApp'
     put:
       operationId: ContainerApps_CreateOrUpdate
-      summary: Create or update a container app
+      summary: Azure Container Apps Create or update a container app
       description: Create or update a Container App.
       tags:
         - Container Apps
@@ -108,7 +108,7 @@ paths:
                 $ref: '#/components/schemas/ContainerApp'
     patch:
       operationId: ContainerApps_Update
-      summary: Update a container app
+      summary: Azure Container Apps Update a container app
       description: Patches a Container App using JSON merge patch.
       tags:
         - Container Apps
@@ -138,7 +138,7 @@ paths:
           description: Patch request accepted
     delete:
       operationId: ContainerApps_Delete
-      summary: Delete a container app
+      summary: Azure Container Apps Delete a container app
       description: Delete a Container App.
       tags:
         - Container Apps
@@ -158,10 +158,10 @@ paths:
           description: Delete request accepted
         '204':
           description: Container app does not exist
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions
+  : get:
       operationId: ContainerAppsRevisions_ListRevisions
-      summary: List revisions
+      summary: Azure Container Apps List revisions
       description: Get the Revisions for a given Container App.
       tags:
         - Revisions
@@ -185,10 +185,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevisionCollection'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}
+  : get:
       operationId: ContainerAppsRevisions_GetRevision
-      summary: Get a revision
+      summary: Azure Container Apps Get a revision
       description: Get a revision of a Container App.
       tags:
         - Revisions
@@ -213,10 +213,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Revision'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/activate:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/activate
+  : post:
       operationId: ContainerAppsRevisions_ActivateRevision
-      summary: Activate a revision
+      summary: Azure Container Apps Activate a revision
       description: Activates a revision for a Container App.
       tags:
         - Revisions
@@ -237,10 +237,10 @@ paths:
       responses:
         '200':
           description: Revision activated
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/deactivate:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/deactivate
+  : post:
       operationId: ContainerAppsRevisions_DeactivateRevision
-      summary: Deactivate a revision
+      summary: Azure Container Apps Deactivate a revision
       description: Deactivates a revision for a Container App.
       tags:
         - Revisions
@@ -261,10 +261,10 @@ paths:
       responses:
         '200':
           description: Revision deactivated
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/restart:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/restart
+  : post:
       operationId: ContainerAppsRevisions_RestartRevision
-      summary: Restart a revision
+      summary: Azure Container Apps Restart a revision
       description: Restarts a revision for a Container App.
       tags:
         - Revisions
@@ -288,7 +288,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments:
     get:
       operationId: ManagedEnvironments_ListByResourceGroup
-      summary: List managed environments
+      summary: Azure Container Apps List managed environments
       description: Get all the Managed Environments in a resource group.
       tags:
         - Managed Environments
@@ -303,10 +303,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManagedEnvironmentCollection'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}
+  : get:
       operationId: ManagedEnvironments_Get
-      summary: Get a managed environment
+      summary: Azure Container Apps Get a managed environment
       description: Get the properties of a Managed Environment used to host container apps.
       tags:
         - Managed Environments
@@ -328,7 +328,7 @@ paths:
                 $ref: '#/components/schemas/ManagedEnvironment'
     put:
       operationId: ManagedEnvironments_CreateOrUpdate
-      summary: Create or update a managed environment
+      summary: Azure Container Apps Create or update a managed environment
       description: Creates or updates a Managed Environment.
       tags:
         - Managed Environments
@@ -362,7 +362,7 @@ paths:
                 $ref: '#/components/schemas/ManagedEnvironment'
     delete:
       operationId: ManagedEnvironments_Delete
-      summary: Delete a managed environment
+      summary: Azure Container Apps Delete a managed environment
       description: Delete a Managed Environment.
       tags:
         - Managed Environments
@@ -385,7 +385,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs:
     get:
       operationId: Jobs_ListByResourceGroup
-      summary: List jobs by resource group
+      summary: Azure Container Apps List jobs by resource group
       description: Get the Container Apps Jobs in a given resource group.
       tags:
         - Jobs
@@ -403,7 +403,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}:
     get:
       operationId: Jobs_Get
-      summary: Get a job
+      summary: Azure Container Apps Get a job
       description: Get the properties of a Container Apps Job.
       tags:
         - Jobs
@@ -425,7 +425,7 @@ paths:
                 $ref: '#/components/schemas/Job'
     put:
       operationId: Jobs_CreateOrUpdate
-      summary: Create or update a job
+      summary: Azure Container Apps Create or update a job
       description: Create or Update a Container Apps Job.
       tags:
         - Jobs
@@ -459,7 +459,7 @@ paths:
                 $ref: '#/components/schemas/Job'
     delete:
       operationId: Jobs_Delete
-      summary: Delete a job
+      summary: Azure Container Apps Delete a job
       description: Delete a Container Apps Job.
       tags:
         - Jobs
@@ -482,7 +482,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/start:
     post:
       operationId: Jobs_Start
-      summary: Start a job execution
+      summary: Azure Container Apps Start a job execution
       description: Start a Container Apps Job execution.
       tags:
         - Jobs
@@ -512,10 +512,10 @@ paths:
                 $ref: '#/components/schemas/JobExecution'
         '202':
           description: Start request accepted
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listSecrets:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listSecrets
+  : post:
       operationId: ContainerApps_ListSecrets
-      summary: List secrets
+      summary: Azure Container Apps List secrets
       description: List secrets for a container app.
       tags:
         - Container Apps
@@ -540,10 +540,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ContainerAppSecret'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs
+  : get:
       operationId: ContainerAppsAuthConfigs_ListByContainerApp
-      summary: List auth configs
+      summary: Azure Container Apps List auth configs
       description: Get the Container App AuthConfigs in a given Container App.
       tags:
         - Authentication
