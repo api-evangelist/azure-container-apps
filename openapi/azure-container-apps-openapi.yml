@@ -1538,13 +1538,13 @@ security:
   - azure_auth:
       - user_impersonation
 tags:
-  - name: Container Apps
-    description: Manage container apps
-  - name: Revisions
-    description: Manage container app revisions
-  - name: Managed Environments
-    description: Manage container app environments
-  - name: Jobs
-    description: Manage container app jobs
   - name: Authentication
     description: Manage container app authentication
+  - name: Container Apps
+    description: Manage container apps
+  - name: Jobs
+    description: Manage container app jobs
+  - name: Managed Environments
+    description: Manage container app environments
+  - name: Revisions
+    description: Manage container app revisions

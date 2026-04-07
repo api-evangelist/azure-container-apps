@@ -9,11 +9,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Containers
-  - Serverless
   - Azure
-  - Microservices
+  - Containers
   - Kubernetes
+  - Microservices
+  - Serverless
 url: >-
   https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -30,11 +30,11 @@ apis:
       event-driven architectures and microservices patterns.
     humanURL: https://azure.microsoft.com/en-us/products/container-apps
     tags:
-      - Containers
-      - Serverless
       - Azure
-      - Microservices
+      - Containers
       - Kubernetes
+      - Microservices
+      - Serverless
     properties:
       - type: OpenAPI
         url: >-
