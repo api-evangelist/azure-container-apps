@@ -1,0 +1,150 @@
+extends: spectral:oas
+rules:
+  info-title-format:
+    description: API title must start with "Azure Container Apps"
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: ^Azure Container Apps
+
+  operation-summary-prefix:
+    description: Operation summaries must start with "Azure Container Apps"
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: ^Azure Container Apps
+
+  operation-id-required:
+    description: All operations must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-summary-required:
+    description: All operations must have a summary
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  operation-description-required:
+    description: All operations must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  operation-tags-required:
+    description: All operations must have at least one tag
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  paths-kebab-case:
+    description: Path segments must use kebab-case
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}-]+)+$"
+
+  paths-no-trailing-slash:
+    description: Paths must not end with a trailing slash
+    severity: error
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  openapi-version:
+    description: Must use OpenAPI 3.x
+    severity: error
+    given: $.openapi
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  servers-defined:
+    description: Servers must be defined
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: All server URLs must use HTTPS
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  security-defined:
+    description: Security schemes must be defined
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+
+  response-success-required:
+    description: Operations must define at least one 2xx response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['200']
+            - required: ['201']
+            - required: ['202']
+            - required: ['204']
+
+  parameter-description-required:
+    description: All parameters must have descriptions
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  schema-type-required:
+    description: All schemas must define a type
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: type
+      function: truthy
+
+  tags-title-case:
+    description: Global tag names should use Title Case
+    severity: info
+    given: $.tags[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  operation-id-camel-case:
+    description: OperationIds should use PascalCase with underscore separator
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]+_[A-Z][a-zA-Z]+$"

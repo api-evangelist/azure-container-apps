@@ -1,0 +1,18 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/containerApps/my-app",
+  "name": "my-container-app",
+  "type": "Microsoft.App/containerApps",
+  "properties": {
+    "platform": {
+      "enabled": true,
+      "runtimeVersion": "~1"
+    },
+    "globalValidation": {
+      "unauthenticatedClientAction": {},
+      "redirectToProvider": {}
+    },
+    "identityProviders": {
+      "azureActiveDirectory": {}
+    }
+  }
+}

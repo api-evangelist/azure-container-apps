@@ -1,0 +1,27 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/containerApps/my-app",
+  "name": "my-container-app",
+  "type": "Microsoft.App/containerApps",
+  "location": "eastus",
+  "tags": {},
+  "identity": {
+    "type": "Microsoft.App/containerApps",
+    "principalId": "example-string",
+    "tenantId": "example-string",
+    "userAssignedIdentities": {}
+  },
+  "properties": {
+    "provisioningState": "Succeeded",
+    "managedEnvironmentId": "example-string",
+    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/managedEnvironments/my-env",
+    "workloadProfileName": "example-string",
+    "latestRevisionName": "example-string",
+    "latestReadyRevisionName": "example-string",
+    "latestRevisionFqdn": "example-string",
+    "customDomainVerificationId": "example-string",
+    "outboundIpAddresses": [
+      {}
+    ],
+    "eventStreamEndpoint": "example-string"
+  }
+}

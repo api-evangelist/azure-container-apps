@@ -1,0 +1,145 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aca": "https://azure.microsoft.com/container-apps/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ContainerApp": "aca:ContainerApp",
+    "Configuration": "aca:Configuration",
+    "Template": "aca:Template",
+    "Container": "aca:Container",
+    "Revision": "aca:Revision",
+    "ManagedEnvironment": "aca:ManagedEnvironment",
+    "Job": "aca:Job",
+    "JobExecution": "aca:JobExecution",
+    "JobExecutionTemplate": "aca:JobExecutionTemplate",
+    "Secret": "aca:Secret",
+    "ContainerAppSecret": "aca:ContainerAppSecret",
+    "AuthConfig": "aca:AuthConfig",
+    "id": {
+      "@id": "aca:id",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "type": {
+      "@id": "aca:type",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "aca:location",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "aca:tags",
+      "@type": "@id"
+    },
+    "identity": {
+      "@id": "aca:identity",
+      "@type": "@id"
+    },
+    "properties": {
+      "@id": "aca:properties",
+      "@type": "@id"
+    },
+    "secrets": {
+      "@id": "aca:secrets",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "activeRevisionsMode": {
+      "@id": "aca:activeRevisionsMode",
+      "@type": "xsd:string"
+    },
+    "ingress": {
+      "@id": "aca:ingress",
+      "@type": "@id"
+    },
+    "registries": {
+      "@id": "aca:registries",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "dapr": {
+      "@id": "aca:dapr",
+      "@type": "@id"
+    },
+    "maxInactiveRevisions": {
+      "@id": "aca:maxInactiveRevisions",
+      "@type": "xsd:integer"
+    },
+    "revisionSuffix": {
+      "@id": "aca:revisionSuffix",
+      "@type": "xsd:string"
+    },
+    "terminationGracePeriodSeconds": {
+      "@id": "aca:terminationGracePeriodSeconds",
+      "@type": "xsd:integer"
+    },
+    "initContainers": {
+      "@id": "aca:initContainers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "containers": {
+      "@id": "aca:containers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "scale": {
+      "@id": "aca:scale",
+      "@type": "@id"
+    },
+    "volumes": {
+      "@id": "aca:volumes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "serviceBinds": {
+      "@id": "aca:serviceBinds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "image": {
+      "@id": "aca:image",
+      "@type": "xsd:string"
+    },
+    "command": {
+      "@id": "aca:command",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "args": {
+      "@id": "aca:args",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "env": {
+      "@id": "aca:env",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "resources": {
+      "@id": "aca:resources",
+      "@type": "@id"
+    },
+    "volumeMounts": {
+      "@id": "aca:volumeMounts",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "probes": {
+      "@id": "aca:probes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "aca:value",
+      "@type": "xsd:string"
+    },
+    "keyVaultUrl": {
+      "@id": "aca:keyVaultUrl",
+      "@type": "xsd:string"
+    }
+  }
+}

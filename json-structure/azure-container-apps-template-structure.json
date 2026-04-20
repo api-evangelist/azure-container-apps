@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-structure/azure-container-apps-template-structure.json",
+  "description": "Container App versioned application definition.",
+  "type": "object",
+  "properties": {
+    "revisionSuffix": {
+      "type": "string"
+    },
+    "terminationGracePeriodSeconds": {
+      "type": "int64"
+    },
+    "initContainers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Container"
+      }
+    },
+    "containers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Container"
+      }
+    },
+    "scale": {
+      "type": "object",
+      "properties": {
+        "minReplicas": {
+          "type": "int32"
+        },
+        "maxReplicas": {
+          "type": "int32"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "azureQueue": {
+                "type": "object",
+                "properties": {
+                  "queueName": {
+                    "type": "string"
+                  },
+                  "queueLength": {
+                    "type": "int32"
+                  },
+                  "auth": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "secretRef": {
+                          "type": "string"
+                        },
+                        "triggerParameter": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "custom": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "auth": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "secretRef": {
+                          "type": "string"
+                        },
+                        "triggerParameter": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "http": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "auth": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "secretRef": {
+                          "type": "string"
+                        },
+                        "triggerParameter": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "tcp": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "auth": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "secretRef": {
+                          "type": "string"
+                        },
+                        "triggerParameter": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "volumes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "storageType": {
+            "type": "string",
+            "enum": [
+              "AzureFile",
+              "EmptyDir",
+              "Secret"
+            ]
+          },
+          "storageName": {
+            "type": "string"
+          },
+          "secrets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "secretRef": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "mountOptions": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "serviceBinds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "name": "Template"
+}

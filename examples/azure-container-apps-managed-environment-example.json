@@ -1,0 +1,42 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/containerApps/my-app",
+  "name": "my-container-app",
+  "type": "Microsoft.App/containerApps",
+  "location": "eastus",
+  "tags": {},
+  "properties": {
+    "provisioningState": "Succeeded",
+    "daprAIInstrumentationKey": "example-string",
+    "daprAIConnectionString": "example-string",
+    "vnetConfiguration": {
+      "internal": false,
+      "infrastructureSubnetId": {},
+      "dockerBridgeCidr": {},
+      "platformReservedCidr": {},
+      "platformReservedDnsIP": {}
+    },
+    "defaultDomain": "eastus.azurecontainerapps.io",
+    "staticIp": "10.0.0.1",
+    "appLogsConfiguration": {
+      "destination": {},
+      "logAnalyticsConfiguration": {}
+    },
+    "zoneRedundant": false,
+    "customDomainConfiguration": {
+      "dnsSuffix": {},
+      "certificateValue": {},
+      "certificatePassword": {},
+      "customDomainVerificationId": {},
+      "expirationDate": {},
+      "thumbprint": {},
+      "subjectName": {}
+    },
+    "workloadProfiles": [
+      {}
+    ],
+    "infrastructureResourceGroup": "example-string",
+    "peerAuthentication": {
+      "mtls": {}
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-job-execution-template-schema.json",
+  "title": "JobExecutionTemplate",
+  "description": "JobExecutionTemplate schema from Azure Container Apps API",
+  "type": "object",
+  "properties": {
+    "containers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Container"
+      }
+    },
+    "initContainers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Container"
+      }
+    }
+  }
+}

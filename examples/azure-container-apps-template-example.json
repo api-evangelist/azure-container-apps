@@ -1,0 +1,32 @@
+{
+  "revisionSuffix": "latest",
+  "terminationGracePeriodSeconds": 1,
+  "initContainers": [
+    {}
+  ],
+  "containers": [
+    {}
+  ],
+  "scale": {
+    "minReplicas": 0,
+    "maxReplicas": 10,
+    "rules": [
+      {}
+    ]
+  },
+  "volumes": [
+    {
+      "name": "my-container-app",
+      "storageType": {},
+      "storageName": {},
+      "secrets": {},
+      "mountOptions": {}
+    }
+  ],
+  "serviceBinds": [
+    {
+      "serviceId": {},
+      "name": "my-container-app"
+    }
+  ]
+}

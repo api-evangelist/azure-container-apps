@@ -1,0 +1,138 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Azure Container Apps Management"
+  description: "Workflow capability for managing containerized applications, environments, and jobs in Azure Container Apps. Used by platform engineers and DevOps teams."
+  tags:
+    - Azure
+    - Containers
+    - Microservices
+    - Serverless
+    - DevOps
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AZURE_SUBSCRIPTION_ID: AZURE_SUBSCRIPTION_ID
+      AZURE_ACCESS_TOKEN: AZURE_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: azure-container-apps
+      location: ./shared/azure-container-apps.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: container-apps-management-api
+      description: "Unified REST API for Azure Container Apps management."
+      resources:
+        - path: /v1/container-apps
+          name: container-apps
+          description: "Container app management"
+          operations:
+            - method: GET
+              name: list-container-apps
+              description: "List all container apps"
+              call: "azure-container-apps.list-container-apps"
+              with:
+                subscriptionId: "rest.subscriptionId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/environments
+          name: environments
+          description: "Managed environment management"
+          operations:
+            - method: GET
+              name: list-environments
+              description: "List all managed environments"
+              call: "azure-container-apps.list-environments"
+              with:
+                subscriptionId: "rest.subscriptionId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/jobs
+          name: jobs
+          description: "Container app job management"
+          operations:
+            - method: GET
+              name: list-jobs
+              description: "List all container app jobs"
+              call: "azure-container-apps.list-jobs"
+              with:
+                subscriptionId: "rest.subscriptionId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: container-apps-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted Azure Container Apps management."
+      tools:
+        - name: list-container-apps
+          description: "List all Azure Container Apps in a subscription"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "azure-container-apps.list-container-apps"
+          with:
+            subscriptionId: "tools.subscriptionId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-container-app
+          description: "Create or update an Azure Container App"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "azure-container-apps.create-container-app"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            containerAppName: "tools.containerAppName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-container-app
+          description: "Delete an Azure Container App"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "azure-container-apps.delete-container-app"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            containerAppName: "tools.containerAppName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-environments
+          description: "List all managed container app environments"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "azure-container-apps.list-environments"
+          with:
+            subscriptionId: "tools.subscriptionId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-jobs
+          description: "List all container app jobs"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "azure-container-apps.list-jobs"
+          with:
+            subscriptionId: "tools.subscriptionId"
+          outputParameters:
+            - type: object
+              mapping: "$."

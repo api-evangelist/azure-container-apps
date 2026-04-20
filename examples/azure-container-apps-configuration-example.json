@@ -1,0 +1,54 @@
+{
+  "secrets": [
+    {}
+  ],
+  "activeRevisionsMode": "Multiple",
+  "ingress": {
+    "fqdn": "my-container-app.eastus.azurecontainerapps.io",
+    "external": true,
+    "targetPort": 1,
+    "exposedPort": 1,
+    "transport": "auto",
+    "traffic": [
+      {}
+    ],
+    "customDomains": [
+      {}
+    ],
+    "allowInsecure": true,
+    "ipSecurityRestrictions": [
+      {}
+    ],
+    "stickySessions": {
+      "affinity": {}
+    },
+    "clientCertificateMode": "accept",
+    "corsPolicy": {
+      "allowedOrigins": {},
+      "allowedMethods": {},
+      "allowedHeaders": {},
+      "exposeHeaders": {},
+      "maxAge": {},
+      "allowCredentials": {}
+    }
+  },
+  "registries": [
+    {
+      "server": {},
+      "username": {},
+      "passwordSecretRef": {},
+      "identity": {}
+    }
+  ],
+  "dapr": {
+    "enabled": true,
+    "appId": "my-app",
+    "appProtocol": "http",
+    "appPort": 80,
+    "httpReadBufferSize": 1,
+    "httpMaxRequestSize": 1,
+    "logLevel": "info",
+    "enableApiLogging": false
+  },
+  "maxInactiveRevisions": 1
+}

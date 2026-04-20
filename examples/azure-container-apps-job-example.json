@@ -1,0 +1,26 @@
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/containerApps/my-app",
+  "name": "my-container-app",
+  "type": "Microsoft.App/containerApps",
+  "location": "eastus",
+  "tags": {},
+  "properties": {
+    "provisioningState": "Succeeded",
+    "environmentId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/managedEnvironments/my-env",
+    "workloadProfileName": "example-string",
+    "configuration": {
+      "secrets": {},
+      "triggerType": "Manual",
+      "replicaTimeout": 1800,
+      "replicaRetryLimit": 1,
+      "manualTriggerConfig": {},
+      "scheduleTriggerConfig": {},
+      "eventTriggerConfig": {},
+      "registries": {}
+    },
+    "outboundIpAddresses": [
+      {}
+    ],
+    "eventStreamEndpoint": "example-string"
+  }
+}

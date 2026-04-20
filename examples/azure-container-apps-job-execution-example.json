@@ -1,0 +1,10 @@
+{
+  "name": "my-container-app",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/containerApps/my-app",
+  "type": "Microsoft.App/containerApps",
+  "properties": {
+    "status": "Running",
+    "startTime": "2026-04-19T12:00:00Z",
+    "endTime": "2026-04-19T12:00:00Z"
+  }
+}

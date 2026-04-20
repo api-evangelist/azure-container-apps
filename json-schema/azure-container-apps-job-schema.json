@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-job-schema.json",
+  "title": "Job",
+  "description": "Job schema from Azure Container Apps API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "provisioningState": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "InProgress",
+            "Succeeded",
+            "Failed",
+            "Canceled",
+            "Deleting"
+          ]
+        },
+        "environmentId": {
+          "type": "string"
+        },
+        "workloadProfileName": {
+          "type": "string"
+        },
+        "configuration": {
+          "type": "object",
+          "properties": {
+            "secrets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Secret"
+              }
+            },
+            "triggerType": {
+              "type": "string",
+              "enum": [
+                "Schedule",
+                "Event",
+                "Manual"
+              ]
+            },
+            "replicaTimeout": {
+              "type": "integer"
+            },
+            "replicaRetryLimit": {
+              "type": "integer"
+            },
+            "manualTriggerConfig": {
+              "type": "object",
+              "properties": {
+                "replicaCompletionCount": {
+                  "type": "integer"
+                },
+                "parallelism": {
+                  "type": "integer"
+                }
+              }
+            },
+            "scheduleTriggerConfig": {
+              "type": "object",
+              "properties": {
+                "cronExpression": {
+                  "type": "string"
+                },
+                "replicaCompletionCount": {
+                  "type": "integer"
+                },
+                "parallelism": {
+                  "type": "integer"
+                }
+              }
+            },
+            "eventTriggerConfig": {
+              "type": "object",
+              "properties": {
+                "replicaCompletionCount": {
+                  "type": "integer"
+                },
+                "parallelism": {
+                  "type": "integer"
+                },
+                "scale": {
+                  "type": "object",
+                  "properties": {
+                    "minExecutions": {
+                      "type": "integer"
+                    },
+                    "maxExecutions": {
+                      "type": "integer"
+                    },
+                    "pollingInterval": {
+                      "type": "integer"
+                    },
+                    "rules": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "registries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "server": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "passwordSecretRef": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "template": {
+          "$ref": "#/components/schemas/JobExecutionTemplate"
+        },
+        "outboundIpAddresses": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "eventStreamEndpoint": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    }
+  }
+}

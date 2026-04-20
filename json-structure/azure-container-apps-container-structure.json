@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-structure/azure-container-apps-container-structure.json",
+  "description": "Container schema from Azure Container Apps API",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "command": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "args": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "env": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "secretRef": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "cpu": {
+          "type": "double"
+        },
+        "memory": {
+          "type": "string"
+        },
+        "ephemeralStorage": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "volumeMounts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "volumeName": {
+            "type": "string"
+          },
+          "mountPath": {
+            "type": "string"
+          },
+          "subPath": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "probes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "failureThreshold": {
+            "type": "int32"
+          },
+          "httpGet": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "httpHeaders": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "path": {
+                "type": "string"
+              },
+              "port": {
+                "type": "int32"
+              },
+              "scheme": {
+                "type": "string",
+                "enum": [
+                  "HTTP",
+                  "HTTPS"
+                ]
+              }
+            }
+          },
+          "initialDelaySeconds": {
+            "type": "int32"
+          },
+          "periodSeconds": {
+            "type": "int32"
+          },
+          "successThreshold": {
+            "type": "int32"
+          },
+          "tcpSocket": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "port": {
+                "type": "int32"
+              }
+            }
+          },
+          "terminationGracePeriodSeconds": {
+            "type": "int64"
+          },
+          "timeoutSeconds": {
+            "type": "int32"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Liveness",
+              "Readiness",
+              "Startup"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "name": "Container"
+}

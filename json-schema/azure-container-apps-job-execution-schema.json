@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-job-execution-schema.json",
+  "title": "JobExecution",
+  "description": "JobExecution schema from Azure Container Apps API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "Running",
+            "Processing",
+            "Stopped",
+            "Degraded",
+            "Failed",
+            "Unknown",
+            "Succeeded"
+          ]
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "template": {
+          "$ref": "#/components/schemas/JobExecutionTemplate"
+        }
+      }
+    }
+  }
+}

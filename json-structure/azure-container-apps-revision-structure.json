@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-structure/azure-container-apps-revision-structure.json",
+  "description": "Revision schema from Azure Container Apps API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "createdTime": {
+          "type": "datetime",
+          "readOnly": true
+        },
+        "lastActiveTime": {
+          "type": "datetime",
+          "readOnly": true
+        },
+        "fqdn": {
+          "type": "string",
+          "readOnly": true
+        },
+        "template": {
+          "$ref": "#/components/schemas/Template"
+        },
+        "active": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "replicas": {
+          "type": "int32",
+          "readOnly": true
+        },
+        "trafficWeight": {
+          "type": "int32",
+          "readOnly": true
+        },
+        "provisioningError": {
+          "type": "string",
+          "readOnly": true
+        },
+        "healthState": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "Healthy",
+            "Unhealthy",
+            "None"
+          ]
+        },
+        "provisioningState": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "Provisioning",
+            "Provisioned",
+            "Failed",
+            "Deprovisioning",
+            "Deprovisioned"
+          ]
+        },
+        "runningState": {
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "Running",
+            "Processing",
+            "Stopped",
+            "Degraded",
+            "Failed",
+            "Unknown"
+          ]
+        }
+      }
+    }
+  },
+  "name": "Revision"
+}

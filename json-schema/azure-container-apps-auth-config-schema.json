@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-auth-config-schema.json",
+  "title": "AuthConfig",
+  "description": "AuthConfig schema from Azure Container Apps API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "runtimeVersion": {
+              "type": "string"
+            }
+          }
+        },
+        "globalValidation": {
+          "type": "object",
+          "properties": {
+            "unauthenticatedClientAction": {
+              "type": "string",
+              "enum": [
+                "RedirectToLoginPage",
+                "AllowAnonymous",
+                "Return401",
+                "Return403"
+              ]
+            },
+            "redirectToProvider": {
+              "type": "string"
+            }
+          }
+        },
+        "identityProviders": {
+          "type": "object",
+          "properties": {
+            "azureActiveDirectory": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "registration": {
+                  "type": "object",
+                  "properties": {
+                    "openIdIssuer": {
+                      "type": "string"
+                    },
+                    "clientId": {
+                      "type": "string"
+                    },
+                    "clientSecretSettingName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

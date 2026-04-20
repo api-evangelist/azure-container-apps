@@ -11,19 +11,19 @@ info:
     name: Microsoft Azure
     url: https://azure.microsoft.com/en-us/products/container-apps
 servers:
-  - url: https://management.azure.com
-    description: Azure Resource Manager endpoint
+- url: https://management.azure.com
+  description: Azure Resource Manager endpoint
 paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.App/containerApps:
     get:
       operationId: ContainerApps_ListBySubscription
-      summary: Azure Container Apps List container apps by subscription
+      summary: Azure Container Apps List Container Apps by Subscription
       description: Get the Container Apps in a given subscription.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -31,17 +31,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerAppCollection'
+              examples:
+                ContainerApps_ListBySubscription200Example:
+                  summary: Default ContainerApps_ListBySubscription 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps:
     get:
       operationId: ContainerApps_ListByResourceGroup
-      summary: Azure Container Apps List container apps by resource group
+      summary: Azure Container Apps List Container Apps by Resource Group
       description: Get the Container Apps in a given resource group.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -49,22 +63,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerAppCollection'
+              examples:
+                ContainerApps_ListByResourceGroup200Example:
+                  summary: Default ContainerApps_ListByResourceGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}
   : get:
       operationId: ContainerApps_Get
-      summary: Azure Container Apps Get a container app
+      summary: Azure Container Apps Get a Container App
       description: Get the properties of a Container App.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -72,21 +101,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerApp'
+              examples:
+                ContainerApps_Get200Example:
+                  summary: Default ContainerApps_Get 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: ContainerApps_CreateOrUpdate
-      summary: Azure Container Apps Create or update a container app
+      summary: Azure Container Apps Create or Update a Container App
       description: Create or update a Container App.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       requestBody:
         required: true
         content:
@@ -100,27 +144,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerApp'
+              examples:
+                ContainerApps_CreateOrUpdate200Example:
+                  summary: Default ContainerApps_CreateOrUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
         '201':
           description: Container app created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerApp'
+              examples:
+                ContainerApps_CreateOrUpdate201Example:
+                  summary: Default ContainerApps_CreateOrUpdate 201 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: ContainerApps_Update
-      summary: Azure Container Apps Update a container app
+      summary: Azure Container Apps Update a Container App
       description: Patches a Container App using JSON merge patch.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       requestBody:
         required: true
         content:
@@ -134,23 +204,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContainerApp'
+              examples:
+                ContainerApps_Update200Example:
+                  summary: Default ContainerApps_Update 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
         '202':
           description: Patch request accepted
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: ContainerApps_Delete
-      summary: Azure Container Apps Delete a container app
+      summary: Azure Container Apps Delete a Container App
       description: Delete a Container App.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Container app deleted
@@ -158,26 +243,31 @@ paths:
           description: Delete request accepted
         '204':
           description: Container app does not exist
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions
   : get:
       operationId: ContainerAppsRevisions_ListRevisions
-      summary: Azure Container Apps List revisions
+      summary: Azure Container Apps List Revisions
       description: Get the Revisions for a given Container App.
       tags:
-        - Revisions
+      - Revisions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
-        - name: $filter
-          in: query
-          schema:
-            type: string
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
+      - name: $filter
+        in: query
+        schema:
+          type: string
+        example: example-value
       responses:
         '200':
           description: Successful response
@@ -185,27 +275,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RevisionCollection'
+              examples:
+                ContainerAppsRevisions_ListRevisions200Example:
+                  summary: Default ContainerAppsRevisions_ListRevisions 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}
   : get:
       operationId: ContainerAppsRevisions_GetRevision
-      summary: Azure Container Apps Get a revision
+      summary: Azure Container Apps Get a Revision
       description: Get a revision of a Container App.
       tags:
-        - Revisions
+      - Revisions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: revisionName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - name: revisionName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -213,89 +319,118 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Revision'
+              examples:
+                ContainerAppsRevisions_GetRevision200Example:
+                  summary: Default ContainerAppsRevisions_GetRevision 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/activate
   : post:
       operationId: ContainerAppsRevisions_ActivateRevision
-      summary: Azure Container Apps Activate a revision
+      summary: Azure Container Apps Activate a Revision
       description: Activates a revision for a Container App.
       tags:
-        - Revisions
+      - Revisions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: revisionName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - name: revisionName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Revision activated
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/deactivate
   : post:
       operationId: ContainerAppsRevisions_DeactivateRevision
-      summary: Azure Container Apps Deactivate a revision
+      summary: Azure Container Apps Deactivate a Revision
       description: Deactivates a revision for a Container App.
       tags:
-        - Revisions
+      - Revisions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: revisionName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - name: revisionName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Revision deactivated
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/restart
   : post:
       operationId: ContainerAppsRevisions_RestartRevision
-      summary: Azure Container Apps Restart a revision
+      summary: Azure Container Apps Restart a Revision
       description: Restarts a revision for a Container App.
       tags:
-        - Revisions
+      - Revisions
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: revisionName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - name: revisionName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Revision restarted
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments:
     get:
       operationId: ManagedEnvironments_ListByResourceGroup
-      summary: Azure Container Apps List managed environments
+      summary: Azure Container Apps List Managed Environments
       description: Get all the Managed Environments in a resource group.
       tags:
-        - Managed Environments
+      - Managed Environments
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -303,22 +438,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManagedEnvironmentCollection'
+              examples:
+                ManagedEnvironments_ListByResourceGroup200Example:
+                  summary: Default ManagedEnvironments_ListByResourceGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}
   : get:
       operationId: ManagedEnvironments_Get
-      summary: Azure Container Apps Get a managed environment
+      summary: Azure Container Apps Get a Managed Environment
       description: Get the properties of a Managed Environment used to host container apps.
       tags:
-        - Managed Environments
+      - Managed Environments
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: environmentName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: environmentName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -326,21 +476,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManagedEnvironment'
+              examples:
+                ManagedEnvironments_Get200Example:
+                  summary: Default ManagedEnvironments_Get 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: ManagedEnvironments_CreateOrUpdate
-      summary: Azure Container Apps Create or update a managed environment
+      summary: Azure Container Apps Create or Update a Managed Environment
       description: Creates or updates a Managed Environment.
       tags:
-        - Managed Environments
+      - Managed Environments
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: environmentName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: environmentName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       requestBody:
         required: true
         content:
@@ -354,27 +519,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManagedEnvironment'
+              examples:
+                ManagedEnvironments_CreateOrUpdate200Example:
+                  summary: Default ManagedEnvironments_CreateOrUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
         '201':
           description: Environment created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ManagedEnvironment'
+              examples:
+                ManagedEnvironments_CreateOrUpdate201Example:
+                  summary: Default ManagedEnvironments_CreateOrUpdate 201 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: ManagedEnvironments_Delete
-      summary: Azure Container Apps Delete a managed environment
+      summary: Azure Container Apps Delete a Managed Environment
       description: Delete a Managed Environment.
       tags:
-        - Managed Environments
+      - Managed Environments
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: environmentName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: environmentName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Environment deleted
@@ -382,17 +573,20 @@ paths:
           description: Delete request accepted
         '204':
           description: Environment does not exist
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs:
     get:
       operationId: Jobs_ListByResourceGroup
-      summary: Azure Container Apps List jobs by resource group
+      summary: Azure Container Apps List Jobs by Resource Group
       description: Get the Container Apps Jobs in a given resource group.
       tags:
-        - Jobs
+      - Jobs
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -400,22 +594,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobCollection'
+              examples:
+                Jobs_ListByResourceGroup200Example:
+                  summary: Default Jobs_ListByResourceGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}:
     get:
       operationId: Jobs_Get
-      summary: Azure Container Apps Get a job
+      summary: Azure Container Apps Get a Job
       description: Get the properties of a Container Apps Job.
       tags:
-        - Jobs
+      - Jobs
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: jobName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -423,21 +632,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Job'
+              examples:
+                Jobs_Get200Example:
+                  summary: Default Jobs_Get 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: Jobs_CreateOrUpdate
-      summary: Azure Container Apps Create or update a job
+      summary: Azure Container Apps Create or Update a Job
       description: Create or Update a Container Apps Job.
       tags:
-        - Jobs
+      - Jobs
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: jobName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       requestBody:
         required: true
         content:
@@ -451,27 +675,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Job'
+              examples:
+                Jobs_CreateOrUpdate200Example:
+                  summary: Default Jobs_CreateOrUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
         '201':
           description: Job created
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Job'
+              examples:
+                Jobs_CreateOrUpdate201Example:
+                  summary: Default Jobs_CreateOrUpdate 201 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: Jobs_Delete
-      summary: Azure Container Apps Delete a job
+      summary: Azure Container Apps Delete a Job
       description: Delete a Container Apps Job.
       tags:
-        - Jobs
+      - Jobs
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: jobName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Job deleted
@@ -479,22 +729,26 @@ paths:
           description: Delete request accepted
         '204':
           description: Job does not exist
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/start:
     post:
       operationId: Jobs_Start
-      summary: Azure Container Apps Start a job execution
+      summary: Azure Container Apps Start a Job Execution
       description: Start a Container Apps Job execution.
       tags:
-        - Jobs
+      - Jobs
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: jobName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       requestBody:
         content:
           application/json:
@@ -510,24 +764,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobExecution'
+              examples:
+                Jobs_Start200Example:
+                  summary: Default Jobs_Start 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
         '202':
           description: Start request accepted
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listSecrets
   : post:
       operationId: ContainerApps_ListSecrets
-      summary: Azure Container Apps List secrets
+      summary: Azure Container Apps List Secrets
       description: List secrets for a container app.
       tags:
-        - Container Apps
+      - Container Apps
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -540,22 +809,37 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ContainerAppSecret'
+              examples:
+                ContainerApps_ListSecrets200Example:
+                  summary: Default ContainerApps_ListSecrets 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs
   : get:
       operationId: ContainerAppsAuthConfigs_ListByContainerApp
-      summary: Azure Container Apps List auth configs
+      summary: Azure Container Apps List Auth Configs
       description: Get the Container App AuthConfigs in a given Container App.
       tags:
-        - Authentication
+      - Authentication
       parameters:
-        - $ref: '#/components/parameters/SubscriptionId'
-        - $ref: '#/components/parameters/ResourceGroupName'
-        - name: containerAppName
-          in: path
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/ApiVersion'
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: containerAppName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
       responses:
         '200':
           description: Successful response
@@ -570,6 +854,20 @@ paths:
                       $ref: '#/components/schemas/AuthConfig'
                   nextLink:
                     type: string
+              examples:
+                ContainerAppsAuthConfigs_ListByContainerApp200Example:
+                  summary: Default ContainerAppsAuthConfigs_ListByContainerApp 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   parameters:
     SubscriptionId:
@@ -619,10 +917,10 @@ components:
             type:
               type: string
               enum:
-                - None
-                - SystemAssigned
-                - UserAssigned
-                - SystemAssigned,UserAssigned
+              - None
+              - SystemAssigned
+              - UserAssigned
+              - SystemAssigned,UserAssigned
             principalId:
               type: string
               readOnly: true
@@ -647,11 +945,11 @@ components:
               type: string
               readOnly: true
               enum:
-                - InProgress
-                - Succeeded
-                - Failed
-                - Canceled
-                - Deleting
+              - InProgress
+              - Succeeded
+              - Failed
+              - Canceled
+              - Deleting
             managedEnvironmentId:
               type: string
               description: Resource ID of the Container App's environment.
@@ -705,8 +1003,8 @@ components:
         activeRevisionsMode:
           type: string
           enum:
-            - Multiple
-            - Single
+          - Multiple
+          - Single
         ingress:
           type: object
           properties:
@@ -723,10 +1021,10 @@ components:
             transport:
               type: string
               enum:
-                - auto
-                - http
-                - http2
-                - tcp
+              - auto
+              - http
+              - http2
+              - tcp
               default: auto
             traffic:
               type: array
@@ -751,8 +1049,8 @@ components:
                   bindingType:
                     type: string
                     enum:
-                      - Disabled
-                      - SniEnabled
+                    - Disabled
+                    - SniEnabled
                   certificateId:
                     type: string
             allowInsecure:
@@ -772,22 +1070,22 @@ components:
                   action:
                     type: string
                     enum:
-                      - Allow
-                      - Deny
+                    - Allow
+                    - Deny
             stickySessions:
               type: object
               properties:
                 affinity:
                   type: string
                   enum:
-                    - sticky
-                    - none
+                  - sticky
+                  - none
             clientCertificateMode:
               type: string
               enum:
-                - accept
-                - require
-                - ignore
+              - accept
+              - require
+              - ignore
             corsPolicy:
               type: object
               properties:
@@ -834,8 +1132,8 @@ components:
             appProtocol:
               type: string
               enum:
-                - http
-                - grpc
+              - http
+              - grpc
             appPort:
               type: integer
             httpReadBufferSize:
@@ -845,10 +1143,10 @@ components:
             logLevel:
               type: string
               enum:
-                - info
-                - debug
-                - warn
-                - error
+              - info
+              - debug
+              - warn
+              - error
             enableApiLogging:
               type: boolean
         maxInactiveRevisions:
@@ -960,9 +1258,9 @@ components:
               storageType:
                 type: string
                 enum:
-                  - AzureFile
-                  - EmptyDir
-                  - Secret
+                - AzureFile
+                - EmptyDir
+                - Secret
               storageName:
                 type: string
               secrets:
@@ -1060,8 +1358,8 @@ components:
                   scheme:
                     type: string
                     enum:
-                      - HTTP
-                      - HTTPS
+                    - HTTP
+                    - HTTPS
               initialDelaySeconds:
                 type: integer
               periodSeconds:
@@ -1083,9 +1381,9 @@ components:
               type:
                 type: string
                 enum:
-                  - Liveness
-                  - Readiness
-                  - Startup
+                - Liveness
+                - Readiness
+                - Startup
     Revision:
       type: object
       properties:
@@ -1130,28 +1428,28 @@ components:
               type: string
               readOnly: true
               enum:
-                - Healthy
-                - Unhealthy
-                - None
+              - Healthy
+              - Unhealthy
+              - None
             provisioningState:
               type: string
               readOnly: true
               enum:
-                - Provisioning
-                - Provisioned
-                - Failed
-                - Deprovisioning
-                - Deprovisioned
+              - Provisioning
+              - Provisioned
+              - Failed
+              - Deprovisioning
+              - Deprovisioned
             runningState:
               type: string
               readOnly: true
               enum:
-                - Running
-                - Processing
-                - Stopped
-                - Degraded
-                - Failed
-                - Unknown
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
+              - Failed
+              - Unknown
     RevisionCollection:
       type: object
       properties:
@@ -1187,16 +1485,16 @@ components:
               type: string
               readOnly: true
               enum:
-                - Succeeded
-                - Failed
-                - Canceled
-                - Waiting
-                - InitializationInProgress
-                - InfrastructureSetupInProgress
-                - InfrastructureSetupComplete
-                - ScheduledForDelete
-                - UpgradeRequested
-                - UpgradeFailed
+              - Succeeded
+              - Failed
+              - Canceled
+              - Waiting
+              - InitializationInProgress
+              - InfrastructureSetupInProgress
+              - InfrastructureSetupComplete
+              - ScheduledForDelete
+              - UpgradeRequested
+              - UpgradeFailed
             daprAIInstrumentationKey:
               type: string
             daprAIConnectionString:
@@ -1316,11 +1614,11 @@ components:
               type: string
               readOnly: true
               enum:
-                - InProgress
-                - Succeeded
-                - Failed
-                - Canceled
-                - Deleting
+              - InProgress
+              - Succeeded
+              - Failed
+              - Canceled
+              - Deleting
             environmentId:
               type: string
             workloadProfileName:
@@ -1335,9 +1633,9 @@ components:
                 triggerType:
                   type: string
                   enum:
-                    - Schedule
-                    - Event
-                    - Manual
+                  - Schedule
+                  - Event
+                  - Manual
                 replicaTimeout:
                   type: integer
                 replicaRetryLimit:
@@ -1427,13 +1725,13 @@ components:
               type: string
               readOnly: true
               enum:
-                - Running
-                - Processing
-                - Stopped
-                - Degraded
-                - Failed
-                - Unknown
-                - Succeeded
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
+              - Failed
+              - Unknown
+              - Succeeded
             startTime:
               type: string
               format: date-time
@@ -1503,10 +1801,10 @@ components:
                 unauthenticatedClientAction:
                   type: string
                   enum:
-                    - RedirectToLoginPage
-                    - AllowAnonymous
-                    - Return401
-                    - Return403
+                  - RedirectToLoginPage
+                  - AllowAnonymous
+                  - Return401
+                  - Return403
                 redirectToProvider:
                   type: string
             identityProviders:
@@ -1535,16 +1833,16 @@ components:
           scopes:
             user_impersonation: Impersonate your user account
 security:
-  - azure_auth:
-      - user_impersonation
+- azure_auth:
+  - user_impersonation
 tags:
-  - name: Authentication
-    description: Manage container app authentication
-  - name: Container Apps
-    description: Manage container apps
-  - name: Jobs
-    description: Manage container app jobs
-  - name: Managed Environments
-    description: Manage container app environments
-  - name: Revisions
-    description: Manage container app revisions
+- name: Authentication
+  description: Manage container app authentication
+- name: Container Apps
+  description: Manage container apps
+- name: Jobs
+  description: Manage container app jobs
+- name: Managed Environments
+  description: Manage container app environments
+- name: Revisions
+  description: Manage container app revisions

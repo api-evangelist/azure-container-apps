@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-configuration-schema.json",
+  "title": "Configuration",
+  "description": "Non-versioned Container App configuration properties.",
+  "type": "object",
+  "properties": {
+    "secrets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Secret"
+      }
+    },
+    "activeRevisionsMode": {
+      "type": "string",
+      "enum": [
+        "Multiple",
+        "Single"
+      ]
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "fqdn": {
+          "type": "string",
+          "readOnly": true
+        },
+        "external": {
+          "type": "boolean",
+          "default": false
+        },
+        "targetPort": {
+          "type": "integer"
+        },
+        "exposedPort": {
+          "type": "integer"
+        },
+        "transport": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "http",
+            "http2",
+            "tcp"
+          ],
+          "default": "auto"
+        },
+        "traffic": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "revisionName": {
+                "type": "string"
+              },
+              "weight": {
+                "type": "integer"
+              },
+              "latestRevision": {
+                "type": "boolean"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "customDomains": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "bindingType": {
+                "type": "string",
+                "enum": [
+                  "Disabled",
+                  "SniEnabled"
+                ]
+              },
+              "certificateId": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "allowInsecure": {
+          "type": "boolean",
+          "default": false
+        },
+        "ipSecurityRestrictions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "ipAddressRange": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "Allow",
+                  "Deny"
+                ]
+              }
+            }
+          }
+        },
+        "stickySessions": {
+          "type": "object",
+          "properties": {
+            "affinity": {
+              "type": "string",
+              "enum": [
+                "sticky",
+                "none"
+              ]
+            }
+          }
+        },
+        "clientCertificateMode": {
+          "type": "string",
+          "enum": [
+            "accept",
+            "require",
+            "ignore"
+          ]
+        },
+        "corsPolicy": {
+          "type": "object",
+          "properties": {
+            "allowedOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "allowedMethods": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "allowedHeaders": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "exposeHeaders": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "maxAge": {
+              "type": "integer"
+            },
+            "allowCredentials": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "registries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "server": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "passwordSecretRef": {
+            "type": "string"
+          },
+          "identity": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dapr": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "appProtocol": {
+          "type": "string",
+          "enum": [
+            "http",
+            "grpc"
+          ]
+        },
+        "appPort": {
+          "type": "integer"
+        },
+        "httpReadBufferSize": {
+          "type": "integer"
+        },
+        "httpMaxRequestSize": {
+          "type": "integer"
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": [
+            "info",
+            "debug",
+            "warn",
+            "error"
+          ]
+        },
+        "enableApiLogging": {
+          "type": "boolean"
+        }
+      }
+    },
+    "maxInactiveRevisions": {
+      "type": "integer"
+    }
+  }
+}

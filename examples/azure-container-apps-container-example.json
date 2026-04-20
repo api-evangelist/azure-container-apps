@@ -1,0 +1,42 @@
+{
+  "image": "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest",
+  "name": "my-container-app",
+  "command": [
+    "example-string"
+  ],
+  "args": [
+    "example-string"
+  ],
+  "env": [
+    {
+      "name": "my-container-app",
+      "value": {},
+      "secretRef": {}
+    }
+  ],
+  "resources": {
+    "cpu": 0.5,
+    "memory": "1Gi",
+    "ephemeralStorage": "example-string"
+  },
+  "volumeMounts": [
+    {
+      "volumeName": {},
+      "mountPath": {},
+      "subPath": {}
+    }
+  ],
+  "probes": [
+    {
+      "failureThreshold": {},
+      "httpGet": {},
+      "initialDelaySeconds": {},
+      "periodSeconds": {},
+      "successThreshold": {},
+      "tcpSocket": {},
+      "terminationGracePeriodSeconds": {},
+      "timeoutSeconds": {},
+      "type": "Microsoft.App/containerApps"
+    }
+  ]
+}

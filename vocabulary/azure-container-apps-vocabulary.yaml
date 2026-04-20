@@ -1,0 +1,193 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Azure Container Apps"
+  description: "Unified taxonomy mapping operational (OpenAPI) and capability (Naftiko) dimensions for Azure Container Apps."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: azure-container-apps
+      version: "2023-05-01"
+      baseUrl: https://management.azure.com
+      status: active
+      description: "Azure Container Apps Resource Manager REST API"
+
+  resources:
+    - name: container-apps
+      api: azure-container-apps
+      actions: [list, get, create, update, delete]
+      description: "Containerized applications deployed on serverless infrastructure"
+    - name: managed-environments
+      api: azure-container-apps
+      actions: [list, get, create, update, delete]
+      description: "Shared networking and logging environments for container apps"
+    - name: revisions
+      api: azure-container-apps
+      actions: [list, get, activate, deactivate]
+      description: "Immutable snapshots of a container app version"
+    - name: jobs
+      api: azure-container-apps
+      actions: [list, get, create, update, delete, start, stop]
+      description: "Containerized batch jobs with scheduled, event, or manual triggers"
+    - name: secrets
+      api: azure-container-apps
+      actions: [list, get]
+      description: "Sensitive configuration values for container apps"
+    - name: auth-configs
+      api: azure-container-apps
+      actions: [get, create, update, delete]
+      description: "Authentication and authorization configuration"
+
+  actions:
+    - name: list
+      http_method: GET
+      pattern: read
+      description: "Enumerate resources"
+    - name: get
+      http_method: GET
+      pattern: read
+      description: "Retrieve a single resource"
+    - name: create
+      http_method: PUT
+      pattern: write
+      description: "Create or update a resource"
+    - name: update
+      http_method: PATCH
+      pattern: write
+      description: "Partially update a resource"
+    - name: delete
+      http_method: DELETE
+      pattern: destructive
+      description: "Remove a resource"
+
+  schemas:
+    core:
+      - ContainerApp
+      - ManagedEnvironment
+      - Revision
+      - Job
+      - Container
+      - Secret
+    templates:
+      - Template
+      - JobExecutionTemplate
+      - JobExecution
+    auth:
+      - AuthConfig
+
+  parameters:
+    identifiers:
+      - subscriptionId
+      - resourceGroupName
+      - containerAppName
+    versioning:
+      - api-version
+
+  enums:
+    provisioning_states:
+      - Succeeded
+      - Failed
+      - Canceled
+      - InProgress
+      - Deleting
+    running_states:
+      - Running
+      - Processing
+      - Stopped
+      - Degraded
+      - Failed
+      - Unknown
+    health_states:
+      - Healthy
+      - Unhealthy
+      - None
+    trigger_types:
+      - Schedule
+      - Event
+      - Manual
+    app_protocols:
+      - http
+      - grpc
+    log_levels:
+      - info
+      - debug
+      - warn
+      - error
+    volume_types:
+      - AzureFile
+      - EmptyDir
+      - Secret
+    probe_types:
+      - Liveness
+      - Readiness
+      - Startup
+
+  authentication:
+    schemes:
+      - type: oauth2
+        name: azure_auth
+        flows: [implicit, client_credentials]
+        scopes:
+          - user_impersonation
+
+capability:
+  workflows:
+    - name: Container Apps Management
+      file: capabilities/container-apps-management.yaml
+      description: "Manage containerized applications, environments, and jobs"
+      apis: [azure-container-apps]
+      tools: 5
+      personas: [Platform Engineer, DevOps Engineer]
+      domains: [Containers, Microservices, Serverless]
+
+  personas:
+    - id: platform-engineer
+      name: Platform Engineer
+      description: "Manages the container infrastructure and environments"
+      workflows: [Container Apps Management]
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: "Deploys and manages containerized application workloads"
+      workflows: [Container Apps Management]
+
+  domains:
+    - name: Containers
+      description: "Container app deployment and management"
+      resources: [container-apps, revisions]
+    - name: Serverless
+      description: "Serverless compute and job execution"
+      resources: [jobs, managed-environments]
+
+  namespaces:
+    consumed:
+      - azure-container-apps
+    rest:
+      - name: container-apps-management-api
+        port: 8080
+    mcp:
+      - name: container-apps-management-mcp
+        port: 9090
+
+  binds:
+    - name: AZURE_SUBSCRIPTION_ID
+      description: "Azure subscription identifier"
+      workflows: [Container Apps Management]
+    - name: AZURE_ACCESS_TOKEN
+      description: "OAuth 2.0 bearer token for Azure Resource Manager"
+      workflows: [Container Apps Management]
+
+crossReference:
+  - resource: container-apps
+    operations: [list, get, create, update, delete]
+    workflows: [Container Apps Management]
+    personas: [Platform Engineer, DevOps Engineer]
+  - resource: managed-environments
+    operations: [list, get]
+    workflows: [Container Apps Management]
+    personas: [Platform Engineer]
+  - resource: jobs
+    operations: [list, get]
+    workflows: [Container Apps Management]
+    personas: [DevOps Engineer]
