@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Container Apps API — Jobs
+  description: 'Azure Container Apps API — Jobs. 5 operations. Lead operation: Azure Container Apps List Jobs by Resource
+    Group. Self-contained Naftiko capability covering one Azure Container Apps business surface.'
+  tags:
+  - Azure Container Apps
+  - Jobs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AZURE_CONTAINER_APPS_API_KEY: AZURE_CONTAINER_APPS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-container-apps-jobs
+    baseUri: https://management.azure.com
+    description: Azure Container Apps API — Jobs business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs
+      operations:
+      - name: jobslistbyresourcegroup
+        method: GET
+        description: Azure Container Apps List Jobs by Resource Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}
+      operations:
+      - name: jobsget
+        method: GET
+        description: Azure Container Apps Get a Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+      - name: jobscreateorupdate
+        method: PUT
+        description: Azure Container Apps Create or Update a Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: jobsdelete
+        method: DELETE
+        description: Azure Container Apps Delete a Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/start
+      operations:
+      - name: jobsstart
+        method: POST
+        description: Azure Container Apps Start a Job Execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.AZURE_CONTAINER_APPS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: azure-container-apps-jobs-rest
+    port: 8080
+    description: REST adapter for Azure Container Apps API — Jobs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-app/jobs
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: jobslistbyresourcegroup
+        description: Azure Container Apps List Jobs by Resource Group
+        call: azure-container-apps-jobs.jobslistbyresourcegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-app/jobs/{jobname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: jobsget
+        description: Azure Container Apps Get a Job
+        call: azure-container-apps-jobs.jobsget
+        with:
+          jobName: rest.jobName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: jobscreateorupdate
+        description: Azure Container Apps Create or Update a Job
+        call: azure-container-apps-jobs.jobscreateorupdate
+        with:
+          jobName: rest.jobName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: jobsdelete
+        description: Azure Container Apps Delete a Job
+        call: azure-container-apps-jobs.jobsdelete
+        with:
+          jobName: rest.jobName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-app/jobs/{jobname}/start
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: jobsstart
+        description: Azure Container Apps Start a Job Execution
+        call: azure-container-apps-jobs.jobsstart
+        with:
+          jobName: rest.jobName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-container-apps-jobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Container Apps API — Jobs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: azure-container-apps-list-jobs
+      description: Azure Container Apps List Jobs by Resource Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-container-apps-jobs.jobslistbyresourcegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-container-apps-get-job
+      description: Azure Container Apps Get a Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-container-apps-jobs.jobsget
+      with:
+        jobName: tools.jobName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-container-apps-create-update
+      description: Azure Container Apps Create or Update a Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-container-apps-jobs.jobscreateorupdate
+      with:
+        jobName: tools.jobName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-container-apps-delete-job
+      description: Azure Container Apps Delete a Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-container-apps-jobs.jobsdelete
+      with:
+        jobName: tools.jobName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-container-apps-start-job
+      description: Azure Container Apps Start a Job Execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-container-apps-jobs.jobsstart
+      with:
+        jobName: tools.jobName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
