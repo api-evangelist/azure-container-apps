@@ -141,6 +141,8 @@ common:
     description: Built-in Dapr runtime support for distributed systems patterns.
   - name: Azure Monitor
     description: Native integration with Azure Monitor and Log Analytics for observability.
+- type: LLMsTxt
+  url: https://portal.azure.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
