@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Audit App Security
+  summary: Read an app, then enumerate its secrets and authentication configurations for a security review.
+  description: >-
+    A read-only audit flow for a single container app. This workflow reads the
+    app to confirm it exists and capture its ingress posture, then lists the
+    app's secrets and its authentication configurations so a reviewer can see
+    every credential and auth provider attached to the app. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-app-security
+  summary: Enumerate a container app's secrets and auth configs in one pass.
+  description: >-
+    Reads the app, lists its secrets, and lists its auth configs, returning all
+    three so the app's security surface can be reviewed together.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - containerAppName
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      containerAppName:
+        type: string
+        description: The name of the container app to audit.
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: getApp
+    description: >-
+      Read the container app to confirm it exists and capture whether its
+      ingress is externally exposed.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      containerAppId: $response.body#/id
+      ingressExternal: $response.body#/properties/configuration/ingress/external
+  - stepId: listSecrets
+    description: >-
+      List the container app secrets so every stored credential can be reviewed.
+    operationId: ContainerApps_ListSecrets
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      secrets: $response.body#/value
+  - stepId: listAuthConfigs
+    description: >-
+      List the container app authentication configurations so every auth
+      provider attached to the app can be reviewed.
+    operationId: ContainerAppsAuthConfigs_ListByContainerApp
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      authConfigs: $response.body#/value
+  outputs:
+    containerAppId: $steps.getApp.outputs.containerAppId
+    ingressExternal: $steps.getApp.outputs.ingressExternal
+    secrets: $steps.listSecrets.outputs.secrets
+    authConfigs: $steps.listAuthConfigs.outputs.authConfigs

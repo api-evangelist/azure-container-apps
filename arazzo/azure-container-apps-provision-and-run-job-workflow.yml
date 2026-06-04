@@ -1,0 +1,179 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Provision and Run Job
+  summary: Create a manually triggered job, wait until it is provisioned, then start an execution.
+  description: >-
+    Container Apps jobs run containerized work to completion rather than serving
+    traffic. This workflow creates a manually triggered job bound to an existing
+    environment, polls the job until its provisioningState reaches Succeeded, and
+    then starts a single execution of the job. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-and-run-job
+  summary: Create a manual job, wait for it to provision, and start an execution.
+  description: >-
+    Submits a create-or-update for a manually triggered job, polls until its
+    provisioningState settles, then starts an execution and captures the
+    execution status.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - jobName
+    - environmentId
+    - location
+    - image
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      jobName:
+        type: string
+        description: The name of the job to create.
+      environmentId:
+        type: string
+        description: Resource ID of the managed environment that hosts the job.
+      location:
+        type: string
+        description: The Azure region for the job (e.g. eastus).
+      image:
+        type: string
+        description: The container image the job runs to completion.
+      replicaTimeout:
+        type: integer
+        description: Maximum number of seconds a replica is allowed to run.
+        default: 1800
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: createJob
+    description: >-
+      Create a manually triggered job bound to the environment, defining its
+      trigger configuration and a single container in the ARM properties
+      envelope.
+    operationId: Jobs_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: jobName
+      in: path
+      value: $inputs.jobName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          environmentId: $inputs.environmentId
+          configuration:
+            triggerType: Manual
+            replicaTimeout: $inputs.replicaTimeout
+            replicaRetryLimit: 1
+            manualTriggerConfig:
+              replicaCompletionCount: 1
+              parallelism: 1
+          template:
+            containers:
+            - name: $inputs.jobName
+              image: $inputs.image
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/id
+  - stepId: pollJob
+    description: >-
+      Read the job and check its provisioningState, looping while it is still in
+      progress and proceeding once it reaches Succeeded.
+    operationId: Jobs_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: jobName
+      in: path
+      value: $inputs.jobName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+    onSuccess:
+    - name: jobReady
+      type: goto
+      stepId: startExecution
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: jobFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollJob
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "InProgress"
+        type: jsonpath
+  - stepId: startExecution
+    description: >-
+      Start a single execution of the provisioned job, overriding the template
+      image for this run.
+    operationId: Jobs_Start
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: jobName
+      in: path
+      value: $inputs.jobName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        template:
+          containers:
+          - name: $inputs.jobName
+            image: $inputs.image
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      executionId: $response.body#/id
+      executionStatus: $response.body#/properties/status
+      startTime: $response.body#/properties/startTime
+  outputs:
+    jobId: $steps.createJob.outputs.jobId
+    executionId: $steps.startExecution.outputs.executionId
+    executionStatus: $steps.startExecution.outputs.executionStatus

@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Restart Active Revision
+  summary: Restart the active revision of an app and poll its revision replicas until it is running again.
+  description: >-
+    Restarting a revision recreates its replicas, which is the closest the API
+    supports to a replica-level recycle. This workflow reads a container app to
+    find its latest revision, restarts that revision, then polls the revision
+    resource until its runningState returns to Running, surfacing the replica
+    count along the way. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+
+    Adaptation note: the spec exposes no dedicated replica list or replica
+    restart operation, so replica recycling is driven through the revision
+    restart operation and observed via the revision's replicas and runningState
+    fields.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: restart-active-revision
+  summary: Restart an app's latest revision and wait for its replicas to come back running.
+  description: >-
+    Resolves the app's latest revision name, restarts that revision, and polls
+    the revision until its runningState reports Running, exposing the replica
+    count.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - containerAppName
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      containerAppName:
+        type: string
+        description: The name of the container app.
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: getApp
+    description: >-
+      Read the container app to resolve the name of its latest revision before
+      restarting it.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      latestRevisionName: $response.body#/properties/latestRevisionName
+  - stepId: restartRevision
+    description: >-
+      Restart the app's latest revision, recreating its replicas.
+    operationId: ContainerAppsRevisions_RestartRevision
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: revisionName
+      in: path
+      value: $steps.getApp.outputs.latestRevisionName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      statusCode: $statusCode
+  - stepId: pollRevision
+    description: >-
+      Read the revision and check its runningState, looping while it is still
+      processing and ending once its replicas report Running.
+    operationId: ContainerAppsRevisions_GetRevision
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: revisionName
+      in: path
+      value: $steps.getApp.outputs.latestRevisionName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runningState: $response.body#/properties/runningState
+      replicas: $response.body#/properties/replicas
+      healthState: $response.body#/properties/healthState
+    onSuccess:
+    - name: revisionRunning
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.runningState == "Running"
+        type: jsonpath
+    - name: revisionFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.runningState == "Failed" || $.properties.runningState == "Degraded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollRevision
+      criteria:
+      - context: $response.body
+        condition: $.properties.runningState == "Processing"
+        type: jsonpath
+  outputs:
+    revisionName: $steps.getApp.outputs.latestRevisionName
+    runningState: $steps.pollRevision.outputs.runningState
+    replicas: $steps.pollRevision.outputs.replicas

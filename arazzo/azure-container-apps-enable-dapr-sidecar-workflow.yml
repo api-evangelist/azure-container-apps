@@ -1,0 +1,182 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Enable Dapr Sidecar
+  summary: Enable the Dapr sidecar on a container app, wait for the new revision to provision, then list revisions.
+  description: >-
+    Dapr is configured per app through the app configuration block rather than as
+    a standalone resource in this API surface. This workflow reads a container
+    app, patches its configuration to enable the Dapr sidecar with an app id and
+    protocol, polls the app until the resulting revision settles, then lists
+    revisions to expose the Dapr-enabled revision. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+
+    Adaptation note: the spec has no dedicated Dapr component resource, so Dapr is
+    enabled through the container app's configuration.dapr block, which is the
+    field the underlying schema actually exposes.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: enable-dapr-sidecar
+  summary: Turn on the Dapr sidecar for an app and confirm the new revision rolls out.
+  description: >-
+    Reads the app, patches configuration.dapr to enable the sidecar, polls until
+    provisioning settles, then lists the app's revisions.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - containerAppName
+    - location
+    - daprAppId
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      containerAppName:
+        type: string
+        description: The name of the container app.
+      location:
+        type: string
+        description: The Azure region of the app (e.g. eastus).
+      daprAppId:
+        type: string
+        description: The Dapr application identifier for the sidecar.
+      daprAppPort:
+        type: integer
+        description: The port Dapr uses to communicate with the app.
+        default: 80
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: getApp
+    description: >-
+      Read the container app to confirm it exists before enabling the Dapr
+      sidecar on its configuration.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      containerAppId: $response.body#/id
+  - stepId: enableDapr
+    description: >-
+      Patch the container app configuration to enable the Dapr sidecar with the
+      supplied app id, protocol, and port in the ARM properties envelope.
+    operationId: ContainerApps_Update
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          configuration:
+            dapr:
+              enabled: true
+              appId: $inputs.daprAppId
+              appProtocol: http
+              appPort: $inputs.daprAppPort
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      containerAppId: $response.body#/id
+  - stepId: pollApp
+    description: >-
+      Read the container app and check its provisioningState, looping while the
+      Dapr change is still rolling out and proceeding once it settles.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+    onSuccess:
+    - name: daprApplied
+      type: goto
+      stepId: listRevisions
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: daprFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollApp
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "InProgress"
+        type: jsonpath
+  - stepId: listRevisions
+    description: >-
+      List the app's revisions to expose the Dapr-enabled revision.
+    operationId: ContainerAppsRevisions_ListRevisions
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revisions: $response.body#/value
+  outputs:
+    containerAppId: $steps.getApp.outputs.containerAppId
+    revisions: $steps.listRevisions.outputs.revisions

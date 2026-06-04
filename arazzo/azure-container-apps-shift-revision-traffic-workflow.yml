@@ -1,0 +1,153 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Shift Revision Traffic
+  summary: List an app's revisions, shift ingress traffic to a chosen revision, then wait for the change to apply.
+  description: >-
+    In multiple-revision mode the ingress traffic block decides which revisions
+    receive requests. This workflow lists an app's revisions, patches the
+    ingress traffic to send all weight to a chosen revision, and polls the app
+    until the configuration change settles, branching on the ARM
+    provisioningState. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: shift-revision-traffic
+  summary: Route all ingress traffic to one revision and confirm the change applies.
+  description: >-
+    Lists the app's revisions to confirm the target revision exists, patches the
+    ingress traffic to weight that revision at 100, then polls until the app is
+    Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - containerAppName
+    - location
+    - targetRevisionName
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      containerAppName:
+        type: string
+        description: The name of the container app.
+      location:
+        type: string
+        description: The Azure region of the app (e.g. eastus).
+      targetRevisionName:
+        type: string
+        description: The revision that should receive all ingress traffic.
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: listRevisions
+    description: >-
+      List the app's revisions to confirm the target revision exists before
+      shifting traffic to it.
+    operationId: ContainerAppsRevisions_ListRevisions
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revisions: $response.body#/value
+  - stepId: shiftTraffic
+    description: >-
+      Patch the app ingress traffic so the target revision receives all weight,
+      supplied in the ARM properties envelope.
+    operationId: ContainerApps_Update
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          configuration:
+            activeRevisionsMode: Multiple
+            ingress:
+              traffic:
+              - revisionName: $inputs.targetRevisionName
+                weight: 100
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      containerAppId: $response.body#/id
+  - stepId: pollApp
+    description: >-
+      Read the container app and check its provisioningState, looping while the
+      traffic change is still applying and ending once it settles.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+    onSuccess:
+    - name: trafficApplied
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: trafficFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollApp
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "InProgress"
+        type: jsonpath
+  outputs:
+    containerAppId: $steps.shiftTraffic.outputs.containerAppId
+    provisioningState: $steps.pollApp.outputs.provisioningState
+    revisions: $steps.listRevisions.outputs.revisions

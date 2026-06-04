@@ -1,0 +1,133 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Provision Managed Environment
+  summary: Create a managed environment and poll its provisioning state until it reaches Succeeded.
+  description: >-
+    A managed environment is the secure boundary that hosts container apps and
+    jobs. This workflow issues an Azure Resource Manager create-or-update for a
+    managed environment, then polls the environment resource until its
+    provisioningState reports a terminal state, branching to success when it
+    reaches Succeeded and failing fast when it reports Failed or Canceled. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-managed-environment
+  summary: Create a managed environment and wait until it is fully provisioned.
+  description: >-
+    Submits a create-or-update for a managed environment with a Log Analytics
+    app-logs destination, then repeatedly reads the environment resource and
+    inspects properties.provisioningState until it settles.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - environmentName
+    - location
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      environmentName:
+        type: string
+        description: The name of the managed environment to create.
+      location:
+        type: string
+        description: The Azure region for the environment (e.g. eastus).
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+      zoneRedundant:
+        type: boolean
+        description: Whether the environment should be zone redundant.
+        default: false
+  steps:
+  - stepId: createEnvironment
+    description: >-
+      Submit the create-or-update request for the managed environment, supplying
+      its location and an app-logs configuration in the ARM properties envelope.
+    operationId: ManagedEnvironments_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: environmentName
+      in: path
+      value: $inputs.environmentName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          zoneRedundant: $inputs.zoneRedundant
+          appLogsConfiguration:
+            destination: log-analytics
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $statusCode == 201
+    outputs:
+      environmentId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollEnvironment
+    description: >-
+      Read the managed environment and check its provisioningState, looping
+      while it is still being set up and branching once it settles.
+    operationId: ManagedEnvironments_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: environmentName
+      in: path
+      value: $inputs.environmentName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      defaultDomain: $response.body#/properties/defaultDomain
+      staticIp: $response.body#/properties/staticIp
+    onSuccess:
+    - name: environmentReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: environmentFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollEnvironment
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded" && $.properties.provisioningState != "Failed" && $.properties.provisioningState != "Canceled"
+        type: jsonpath
+  outputs:
+    environmentId: $steps.createEnvironment.outputs.environmentId
+    provisioningState: $steps.pollEnvironment.outputs.provisioningState
+    defaultDomain: $steps.pollEnvironment.outputs.defaultDomain

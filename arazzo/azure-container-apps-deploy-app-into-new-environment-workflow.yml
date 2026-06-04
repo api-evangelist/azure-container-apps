@@ -1,0 +1,224 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Deploy App Into New Environment
+  summary: Create a managed environment, wait for it, then create a container app inside it and wait for that too.
+  description: >-
+    The canonical end-to-end onboarding flow for serverless containers. This
+    workflow provisions a managed environment from scratch, polls it until it
+    reaches Succeeded, then provisions a container app bound to the freshly
+    created environment and polls the app until it too is provisioned. Both poll
+    loops branch on the ARM provisioningState so the flow fails fast on a Failed
+    or Canceled state. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-app-into-new-environment
+  summary: Stand up a managed environment and deploy a container app into it end to end.
+  description: >-
+    Creates a managed environment, polls until it is Succeeded, then creates a
+    container app referencing that environment and polls until the app is
+    Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - environmentName
+    - containerAppName
+    - location
+    - image
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      environmentName:
+        type: string
+        description: The name of the managed environment to create.
+      containerAppName:
+        type: string
+        description: The name of the container app to create.
+      location:
+        type: string
+        description: The Azure region for both resources (e.g. eastus).
+      image:
+        type: string
+        description: The container image to run in the app.
+      targetPort:
+        type: integer
+        description: The port the container listens on for ingress traffic.
+        default: 80
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: createEnvironment
+    description: >-
+      Create the managed environment that will host the app, supplying its
+      location in the ARM properties envelope.
+    operationId: ManagedEnvironments_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: environmentName
+      in: path
+      value: $inputs.environmentName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          appLogsConfiguration:
+            destination: log-analytics
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $statusCode == 201
+    outputs:
+      environmentId: $response.body#/id
+  - stepId: pollEnvironment
+    description: >-
+      Read the environment and check its provisioningState, looping while it is
+      still being set up and proceeding once it reaches Succeeded.
+    operationId: ManagedEnvironments_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: environmentName
+      in: path
+      value: $inputs.environmentName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+    onSuccess:
+    - name: environmentReady
+      type: goto
+      stepId: createApp
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: environmentFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollEnvironment
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded" && $.properties.provisioningState != "Failed" && $.properties.provisioningState != "Canceled"
+        type: jsonpath
+  - stepId: createApp
+    description: >-
+      Create the container app bound to the new environment id with a single
+      container and external ingress in the ARM properties envelope.
+    operationId: ContainerApps_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          environmentId: $steps.pollEnvironment.outputs.environmentId
+          configuration:
+            activeRevisionsMode: Single
+            ingress:
+              external: true
+              targetPort: $inputs.targetPort
+              transport: auto
+          template:
+            containers:
+            - name: $inputs.containerAppName
+              image: $inputs.image
+            scale:
+              minReplicas: 1
+              maxReplicas: 3
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $statusCode == 201
+    outputs:
+      containerAppId: $response.body#/id
+  - stepId: pollApp
+    description: >-
+      Read the container app and check its provisioningState, looping while it
+      is still in progress and ending once it settles.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      latestRevisionFqdn: $response.body#/properties/latestRevisionFqdn
+    onSuccess:
+    - name: appReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: appFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollApp
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "InProgress"
+        type: jsonpath
+  outputs:
+    environmentId: $steps.pollEnvironment.outputs.environmentId
+    containerAppId: $steps.createApp.outputs.containerAppId
+    latestRevisionFqdn: $steps.pollApp.outputs.latestRevisionFqdn

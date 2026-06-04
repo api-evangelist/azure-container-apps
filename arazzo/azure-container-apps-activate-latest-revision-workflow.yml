@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Activate Latest Revision
+  summary: Find the most recent revision of an app, inspect it, and activate it if it is inactive.
+  description: >-
+    In multiple-revision mode a revision can be deactivated to remove it from
+    service. This workflow lists an app's revisions, reads the chosen revision
+    to inspect its active flag, and branches: when the revision is inactive it
+    activates it, and when it is already active it ends without a redundant call.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: activate-latest-revision
+  summary: Activate a container app revision only when it is currently inactive.
+  description: >-
+    Lists the app's revisions, reads the target revision, and activates it when
+    its active flag is false, skipping the activation when it is already active.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - containerAppName
+    - revisionName
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      containerAppName:
+        type: string
+        description: The name of the container app.
+      revisionName:
+        type: string
+        description: The name of the revision to activate.
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: listRevisions
+    description: >-
+      List the revisions of the container app to confirm the target revision
+      exists before reading it.
+    operationId: ContainerAppsRevisions_ListRevisions
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revisions: $response.body#/value
+  - stepId: getRevision
+    description: >-
+      Read the target revision and inspect its active flag to decide whether an
+      activation call is needed.
+    operationId: ContainerAppsRevisions_GetRevision
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: revisionName
+      in: path
+      value: $inputs.revisionName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      active: $response.body#/properties/active
+    onSuccess:
+    - name: alreadyActive
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.active == true
+        type: jsonpath
+    - name: needsActivation
+      type: goto
+      stepId: activateRevision
+      criteria:
+      - context: $response.body
+        condition: $.properties.active == false
+        type: jsonpath
+  - stepId: activateRevision
+    description: >-
+      Activate the inactive revision so it returns to service.
+    operationId: ContainerAppsRevisions_ActivateRevision
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: revisionName
+      in: path
+      value: $inputs.revisionName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      statusCode: $statusCode
+  outputs:
+    revisions: $steps.listRevisions.outputs.revisions
+    active: $steps.getRevision.outputs.active

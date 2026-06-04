@@ -1,0 +1,178 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Provision Container App
+  summary: Verify the target environment is ready, create a container app, and poll until it is provisioned.
+  description: >-
+    Creating a container app requires a managed environment that has already
+    reached the Succeeded provisioning state. This workflow first reads the
+    target environment to confirm it is ready, then submits a create-or-update
+    for a single-container app with external ingress, and finally polls the app
+    resource until its provisioningState settles. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-container-app
+  summary: Create a container app in a ready environment and wait until it is provisioned.
+  description: >-
+    Confirms the managed environment is in the Succeeded state, creates a
+    container app bound to that environment with a single container and external
+    ingress, then polls the app until provisioning completes.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - environmentName
+    - containerAppName
+    - location
+    - image
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      environmentName:
+        type: string
+        description: The managed environment that hosts the app.
+      containerAppName:
+        type: string
+        description: The name of the container app to create.
+      location:
+        type: string
+        description: The Azure region for the app (e.g. eastus).
+      image:
+        type: string
+        description: The container image to run (e.g. mcr.microsoft.com/k8se/quickstart:latest).
+      targetPort:
+        type: integer
+        description: The port the container listens on for ingress traffic.
+        default: 80
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: getEnvironment
+    description: >-
+      Read the managed environment and confirm it has finished provisioning
+      before binding a new app to it.
+    operationId: ManagedEnvironments_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: environmentName
+      in: path
+      value: $inputs.environmentName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.provisioningState == "Succeeded"
+      type: jsonpath
+    outputs:
+      environmentId: $response.body#/id
+  - stepId: createApp
+    description: >-
+      Submit the create-or-update for the container app, binding it to the
+      resolved environment id and defining a single container with external
+      ingress in the ARM properties envelope.
+    operationId: ContainerApps_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          environmentId: $steps.getEnvironment.outputs.environmentId
+          configuration:
+            activeRevisionsMode: Single
+            ingress:
+              external: true
+              targetPort: $inputs.targetPort
+              transport: auto
+          template:
+            containers:
+            - name: $inputs.containerAppName
+              image: $inputs.image
+            scale:
+              minReplicas: 1
+              maxReplicas: 3
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $statusCode == 201
+    outputs:
+      containerAppId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollApp
+    description: >-
+      Read the container app and check its provisioningState, looping while it
+      is still in progress and branching once it settles.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      latestRevisionFqdn: $response.body#/properties/latestRevisionFqdn
+      latestRevisionName: $response.body#/properties/latestRevisionName
+    onSuccess:
+    - name: appReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: appFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollApp
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "InProgress"
+        type: jsonpath
+  outputs:
+    containerAppId: $steps.createApp.outputs.containerAppId
+    provisioningState: $steps.pollApp.outputs.provisioningState
+    latestRevisionFqdn: $steps.pollApp.outputs.latestRevisionFqdn

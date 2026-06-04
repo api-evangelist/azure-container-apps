@@ -61,6 +61,48 @@ apis:
   - type: NaftikoCapability
     url: capabilities/azure-container-apps-revisions.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/azure-container-apps-activate-latest-revision-workflow.yml
+    name: Azure Container Apps Activate Latest Revision
+    summary: Find the most recent revision of an app, inspect it, and activate it if it is inactive.
+  - url: arazzo/azure-container-apps-audit-app-security-workflow.yml
+    name: Azure Container Apps Audit App Security
+    summary: Read an app, then enumerate its secrets and authentication configurations for a security review.
+  - url: arazzo/azure-container-apps-decommission-app-workflow.yml
+    name: Azure Container Apps Decommission App
+    summary: Delete a container app and confirm it no longer appears in the resource group listing.
+  - url: arazzo/azure-container-apps-deploy-app-into-new-environment-workflow.yml
+    name: Azure Container Apps Deploy App Into New Environment
+    summary: Create a managed environment, wait for it, then create a container app inside it and wait for that too.
+  - url: arazzo/azure-container-apps-enable-dapr-sidecar-workflow.yml
+    name: Azure Container Apps Enable Dapr Sidecar
+    summary: Enable the Dapr sidecar on a container app, wait for the new revision to provision, then list revisions.
+  - url: arazzo/azure-container-apps-provision-and-run-job-workflow.yml
+    name: Azure Container Apps Provision and Run Job
+    summary: Create a manually triggered job, wait until it is provisioned, then start an execution.
+  - url: arazzo/azure-container-apps-provision-container-app-workflow.yml
+    name: Azure Container Apps Provision Container App
+    summary: Verify the target environment is ready, create a container app, and poll until it is provisioned.
+  - url: arazzo/azure-container-apps-provision-managed-environment-workflow.yml
+    name: Azure Container Apps Provision Managed Environment
+    summary: Create a managed environment and poll its provisioning state until it reaches Succeeded.
+  - url: arazzo/azure-container-apps-restart-active-revision-workflow.yml
+    name: Azure Container Apps Restart Active Revision
+    summary: Restart the active revision of an app and poll its revision replicas until it is running again.
+  - url: arazzo/azure-container-apps-rotate-and-verify-secrets-workflow.yml
+    name: Azure Container Apps Rotate and Verify Secrets
+    summary: Write a new secret value to an app, wait for provisioning, then list secrets to confirm it is present.
+  - url: arazzo/azure-container-apps-run-existing-job-workflow.yml
+    name: Azure Container Apps Run Existing Job
+    summary: Confirm a job is provisioned and manually triggerable, then start an execution.
+  - url: arazzo/azure-container-apps-shift-revision-traffic-workflow.yml
+    name: Azure Container Apps Shift Revision Traffic
+    summary: List an app's revisions, shift ingress traffic to a chosen revision, then wait for the change to apply.
+  - url: arazzo/azure-container-apps-update-app-and-list-revisions-workflow.yml
+    name: Azure Container Apps Update App and List Revisions
+    summary: Roll out a new image to a container app, wait for provisioning, then list the resulting revisions.
 - type: Portal
   url: https://portal.azure.com
 - type: Documentation

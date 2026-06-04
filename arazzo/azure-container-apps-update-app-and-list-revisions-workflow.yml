@@ -1,0 +1,158 @@
+arazzo: 1.0.1
+info:
+  title: Azure Container Apps Update App and List Revisions
+  summary: Roll out a new image to a container app, wait for provisioning, then list the resulting revisions.
+  description: >-
+    Updating a container app's template produces a new revision. This workflow
+    patches a container app with a new image and revision suffix, polls the app
+    until provisioning settles, then lists the app's revisions so the new
+    revision can be inspected. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: containerAppsApi
+  url: ../openapi/azure-container-apps-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-app-and-list-revisions
+  summary: Patch a container app to a new image and list the revisions it produces.
+  description: >-
+    Submits a patch updating the app template image and revision suffix, polls
+    the app until provisioningState settles, then lists all revisions for the
+    app.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - containerAppName
+    - location
+    - image
+    - revisionSuffix
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription ID.
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      containerAppName:
+        type: string
+        description: The name of the container app to update.
+      location:
+        type: string
+        description: The Azure region of the app (e.g. eastus).
+      image:
+        type: string
+        description: The new container image to roll out.
+      revisionSuffix:
+        type: string
+        description: A suffix to identify the new revision (e.g. v2).
+      apiVersion:
+        type: string
+        description: Client API version.
+        default: '2023-05-01'
+  steps:
+  - stepId: updateApp
+    description: >-
+      Patch the container app with a new template image and revision suffix in
+      the ARM properties envelope, producing a new revision.
+    operationId: ContainerApps_Update
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          template:
+            revisionSuffix: $inputs.revisionSuffix
+            containers:
+            - name: $inputs.containerAppName
+              image: $inputs.image
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      containerAppId: $response.body#/id
+  - stepId: pollApp
+    description: >-
+      Read the container app and check its provisioningState, looping while the
+      new revision is still rolling out and proceeding once it settles.
+    operationId: ContainerApps_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      latestRevisionName: $response.body#/properties/latestRevisionName
+    onSuccess:
+    - name: rolloutComplete
+      type: goto
+      stepId: listRevisions
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: rolloutFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Failed" || $.properties.provisioningState == "Canceled"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollApp
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "InProgress"
+        type: jsonpath
+  - stepId: listRevisions
+    description: >-
+      List every revision of the container app so the newly created revision and
+      its readiness can be inspected.
+    operationId: ContainerAppsRevisions_ListRevisions
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: containerAppName
+      in: path
+      value: $inputs.containerAppName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revisions: $response.body#/value
+  outputs:
+    containerAppId: $steps.updateApp.outputs.containerAppId
+    latestRevisionName: $steps.pollApp.outputs.latestRevisionName
+    revisions: $steps.listRevisions.outputs.revisions
