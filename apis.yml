@@ -5,7 +5,7 @@ description: >-
   built-in autoscaling, traffic splitting, and Dapr integration. It enables developers to deploy containers without
   managing complex infrastructure while supporting event-driven architectures and microservices patterns.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Azure
   - Containers
