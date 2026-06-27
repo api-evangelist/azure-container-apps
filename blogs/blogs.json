@@ -2,8 +2,11 @@
   "repo": "azure-container-apps",
   "feeds": [
     {
-      "source": "https://techcommunity.microsoft.com/blog/appsonazureblog/feed",
-      "error": "HTTPError"
+      "source": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=AppsonAzureBlog",
+      "feed_url": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=AppsonAzureBlog",
+      "title": "",
+      "saved": 5,
+      "method": "feed"
     },
     {
       "source": "https://github.com/Azure",
@@ -13,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 7
 }
