@@ -58,6 +58,10 @@ apis:
       - type: Pricing
         url: https://azure.microsoft.com/en-us/pricing/details/container-apps/
 common:
+  - type: DomainSecurity
+    url: security/azure-container-apps-domain-security.yml
+  - type: Authentication
+    url: authentication/azure-container-apps-authentication.yml
   - type: OAuthScopes
     url: scopes/azure-container-apps-scopes.yml
   - type: Arazzo
