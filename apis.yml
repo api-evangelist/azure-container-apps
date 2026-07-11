@@ -58,6 +58,8 @@ apis:
       - type: Pricing
         url: https://azure.microsoft.com/en-us/pricing/details/container-apps/
 common:
+  - type: OAuthScopes
+    url: scopes/azure-container-apps-scopes.yml
   - type: Arazzo
     url: arazzo/azure-container-apps-activate-latest-revision-workflow.yml
     name: Azure Container Apps Activate Latest Revision
