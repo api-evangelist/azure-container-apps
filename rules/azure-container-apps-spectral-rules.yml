@@ -1,4 +1,20 @@
-extends: spectral:oas
+# azure-container-apps — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on azure.com
+#   - path-params-casing: camel @ 100% (n=65)
+#   - query-params-casing: kebab @ 96% (n=23)
+#   - schema-names-casing: pascal @ 100% (n=16)
+#   - schema-properties-casing: snake @ 81% (n=68)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - merge: kept 17 existing, added 6 measured, upgraded 0
+#   - added: servers-expected-domain, path-params-casing, query-params-casing, schema-names-casing, schema-properties-casing, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
   info-title-format:
     description: API title must start with "Azure Container Apps"
@@ -8,7 +24,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^Azure Container Apps
-
   operation-summary-prefix:
     description: Operation summaries must start with "Azure Container Apps"
     severity: warn
@@ -17,7 +32,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^Azure Container Apps
-
   operation-id-required:
     description: All operations must have an operationId
     severity: error
@@ -25,7 +39,6 @@ rules:
     then:
       field: operationId
       function: truthy
-
   operation-summary-required:
     description: All operations must have a summary
     severity: error
@@ -33,7 +46,6 @@ rules:
     then:
       field: summary
       function: truthy
-
   operation-description-required:
     description: All operations must have a description
     severity: warn
@@ -41,7 +53,6 @@ rules:
     then:
       field: description
       function: truthy
-
   operation-tags-required:
     description: All operations must have at least one tag
     severity: warn
@@ -49,7 +60,6 @@ rules:
     then:
       field: tags
       function: truthy
-
   paths-kebab-case:
     description: Path segments must use kebab-case
     severity: warn
@@ -57,8 +67,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(/[a-z0-9{}-]+)+$"
-
+        match: ^(/[a-z0-9{}-]+)+$
   paths-no-trailing-slash:
     description: Paths must not end with a trailing slash
     severity: error
@@ -66,8 +75,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: "/$"
-
+        notMatch: /$
   openapi-version:
     description: Must use OpenAPI 3.x
     severity: error
@@ -75,8 +83,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^3\\."
-
+        match: ^3\.
   servers-defined:
     description: Servers must be defined
     severity: error
@@ -84,7 +91,6 @@ rules:
     then:
       field: servers
       function: truthy
-
   servers-https:
     description: All server URLs must use HTTPS
     severity: error
@@ -92,15 +98,13 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
+        match: ^https://
   security-defined:
     description: Security schemes must be defined
     severity: warn
     given: $.components.securitySchemes
     then:
       function: truthy
-
   response-success-required:
     description: Operations must define at least one 2xx response
     severity: error
@@ -110,11 +114,14 @@ rules:
       functionOptions:
         schema:
           anyOf:
-            - required: ['200']
-            - required: ['201']
-            - required: ['202']
-            - required: ['204']
-
+          - required:
+            - '200'
+          - required:
+            - '201'
+          - required:
+            - '202'
+          - required:
+            - '204'
   parameter-description-required:
     description: All parameters must have descriptions
     severity: warn
@@ -122,7 +129,6 @@ rules:
     then:
       field: description
       function: truthy
-
   schema-type-required:
     description: All schemas must define a type
     severity: warn
@@ -130,7 +136,6 @@ rules:
     then:
       field: type
       function: truthy
-
   tags-title-case:
     description: Global tag names should use Title Case
     severity: info
@@ -138,8 +143,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[A-Z]"
-
+        match: ^[A-Z]
   operation-id-camel-case:
     description: OperationIds should use PascalCase with underscore separator
     severity: info
@@ -147,4 +151,53 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[A-Z][a-zA-Z]+_[A-Z][a-zA-Z]+$"
+        match: ^[A-Z][a-zA-Z]+_[A-Z][a-zA-Z]+$
+  servers-expected-domain:
+    description: Server URLs should be on the azure.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: azure\.com
+  path-params-casing:
+    description: Path parameters should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  query-params-casing:
+    description: Query parameters should be kebab-case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: kebab
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
+      function: truthy
