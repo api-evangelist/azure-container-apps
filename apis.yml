@@ -58,6 +58,8 @@ apis:
       - type: Pricing
         url: https://azure.microsoft.com/en-us/pricing/details/container-apps/
 common:
+  - type: AgenticAccess
+    url: agentic-access/azure-container-apps-agentic-access.yml
   - type: DomainSecurity
     url: security/azure-container-apps-domain-security.yml
   - type: Authentication
