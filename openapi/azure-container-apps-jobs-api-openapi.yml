@@ -1,0 +1,531 @@
+openapi: 3.1.0
+info:
+  title: Azure Container Apps Authentication Jobs API
+  description: Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.
+  version: '2023-05-01'
+  contact:
+    name: Microsoft Azure
+    url: https://azure.microsoft.com/en-us/products/container-apps
+servers:
+- url: https://management.azure.com
+  description: Azure Resource Manager endpoint
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Jobs
+  description: Manage container app jobs
+paths:
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs:
+    get:
+      operationId: Jobs_ListByResourceGroup
+      summary: Azure Container Apps List Jobs by Resource Group
+      description: Get the Container Apps Jobs in a given resource group.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCollection'
+              examples:
+                Jobs_ListByResourceGroup200Example:
+                  summary: Default Jobs_ListByResourceGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}:
+    get:
+      operationId: Jobs_Get
+      summary: Azure Container Apps Get a Job
+      description: Get the properties of a Container Apps Job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                Jobs_Get200Example:
+                  summary: Default Jobs_Get 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: Jobs_CreateOrUpdate
+      summary: Azure Container Apps Create or Update a Job
+      description: Create or Update a Container Apps Job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          description: Job updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                Jobs_CreateOrUpdate200Example:
+                  summary: Default Jobs_CreateOrUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+        '201':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                Jobs_CreateOrUpdate201Example:
+                  summary: Default Jobs_CreateOrUpdate 201 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: Jobs_Delete
+      summary: Azure Container Apps Delete a Job
+      description: Delete a Container Apps Job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Job deleted
+        '202':
+          description: Delete request accepted
+        '204':
+          description: Job does not exist
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/start:
+    post:
+      operationId: Jobs_Start
+      summary: Azure Container Apps Start a Job Execution
+      description: Start a Container Apps Job execution.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+      - $ref: '#/components/parameters/ResourceGroupName'
+      - name: jobName
+        in: path
+        required: true
+        schema:
+          type: string
+        example: my-container-app
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template:
+                  $ref: '#/components/schemas/JobExecutionTemplate'
+      responses:
+        '200':
+          description: Job execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobExecution'
+              examples:
+                Jobs_Start200Example:
+                  summary: Default Jobs_Start 200 response
+                  x-microcks-default: true
+                  value:
+                    id: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app
+                    name: my-container-app
+                    type: Microsoft.App/containerApps
+                    location: eastus
+                    properties:
+                      provisioningState: Succeeded
+        '202':
+          description: Start request accepted
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    ResourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group.
+      schema:
+        type: string
+    ApiVersion:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2023-05-01'
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+              - InProgress
+              - Succeeded
+              - Failed
+              - Canceled
+              - Deleting
+            environmentId:
+              type: string
+            workloadProfileName:
+              type: string
+            configuration:
+              type: object
+              properties:
+                secrets:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Secret'
+                triggerType:
+                  type: string
+                  enum:
+                  - Schedule
+                  - Event
+                  - Manual
+                replicaTimeout:
+                  type: integer
+                replicaRetryLimit:
+                  type: integer
+                manualTriggerConfig:
+                  type: object
+                  properties:
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                scheduleTriggerConfig:
+                  type: object
+                  properties:
+                    cronExpression:
+                      type: string
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                eventTriggerConfig:
+                  type: object
+                  properties:
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                    scale:
+                      type: object
+                      properties:
+                        minExecutions:
+                          type: integer
+                        maxExecutions:
+                          type: integer
+                        pollingInterval:
+                          type: integer
+                        rules:
+                          type: array
+                          items:
+                            type: object
+                registries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      server:
+                        type: string
+                      username:
+                        type: string
+                      passwordSecretRef:
+                        type: string
+                      identity:
+                        type: string
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
+            outboundIpAddresses:
+              type: array
+              readOnly: true
+              items:
+                type: string
+            eventStreamEndpoint:
+              type: string
+              readOnly: true
+    JobExecutionTemplate:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+    Container:
+      type: object
+      properties:
+        image:
+          type: string
+        name:
+          type: string
+        command:
+          type: array
+          items:
+            type: string
+        args:
+          type: array
+          items:
+            type: string
+        env:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              secretRef:
+                type: string
+        resources:
+          type: object
+          properties:
+            cpu:
+              type: number
+            memory:
+              type: string
+            ephemeralStorage:
+              type: string
+              readOnly: true
+        volumeMounts:
+          type: array
+          items:
+            type: object
+            properties:
+              volumeName:
+                type: string
+              mountPath:
+                type: string
+              subPath:
+                type: string
+        probes:
+          type: array
+          items:
+            type: object
+            properties:
+              failureThreshold:
+                type: integer
+              httpGet:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  httpHeaders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        value:
+                          type: string
+                  path:
+                    type: string
+                  port:
+                    type: integer
+                  scheme:
+                    type: string
+                    enum:
+                    - HTTP
+                    - HTTPS
+              initialDelaySeconds:
+                type: integer
+              periodSeconds:
+                type: integer
+              successThreshold:
+                type: integer
+              tcpSocket:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  port:
+                    type: integer
+              terminationGracePeriodSeconds:
+                type: integer
+                format: int64
+              timeoutSeconds:
+                type: integer
+              type:
+                type: string
+                enum:
+                - Liveness
+                - Readiness
+                - Startup
+    Secret:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        identity:
+          type: string
+        keyVaultUrl:
+          type: string
+    JobCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextLink:
+          type: string
+          readOnly: true
+    JobExecution:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        properties:
+          type: object
+          properties:
+            status:
+              type: string
+              readOnly: true
+              enum:
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
+              - Failed
+              - Unknown
+              - Succeeded
+            startTime:
+              type: string
+              format: date-time
+              readOnly: true
+            endTime:
+              type: string
+              format: date-time
+              readOnly: true
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+          scopes:
+            user_impersonation: Impersonate your user account
