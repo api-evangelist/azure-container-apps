@@ -1,0 +1,840 @@
+{
+  "info": {
+    "_postman_id": "ee5ad104-2b7e-40fd-a767-44d211ae840b",
+    "name": "Azure Container Apps Authentication Managed Environments API",
+    "description": "Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.\n\nContact Support:\n Name: Microsoft Azure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:08:49.000Z",
+    "updatedAt": "2026-07-28T01:08:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ee5ad104-2b7e-40fd-a767-44d211ae840b"
+  },
+  "item": [
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "{subscriptionId}",
+          "item": [
+            {
+              "name": "resourceGroups",
+              "item": [
+                {
+                  "name": "{resourceGroupName}",
+                  "item": [
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "Microsoft.App",
+                          "item": [
+                            {
+                              "name": "managedEnvironments",
+                              "item": [
+                                {
+                                  "name": "{environmentName}",
+                                  "item": [
+                                    {
+                                      "name": "Azure Container Apps Get a Managed Environment",
+                                      "id": "13aedae3-7ed7-4ca6-aac2-78a53738dd57",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "subscriptions",
+                                            ":subscriptionId",
+                                            "resourceGroups",
+                                            ":resourceGroupName",
+                                            "providers",
+                                            "Microsoft.App",
+                                            "managedEnvironments",
+                                            ":environmentName"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Client API version.",
+                                              "key": "api-version",
+                                              "value": "2023-05-01"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "e84c6d3f-666b-4708-95f3-f9aaab7e0c7e",
+                                              "key": "subscriptionId",
+                                              "value": "<string>",
+                                              "description": "(Required) The Azure subscription ID."
+                                            },
+                                            {
+                                              "id": "6f99065b-2170-4f90-aebf-69e7ba2d357b",
+                                              "key": "resourceGroupName",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the resource group."
+                                            },
+                                            {
+                                              "id": "7e868f64-fb49-446f-8e97-3e8c4382d75c",
+                                              "key": "environmentName",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Get the properties of a Managed Environment used to host container apps."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "3181c8ef-18c1-49c3-9444-bf1b9b589dff",
+                                          "name": "Successful response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "managedEnvironments",
+                                                ":environmentName"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "subscriptionId"
+                                                },
+                                                {
+                                                  "key": "resourceGroupName"
+                                                },
+                                                {
+                                                  "key": "environmentName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"deseruntd\": \"<string>\",\n    \"Excepteur8\": \"<string>\",\n    \"consequat_f\": \"<string>\",\n    \"in18c\": \"<string>\"\n  },\n  \"properties\": {\n    \"provisioningState\": \"Canceled\",\n    \"daprAIInstrumentationKey\": \"<string>\",\n    \"daprAIConnectionString\": \"<string>\",\n    \"vnetConfiguration\": {\n      \"internal\": \"<boolean>\",\n      \"infrastructureSubnetId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\"\n    },\n    \"defaultDomain\": \"<string>\",\n    \"staticIp\": \"<string>\",\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<string>\"\n      }\n    },\n    \"zoneRedundant\": \"<boolean>\",\n    \"customDomainConfiguration\": {\n      \"dnsSuffix\": \"<string>\",\n      \"certificateValue\": \"<string>\",\n      \"certificatePassword\": \"<string>\",\n      \"customDomainVerificationId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"thumbprint\": \"<string>\",\n      \"subjectName\": \"<string>\"\n    },\n    \"workloadProfiles\": [\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      }\n    ],\n    \"infrastructureResourceGroup\": \"<string>\",\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                                          "createdAt": "2026-07-28T01:08:50.000Z",
+                                          "updatedAt": "2026-07-28T01:08:50.000Z",
+                                          "uid": "35240-3181c8ef-18c1-49c3-9444-bf1b9b589dff"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:08:50.000Z",
+                                      "updatedAt": "2026-07-28T01:08:50.000Z",
+                                      "uid": "35240-13aedae3-7ed7-4ca6-aac2-78a53738dd57"
+                                    },
+                                    {
+                                      "name": "Azure Container Apps Create or Update a Managed Environment",
+                                      "id": "7963c1f1-f2dd-4b49-97c5-a65684b176c2",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"deseruntd\": \"<string>\",\n    \"Excepteur8\": \"<string>\",\n    \"consequat_f\": \"<string>\",\n    \"in18c\": \"<string>\"\n  },\n  \"properties\": {\n    \"provisioningState\": \"Canceled\",\n    \"daprAIInstrumentationKey\": \"<string>\",\n    \"daprAIConnectionString\": \"<string>\",\n    \"vnetConfiguration\": {\n      \"internal\": \"<boolean>\",\n      \"infrastructureSubnetId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\"\n    },\n    \"defaultDomain\": \"<string>\",\n    \"staticIp\": \"<string>\",\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<string>\"\n      }\n    },\n    \"zoneRedundant\": \"<boolean>\",\n    \"customDomainConfiguration\": {\n      \"dnsSuffix\": \"<string>\",\n      \"certificateValue\": \"<string>\",\n      \"certificatePassword\": \"<string>\",\n      \"customDomainVerificationId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"thumbprint\": \"<string>\",\n      \"subjectName\": \"<string>\"\n    },\n    \"workloadProfiles\": [\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      }\n    ],\n    \"infrastructureResourceGroup\": \"<string>\",\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "subscriptions",
+                                            ":subscriptionId",
+                                            "resourceGroups",
+                                            ":resourceGroupName",
+                                            "providers",
+                                            "Microsoft.App",
+                                            "managedEnvironments",
+                                            ":environmentName"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Client API version.",
+                                              "key": "api-version",
+                                              "value": "2023-05-01"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "54e0faaa-6dc1-45c3-99ea-ba0cd7034c46",
+                                              "key": "subscriptionId",
+                                              "value": "<string>",
+                                              "description": "(Required) The Azure subscription ID."
+                                            },
+                                            {
+                                              "id": "1a6e82bf-6d71-4b88-a6b7-801445512437",
+                                              "key": "resourceGroupName",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the resource group."
+                                            },
+                                            {
+                                              "id": "0228b5df-09cc-47bf-a754-80ec8e56b2aa",
+                                              "key": "environmentName",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Creates or updates a Managed Environment."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "13f161c0-bf2f-4445-b093-99d95d202901",
+                                          "name": "Environment updated",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"deseruntd\": \"<string>\",\n    \"Excepteur8\": \"<string>\",\n    \"consequat_f\": \"<string>\",\n    \"in18c\": \"<string>\"\n  },\n  \"properties\": {\n    \"provisioningState\": \"Canceled\",\n    \"daprAIInstrumentationKey\": \"<string>\",\n    \"daprAIConnectionString\": \"<string>\",\n    \"vnetConfiguration\": {\n      \"internal\": \"<boolean>\",\n      \"infrastructureSubnetId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\"\n    },\n    \"defaultDomain\": \"<string>\",\n    \"staticIp\": \"<string>\",\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<string>\"\n      }\n    },\n    \"zoneRedundant\": \"<boolean>\",\n    \"customDomainConfiguration\": {\n      \"dnsSuffix\": \"<string>\",\n      \"certificateValue\": \"<string>\",\n      \"certificatePassword\": \"<string>\",\n      \"customDomainVerificationId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"thumbprint\": \"<string>\",\n      \"subjectName\": \"<string>\"\n    },\n    \"workloadProfiles\": [\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      }\n    ],\n    \"infrastructureResourceGroup\": \"<string>\",\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "managedEnvironments",
+                                                ":environmentName"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "subscriptionId"
+                                                },
+                                                {
+                                                  "key": "resourceGroupName"
+                                                },
+                                                {
+                                                  "key": "environmentName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"deseruntd\": \"<string>\",\n    \"Excepteur8\": \"<string>\",\n    \"consequat_f\": \"<string>\",\n    \"in18c\": \"<string>\"\n  },\n  \"properties\": {\n    \"provisioningState\": \"Canceled\",\n    \"daprAIInstrumentationKey\": \"<string>\",\n    \"daprAIConnectionString\": \"<string>\",\n    \"vnetConfiguration\": {\n      \"internal\": \"<boolean>\",\n      \"infrastructureSubnetId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\"\n    },\n    \"defaultDomain\": \"<string>\",\n    \"staticIp\": \"<string>\",\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<string>\"\n      }\n    },\n    \"zoneRedundant\": \"<boolean>\",\n    \"customDomainConfiguration\": {\n      \"dnsSuffix\": \"<string>\",\n      \"certificateValue\": \"<string>\",\n      \"certificatePassword\": \"<string>\",\n      \"customDomainVerificationId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"thumbprint\": \"<string>\",\n      \"subjectName\": \"<string>\"\n    },\n    \"workloadProfiles\": [\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      }\n    ],\n    \"infrastructureResourceGroup\": \"<string>\",\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                                          "createdAt": "2026-07-28T01:08:50.000Z",
+                                          "updatedAt": "2026-07-28T01:08:50.000Z",
+                                          "uid": "35240-13f161c0-bf2f-4445-b093-99d95d202901"
+                                        },
+                                        {
+                                          "id": "80173590-cdde-48cf-87d2-3046e77e3266",
+                                          "name": "Environment created",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"deseruntd\": \"<string>\",\n    \"Excepteur8\": \"<string>\",\n    \"consequat_f\": \"<string>\",\n    \"in18c\": \"<string>\"\n  },\n  \"properties\": {\n    \"provisioningState\": \"Canceled\",\n    \"daprAIInstrumentationKey\": \"<string>\",\n    \"daprAIConnectionString\": \"<string>\",\n    \"vnetConfiguration\": {\n      \"internal\": \"<boolean>\",\n      \"infrastructureSubnetId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\"\n    },\n    \"defaultDomain\": \"<string>\",\n    \"staticIp\": \"<string>\",\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<string>\"\n      }\n    },\n    \"zoneRedundant\": \"<boolean>\",\n    \"customDomainConfiguration\": {\n      \"dnsSuffix\": \"<string>\",\n      \"certificateValue\": \"<string>\",\n      \"certificatePassword\": \"<string>\",\n      \"customDomainVerificationId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"thumbprint\": \"<string>\",\n      \"subjectName\": \"<string>\"\n    },\n    \"workloadProfiles\": [\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      }\n    ],\n    \"infrastructureResourceGroup\": \"<string>\",\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "managedEnvironments",
+                                                ":environmentName"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "subscriptionId"
+                                                },
+                                                {
+                                                  "key": "resourceGroupName"
+                                                },
+                                                {
+                                                  "key": "environmentName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Created",
+                                          "code": 201,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"deseruntd\": \"<string>\",\n    \"Excepteur8\": \"<string>\",\n    \"consequat_f\": \"<string>\",\n    \"in18c\": \"<string>\"\n  },\n  \"properties\": {\n    \"provisioningState\": \"Canceled\",\n    \"daprAIInstrumentationKey\": \"<string>\",\n    \"daprAIConnectionString\": \"<string>\",\n    \"vnetConfiguration\": {\n      \"internal\": \"<boolean>\",\n      \"infrastructureSubnetId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\"\n    },\n    \"defaultDomain\": \"<string>\",\n    \"staticIp\": \"<string>\",\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<string>\"\n      }\n    },\n    \"zoneRedundant\": \"<boolean>\",\n    \"customDomainConfiguration\": {\n      \"dnsSuffix\": \"<string>\",\n      \"certificateValue\": \"<string>\",\n      \"certificatePassword\": \"<string>\",\n      \"customDomainVerificationId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"thumbprint\": \"<string>\",\n      \"subjectName\": \"<string>\"\n    },\n    \"workloadProfiles\": [\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"workloadProfileType\": \"<string>\",\n        \"minimumCount\": \"<integer>\",\n        \"maximumCount\": \"<integer>\"\n      }\n    ],\n    \"infrastructureResourceGroup\": \"<string>\",\n    \"peerAuthentication\": {\n      \"mtls\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  }\n}",
+                                          "createdAt": "2026-07-28T01:08:50.000Z",
+                                          "updatedAt": "2026-07-28T01:08:50.000Z",
+                                          "uid": "35240-80173590-cdde-48cf-87d2-3046e77e3266"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:08:50.000Z",
+                                      "updatedAt": "2026-07-28T01:08:50.000Z",
+                                      "uid": "35240-7963c1f1-f2dd-4b49-97c5-a65684b176c2"
+                                    },
+                                    {
+                                      "name": "Azure Container Apps Delete a Managed Environment",
+                                      "id": "0c9a0ccb-7613-4eea-bc5c-f815a0310c31",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "subscriptions",
+                                            ":subscriptionId",
+                                            "resourceGroups",
+                                            ":resourceGroupName",
+                                            "providers",
+                                            "Microsoft.App",
+                                            "managedEnvironments",
+                                            ":environmentName"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Client API version.",
+                                              "key": "api-version",
+                                              "value": "2023-05-01"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "8f92f070-9476-4f15-b0e3-63193c8f3fad",
+                                              "key": "subscriptionId",
+                                              "value": "<string>",
+                                              "description": "(Required) The Azure subscription ID."
+                                            },
+                                            {
+                                              "id": "48b81fbf-dd1f-4a15-962e-f0f1dbf85d99",
+                                              "key": "resourceGroupName",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the resource group."
+                                            },
+                                            {
+                                              "id": "1a86049e-9ad5-494a-8100-0ff43451a838",
+                                              "key": "environmentName",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Delete a Managed Environment."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "da98e8ad-43f2-43f4-a2ff-9035e1e47900",
+                                          "name": "Environment deleted",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "managedEnvironments",
+                                                ":environmentName"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "subscriptionId"
+                                                },
+                                                {
+                                                  "key": "resourceGroupName"
+                                                },
+                                                {
+                                                  "key": "environmentName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:08:50.000Z",
+                                          "updatedAt": "2026-07-28T01:08:50.000Z",
+                                          "uid": "35240-da98e8ad-43f2-43f4-a2ff-9035e1e47900"
+                                        },
+                                        {
+                                          "id": "258c2948-d42e-45b1-968f-a9aba0b68b00",
+                                          "name": "Delete request accepted",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "managedEnvironments",
+                                                ":environmentName"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "subscriptionId"
+                                                },
+                                                {
+                                                  "key": "resourceGroupName"
+                                                },
+                                                {
+                                                  "key": "environmentName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Accepted",
+                                          "code": 202,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:08:50.000Z",
+                                          "updatedAt": "2026-07-28T01:08:50.000Z",
+                                          "uid": "35240-258c2948-d42e-45b1-968f-a9aba0b68b00"
+                                        },
+                                        {
+                                          "id": "1eca3ba7-8869-402e-a1e8-49ecb88414e0",
+                                          "name": "Environment does not exist",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments/:environmentName?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "managedEnvironments",
+                                                ":environmentName"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "subscriptionId"
+                                                },
+                                                {
+                                                  "key": "resourceGroupName"
+                                                },
+                                                {
+                                                  "key": "environmentName"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:08:50.000Z",
+                                          "updatedAt": "2026-07-28T01:08:50.000Z",
+                                          "uid": "35240-1eca3ba7-8869-402e-a1e8-49ecb88414e0"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:08:50.000Z",
+                                      "updatedAt": "2026-07-28T01:08:50.000Z",
+                                      "uid": "35240-0c9a0ccb-7613-4eea-bc5c-f815a0310c31"
+                                    }
+                                  ],
+                                  "id": "c4928d15-f947-48b2-8aa4-f7119881c2ce",
+                                  "createdAt": "2026-07-28T01:08:49.000Z",
+                                  "updatedAt": "2026-07-28T01:08:49.000Z",
+                                  "uid": "35240-c4928d15-f947-48b2-8aa4-f7119881c2ce"
+                                },
+                                {
+                                  "name": "Azure Container Apps List Managed Environments",
+                                  "id": "2ebe1c83-0f20-4152-a18d-b569477e653f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments?api-version=2023-05-01",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "subscriptions",
+                                        ":subscriptionId",
+                                        "resourceGroups",
+                                        ":resourceGroupName",
+                                        "providers",
+                                        "Microsoft.App",
+                                        "managedEnvironments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Client API version.",
+                                          "key": "api-version",
+                                          "value": "2023-05-01"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "b5724fdb-ef35-4f67-a2f3-573308a9efcc",
+                                          "key": "subscriptionId",
+                                          "value": "<string>",
+                                          "description": "(Required) The Azure subscription ID."
+                                        },
+                                        {
+                                          "id": "9e3e6b65-6f9f-473b-b171-340fa1bb7899",
+                                          "key": "resourceGroupName",
+                                          "value": "<string>",
+                                          "description": "(Required) The name of the resource group."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Get all the Managed Environments in a resource group."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "39abfb12-71a2-477f-b0cc-d87680e96c74",
+                                      "name": "Successful response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/managedEnvironments?api-version=2023-05-01",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "subscriptions",
+                                            ":subscriptionId",
+                                            "resourceGroups",
+                                            ":resourceGroupName",
+                                            "providers",
+                                            "Microsoft.App",
+                                            "managedEnvironments"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) Client API version.",
+                                              "key": "api-version",
+                                              "value": "2023-05-01"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "subscriptionId"
+                                            },
+                                            {
+                                              "key": "resourceGroupName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"value\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"location\": \"<string>\",\n      \"tags\": {\n        \"magna_00\": \"<string>\"\n      },\n      \"properties\": {\n        \"provisioningState\": \"Succeeded\",\n        \"daprAIInstrumentationKey\": \"<string>\",\n        \"daprAIConnectionString\": \"<string>\",\n        \"vnetConfiguration\": {\n          \"internal\": \"<boolean>\",\n          \"infrastructureSubnetId\": \"<string>\",\n          \"dockerBridgeCidr\": \"<string>\",\n          \"platformReservedCidr\": \"<string>\",\n          \"platformReservedDnsIP\": \"<string>\"\n        },\n        \"defaultDomain\": \"<string>\",\n        \"staticIp\": \"<string>\",\n        \"appLogsConfiguration\": {\n          \"destination\": \"<string>\",\n          \"logAnalyticsConfiguration\": {\n            \"customerId\": \"<string>\",\n            \"sharedKey\": \"<string>\"\n          }\n        },\n        \"zoneRedundant\": \"<boolean>\",\n        \"customDomainConfiguration\": {\n          \"dnsSuffix\": \"<string>\",\n          \"certificateValue\": \"<string>\",\n          \"certificatePassword\": \"<string>\",\n          \"customDomainVerificationId\": \"<string>\",\n          \"expirationDate\": \"<dateTime>\",\n          \"thumbprint\": \"<string>\",\n          \"subjectName\": \"<string>\"\n        },\n        \"workloadProfiles\": [\n          {\n            \"name\": \"<string>\",\n            \"workloadProfileType\": \"<string>\",\n            \"minimumCount\": \"<integer>\",\n            \"maximumCount\": \"<integer>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"workloadProfileType\": \"<string>\",\n            \"minimumCount\": \"<integer>\",\n            \"maximumCount\": \"<integer>\"\n          }\n        ],\n        \"infrastructureResourceGroup\": \"<string>\",\n        \"peerAuthentication\": {\n          \"mtls\": {\n            \"enabled\": \"<boolean>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"location\": \"<string>\",\n      \"tags\": {\n        \"cillum_b\": \"<string>\",\n        \"Duis170\": \"<string>\",\n        \"do_ab\": \"<string>\"\n      },\n      \"properties\": {\n        \"provisioningState\": \"InitializationInProgress\",\n        \"daprAIInstrumentationKey\": \"<string>\",\n        \"daprAIConnectionString\": \"<string>\",\n        \"vnetConfiguration\": {\n          \"internal\": \"<boolean>\",\n          \"infrastructureSubnetId\": \"<string>\",\n          \"dockerBridgeCidr\": \"<string>\",\n          \"platformReservedCidr\": \"<string>\",\n          \"platformReservedDnsIP\": \"<string>\"\n        },\n        \"defaultDomain\": \"<string>\",\n        \"staticIp\": \"<string>\",\n        \"appLogsConfiguration\": {\n          \"destination\": \"<string>\",\n          \"logAnalyticsConfiguration\": {\n            \"customerId\": \"<string>\",\n            \"sharedKey\": \"<string>\"\n          }\n        },\n        \"zoneRedundant\": \"<boolean>\",\n        \"customDomainConfiguration\": {\n          \"dnsSuffix\": \"<string>\",\n          \"certificateValue\": \"<string>\",\n          \"certificatePassword\": \"<string>\",\n          \"customDomainVerificationId\": \"<string>\",\n          \"expirationDate\": \"<dateTime>\",\n          \"thumbprint\": \"<string>\",\n          \"subjectName\": \"<string>\"\n        },\n        \"workloadProfiles\": [\n          {\n            \"name\": \"<string>\",\n            \"workloadProfileType\": \"<string>\",\n            \"minimumCount\": \"<integer>\",\n            \"maximumCount\": \"<integer>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"workloadProfileType\": \"<string>\",\n            \"minimumCount\": \"<integer>\",\n            \"maximumCount\": \"<integer>\"\n          }\n        ],\n        \"infrastructureResourceGroup\": \"<string>\",\n        \"peerAuthentication\": {\n          \"mtls\": {\n            \"enabled\": \"<boolean>\"\n          }\n        }\n      }\n    }\n  ],\n  \"nextLink\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:08:50.000Z",
+                                      "updatedAt": "2026-07-28T01:08:50.000Z",
+                                      "uid": "35240-39abfb12-71a2-477f-b0cc-d87680e96c74"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:08:50.000Z",
+                                  "updatedAt": "2026-07-28T01:08:50.000Z",
+                                  "uid": "35240-2ebe1c83-0f20-4152-a18d-b569477e653f"
+                                }
+                              ],
+                              "id": "0b3185e7-48fc-4671-888f-d1fe6ae5b4f9",
+                              "createdAt": "2026-07-28T01:08:49.000Z",
+                              "updatedAt": "2026-07-28T01:08:49.000Z",
+                              "uid": "35240-0b3185e7-48fc-4671-888f-d1fe6ae5b4f9"
+                            }
+                          ],
+                          "id": "2b20906e-a401-4f94-abe1-062c65361c78",
+                          "createdAt": "2026-07-28T01:08:49.000Z",
+                          "updatedAt": "2026-07-28T01:08:49.000Z",
+                          "uid": "35240-2b20906e-a401-4f94-abe1-062c65361c78"
+                        }
+                      ],
+                      "id": "974e6eb8-36f5-4e42-b1f3-ce79eb6533ff",
+                      "createdAt": "2026-07-28T01:08:49.000Z",
+                      "updatedAt": "2026-07-28T01:08:49.000Z",
+                      "uid": "35240-974e6eb8-36f5-4e42-b1f3-ce79eb6533ff"
+                    }
+                  ],
+                  "id": "ecc27f04-21d9-4299-81bf-a0595dc7dbbe",
+                  "createdAt": "2026-07-28T01:08:49.000Z",
+                  "updatedAt": "2026-07-28T01:08:49.000Z",
+                  "uid": "35240-ecc27f04-21d9-4299-81bf-a0595dc7dbbe"
+                }
+              ],
+              "id": "f02bc640-2d9f-4df4-811f-7200f1337461",
+              "createdAt": "2026-07-28T01:08:49.000Z",
+              "updatedAt": "2026-07-28T01:08:49.000Z",
+              "uid": "35240-f02bc640-2d9f-4df4-811f-7200f1337461"
+            }
+          ],
+          "id": "11f3a5b1-0431-49e9-8710-300441555293",
+          "createdAt": "2026-07-28T01:08:49.000Z",
+          "updatedAt": "2026-07-28T01:08:49.000Z",
+          "uid": "35240-11f3a5b1-0431-49e9-8710-300441555293"
+        }
+      ],
+      "id": "33150d10-d465-45e0-837e-247f54b308bd",
+      "createdAt": "2026-07-28T01:08:49.000Z",
+      "updatedAt": "2026-07-28T01:08:49.000Z",
+      "uid": "35240-33150d10-d465-45e0-837e-247f54b308bd"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://management.azure.com"
+    }
+  ]
+}

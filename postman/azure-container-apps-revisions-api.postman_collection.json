@@ -1,0 +1,843 @@
+{
+  "info": {
+    "_postman_id": "7f86ec61-8a17-457d-863e-f2812d3c786d",
+    "name": "Azure Container Apps Authentication Revisions API",
+    "description": "Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.\n\nContact Support:\n Name: Microsoft Azure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:08:53.000Z",
+    "updatedAt": "2026-07-28T01:08:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7f86ec61-8a17-457d-863e-f2812d3c786d"
+  },
+  "item": [
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "{subscriptionId}",
+          "item": [
+            {
+              "name": "resourceGroups",
+              "item": [
+                {
+                  "name": "{resourceGroupName}",
+                  "item": [
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "Microsoft.App",
+                          "item": [
+                            {
+                              "name": "containerApps",
+                              "item": [
+                                {
+                                  "name": "{containerAppName}",
+                                  "item": [
+                                    {
+                                      "name": "revisions",
+                                      "item": [
+                                        {
+                                          "name": "{revisionName}",
+                                          "item": [
+                                            {
+                                              "name": "activate",
+                                              "item": [
+                                                {
+                                                  "name": "Azure Container Apps Activate a Revision",
+                                                  "id": "ad7e03eb-4ab5-47e3-b3b5-82bf74b55a83",
+                                                  "protocolProfileBehavior": {
+                                                    "disableBodyPruning": true
+                                                  },
+                                                  "request": {
+                                                    "method": "POST",
+                                                    "header": [],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName/activate?api-version=2023-05-01",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "subscriptions",
+                                                        ":subscriptionId",
+                                                        "resourceGroups",
+                                                        ":resourceGroupName",
+                                                        "providers",
+                                                        "Microsoft.App",
+                                                        "containerApps",
+                                                        ":containerAppName",
+                                                        "revisions",
+                                                        ":revisionName",
+                                                        "activate"
+                                                      ],
+                                                      "query": [
+                                                        {
+                                                          "description": "(Required) Client API version.",
+                                                          "key": "api-version",
+                                                          "value": "2023-05-01"
+                                                        }
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "id": "4b998b66-e0c9-40cf-922a-9b5fae3ae948",
+                                                          "key": "subscriptionId",
+                                                          "value": "<string>",
+                                                          "description": "(Required) The Azure subscription ID."
+                                                        },
+                                                        {
+                                                          "id": "d2eb82a3-6e4f-48aa-a1d5-d2ad343201ab",
+                                                          "key": "resourceGroupName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) The name of the resource group."
+                                                        },
+                                                        {
+                                                          "id": "6fc3c503-95e6-45da-8021-d52069797f6b",
+                                                          "key": "containerAppName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) "
+                                                        },
+                                                        {
+                                                          "id": "b77348ec-2c5b-473b-91a7-cd916e7cc034",
+                                                          "key": "revisionName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) "
+                                                        }
+                                                      ]
+                                                    },
+                                                    "description": "Activates a revision for a Container App."
+                                                  },
+                                                  "response": [
+                                                    {
+                                                      "id": "a2b342de-65e2-418d-92eb-689f965cf7be",
+                                                      "name": "Revision activated",
+                                                      "originalRequest": {
+                                                        "method": "POST",
+                                                        "header": [
+                                                          {
+                                                            "description": "Added as a part of security scheme: oauth2",
+                                                            "key": "Authorization",
+                                                            "value": "<token>"
+                                                          }
+                                                        ],
+                                                        "url": {
+                                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName/activate?api-version=2023-05-01",
+                                                          "host": [
+                                                            "{{baseUrl}}"
+                                                          ],
+                                                          "path": [
+                                                            "subscriptions",
+                                                            ":subscriptionId",
+                                                            "resourceGroups",
+                                                            ":resourceGroupName",
+                                                            "providers",
+                                                            "Microsoft.App",
+                                                            "containerApps",
+                                                            ":containerAppName",
+                                                            "revisions",
+                                                            ":revisionName",
+                                                            "activate"
+                                                          ],
+                                                          "query": [
+                                                            {
+                                                              "description": "(Required) Client API version.",
+                                                              "key": "api-version",
+                                                              "value": "2023-05-01"
+                                                            }
+                                                          ],
+                                                          "variable": [
+                                                            {
+                                                              "key": "subscriptionId"
+                                                            },
+                                                            {
+                                                              "key": "resourceGroupName"
+                                                            },
+                                                            {
+                                                              "key": "containerAppName"
+                                                            },
+                                                            {
+                                                              "key": "revisionName"
+                                                            }
+                                                          ]
+                                                        }
+                                                      },
+                                                      "status": "OK",
+                                                      "code": 200,
+                                                      "_postman_previewlanguage": "text",
+                                                      "header": [],
+                                                      "cookie": [],
+                                                      "responseTime": null,
+                                                      "body": null,
+                                                      "createdAt": "2026-07-28T01:08:54.000Z",
+                                                      "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                      "uid": "35240-a2b342de-65e2-418d-92eb-689f965cf7be"
+                                                    }
+                                                  ],
+                                                  "createdAt": "2026-07-28T01:08:54.000Z",
+                                                  "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                  "uid": "35240-ad7e03eb-4ab5-47e3-b3b5-82bf74b55a83"
+                                                }
+                                              ],
+                                              "id": "8cf71c0e-eea2-4a39-a314-db1897455668",
+                                              "createdAt": "2026-07-28T01:08:54.000Z",
+                                              "updatedAt": "2026-07-28T01:08:54.000Z",
+                                              "uid": "35240-8cf71c0e-eea2-4a39-a314-db1897455668"
+                                            },
+                                            {
+                                              "name": "deactivate",
+                                              "item": [
+                                                {
+                                                  "name": "Azure Container Apps Deactivate a Revision",
+                                                  "id": "3c191a36-766d-4295-9256-450fd50e3547",
+                                                  "protocolProfileBehavior": {
+                                                    "disableBodyPruning": true
+                                                  },
+                                                  "request": {
+                                                    "method": "POST",
+                                                    "header": [],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName/deactivate?api-version=2023-05-01",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "subscriptions",
+                                                        ":subscriptionId",
+                                                        "resourceGroups",
+                                                        ":resourceGroupName",
+                                                        "providers",
+                                                        "Microsoft.App",
+                                                        "containerApps",
+                                                        ":containerAppName",
+                                                        "revisions",
+                                                        ":revisionName",
+                                                        "deactivate"
+                                                      ],
+                                                      "query": [
+                                                        {
+                                                          "description": "(Required) Client API version.",
+                                                          "key": "api-version",
+                                                          "value": "2023-05-01"
+                                                        }
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "id": "03956ead-4f82-4edd-b7ae-36b1f74caf98",
+                                                          "key": "subscriptionId",
+                                                          "value": "<string>",
+                                                          "description": "(Required) The Azure subscription ID."
+                                                        },
+                                                        {
+                                                          "id": "f4bef8ad-ce08-4bc1-bd1c-cf3be8833b8d",
+                                                          "key": "resourceGroupName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) The name of the resource group."
+                                                        },
+                                                        {
+                                                          "id": "88143912-9b67-4511-b337-71af51de2929",
+                                                          "key": "containerAppName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) "
+                                                        },
+                                                        {
+                                                          "id": "b208eca3-f2f7-498b-947c-b2d376ee9006",
+                                                          "key": "revisionName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) "
+                                                        }
+                                                      ]
+                                                    },
+                                                    "description": "Deactivates a revision for a Container App."
+                                                  },
+                                                  "response": [
+                                                    {
+                                                      "id": "4bd14398-6655-4150-8223-f2092e132728",
+                                                      "name": "Revision deactivated",
+                                                      "originalRequest": {
+                                                        "method": "POST",
+                                                        "header": [
+                                                          {
+                                                            "description": "Added as a part of security scheme: oauth2",
+                                                            "key": "Authorization",
+                                                            "value": "<token>"
+                                                          }
+                                                        ],
+                                                        "url": {
+                                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName/deactivate?api-version=2023-05-01",
+                                                          "host": [
+                                                            "{{baseUrl}}"
+                                                          ],
+                                                          "path": [
+                                                            "subscriptions",
+                                                            ":subscriptionId",
+                                                            "resourceGroups",
+                                                            ":resourceGroupName",
+                                                            "providers",
+                                                            "Microsoft.App",
+                                                            "containerApps",
+                                                            ":containerAppName",
+                                                            "revisions",
+                                                            ":revisionName",
+                                                            "deactivate"
+                                                          ],
+                                                          "query": [
+                                                            {
+                                                              "description": "(Required) Client API version.",
+                                                              "key": "api-version",
+                                                              "value": "2023-05-01"
+                                                            }
+                                                          ],
+                                                          "variable": [
+                                                            {
+                                                              "key": "subscriptionId"
+                                                            },
+                                                            {
+                                                              "key": "resourceGroupName"
+                                                            },
+                                                            {
+                                                              "key": "containerAppName"
+                                                            },
+                                                            {
+                                                              "key": "revisionName"
+                                                            }
+                                                          ]
+                                                        }
+                                                      },
+                                                      "status": "OK",
+                                                      "code": 200,
+                                                      "_postman_previewlanguage": "text",
+                                                      "header": [],
+                                                      "cookie": [],
+                                                      "responseTime": null,
+                                                      "body": null,
+                                                      "createdAt": "2026-07-28T01:08:54.000Z",
+                                                      "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                      "uid": "35240-4bd14398-6655-4150-8223-f2092e132728"
+                                                    }
+                                                  ],
+                                                  "createdAt": "2026-07-28T01:08:54.000Z",
+                                                  "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                  "uid": "35240-3c191a36-766d-4295-9256-450fd50e3547"
+                                                }
+                                              ],
+                                              "id": "aba653bf-0acf-4846-b8b1-6e18f1167520",
+                                              "createdAt": "2026-07-28T01:08:54.000Z",
+                                              "updatedAt": "2026-07-28T01:08:54.000Z",
+                                              "uid": "35240-aba653bf-0acf-4846-b8b1-6e18f1167520"
+                                            },
+                                            {
+                                              "name": "restart",
+                                              "item": [
+                                                {
+                                                  "name": "Azure Container Apps Restart a Revision",
+                                                  "id": "56f17e8a-1089-4990-8dfa-82ece912f887",
+                                                  "protocolProfileBehavior": {
+                                                    "disableBodyPruning": true
+                                                  },
+                                                  "request": {
+                                                    "method": "POST",
+                                                    "header": [],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName/restart?api-version=2023-05-01",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "subscriptions",
+                                                        ":subscriptionId",
+                                                        "resourceGroups",
+                                                        ":resourceGroupName",
+                                                        "providers",
+                                                        "Microsoft.App",
+                                                        "containerApps",
+                                                        ":containerAppName",
+                                                        "revisions",
+                                                        ":revisionName",
+                                                        "restart"
+                                                      ],
+                                                      "query": [
+                                                        {
+                                                          "description": "(Required) Client API version.",
+                                                          "key": "api-version",
+                                                          "value": "2023-05-01"
+                                                        }
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "id": "3e094565-e255-42eb-ae34-8a96dbccdc04",
+                                                          "key": "subscriptionId",
+                                                          "value": "<string>",
+                                                          "description": "(Required) The Azure subscription ID."
+                                                        },
+                                                        {
+                                                          "id": "04224cb6-791a-4b72-b267-342c5d79d0e5",
+                                                          "key": "resourceGroupName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) The name of the resource group."
+                                                        },
+                                                        {
+                                                          "id": "fb3c3d2e-a182-4214-95cf-3143405899a5",
+                                                          "key": "containerAppName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) "
+                                                        },
+                                                        {
+                                                          "id": "86b0ade4-a7df-43b1-a0d2-9deae54e8b94",
+                                                          "key": "revisionName",
+                                                          "value": "<string>",
+                                                          "description": "(Required) "
+                                                        }
+                                                      ]
+                                                    },
+                                                    "description": "Restarts a revision for a Container App."
+                                                  },
+                                                  "response": [
+                                                    {
+                                                      "id": "506d1304-4a81-4c63-8efc-b17bf627b0d7",
+                                                      "name": "Revision restarted",
+                                                      "originalRequest": {
+                                                        "method": "POST",
+                                                        "header": [
+                                                          {
+                                                            "description": "Added as a part of security scheme: oauth2",
+                                                            "key": "Authorization",
+                                                            "value": "<token>"
+                                                          }
+                                                        ],
+                                                        "url": {
+                                                          "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName/restart?api-version=2023-05-01",
+                                                          "host": [
+                                                            "{{baseUrl}}"
+                                                          ],
+                                                          "path": [
+                                                            "subscriptions",
+                                                            ":subscriptionId",
+                                                            "resourceGroups",
+                                                            ":resourceGroupName",
+                                                            "providers",
+                                                            "Microsoft.App",
+                                                            "containerApps",
+                                                            ":containerAppName",
+                                                            "revisions",
+                                                            ":revisionName",
+                                                            "restart"
+                                                          ],
+                                                          "query": [
+                                                            {
+                                                              "description": "(Required) Client API version.",
+                                                              "key": "api-version",
+                                                              "value": "2023-05-01"
+                                                            }
+                                                          ],
+                                                          "variable": [
+                                                            {
+                                                              "key": "subscriptionId"
+                                                            },
+                                                            {
+                                                              "key": "resourceGroupName"
+                                                            },
+                                                            {
+                                                              "key": "containerAppName"
+                                                            },
+                                                            {
+                                                              "key": "revisionName"
+                                                            }
+                                                          ]
+                                                        }
+                                                      },
+                                                      "status": "OK",
+                                                      "code": 200,
+                                                      "_postman_previewlanguage": "text",
+                                                      "header": [],
+                                                      "cookie": [],
+                                                      "responseTime": null,
+                                                      "body": null,
+                                                      "createdAt": "2026-07-28T01:08:54.000Z",
+                                                      "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                      "uid": "35240-506d1304-4a81-4c63-8efc-b17bf627b0d7"
+                                                    }
+                                                  ],
+                                                  "createdAt": "2026-07-28T01:08:54.000Z",
+                                                  "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                  "uid": "35240-56f17e8a-1089-4990-8dfa-82ece912f887"
+                                                }
+                                              ],
+                                              "id": "f74af28c-06a3-46c4-95f3-df791d96bc5a",
+                                              "createdAt": "2026-07-28T01:08:54.000Z",
+                                              "updatedAt": "2026-07-28T01:08:54.000Z",
+                                              "uid": "35240-f74af28c-06a3-46c4-95f3-df791d96bc5a"
+                                            },
+                                            {
+                                              "name": "Azure Container Apps Get a Revision",
+                                              "id": "35f1adba-8b85-4ff6-9fe8-8eb44c878a0b",
+                                              "protocolProfileBehavior": {
+                                                "disableBodyPruning": true
+                                              },
+                                              "request": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName?api-version=2023-05-01",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "subscriptions",
+                                                    ":subscriptionId",
+                                                    "resourceGroups",
+                                                    ":resourceGroupName",
+                                                    "providers",
+                                                    "Microsoft.App",
+                                                    "containerApps",
+                                                    ":containerAppName",
+                                                    "revisions",
+                                                    ":revisionName"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "description": "(Required) Client API version.",
+                                                      "key": "api-version",
+                                                      "value": "2023-05-01"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "id": "5b4d8403-ac1e-4618-acab-d18ad227026b",
+                                                      "key": "subscriptionId",
+                                                      "value": "<string>",
+                                                      "description": "(Required) The Azure subscription ID."
+                                                    },
+                                                    {
+                                                      "id": "b3552f7d-e4a2-4980-bd8c-182b45fa2c2c",
+                                                      "key": "resourceGroupName",
+                                                      "value": "<string>",
+                                                      "description": "(Required) The name of the resource group."
+                                                    },
+                                                    {
+                                                      "id": "af7b256d-e6d0-4d49-866d-2f6370594649",
+                                                      "key": "containerAppName",
+                                                      "value": "<string>",
+                                                      "description": "(Required) "
+                                                    },
+                                                    {
+                                                      "id": "952f69f1-ec3f-4f49-9d74-06a13128ad9a",
+                                                      "key": "revisionName",
+                                                      "value": "<string>",
+                                                      "description": "(Required) "
+                                                    }
+                                                  ]
+                                                },
+                                                "description": "Get a revision of a Container App."
+                                              },
+                                              "response": [
+                                                {
+                                                  "id": "2feb918d-5cc3-4033-bb84-f49dfc98a5fe",
+                                                  "name": "Successful response",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: oauth2",
+                                                        "key": "Authorization",
+                                                        "value": "<token>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions/:revisionName?api-version=2023-05-01",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "subscriptions",
+                                                        ":subscriptionId",
+                                                        "resourceGroups",
+                                                        ":resourceGroupName",
+                                                        "providers",
+                                                        "Microsoft.App",
+                                                        "containerApps",
+                                                        ":containerAppName",
+                                                        "revisions",
+                                                        ":revisionName"
+                                                      ],
+                                                      "query": [
+                                                        {
+                                                          "description": "(Required) Client API version.",
+                                                          "key": "api-version",
+                                                          "value": "2023-05-01"
+                                                        }
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "subscriptionId"
+                                                        },
+                                                        {
+                                                          "key": "resourceGroupName"
+                                                        },
+                                                        {
+                                                          "key": "containerAppName"
+                                                        },
+                                                        {
+                                                          "key": "revisionName"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "OK",
+                                                  "code": 200,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"properties\": {\n    \"createdTime\": \"<dateTime>\",\n    \"lastActiveTime\": \"<dateTime>\",\n    \"fqdn\": \"<string>\",\n    \"template\": {\n      \"revisionSuffix\": \"<string>\",\n      \"terminationGracePeriodSeconds\": \"<long>\",\n      \"initContainers\": [\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\",\n            \"ephemeralStorage\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTPS\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Liveness\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTPS\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Startup\"\n            }\n          ]\n        },\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\",\n            \"ephemeralStorage\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTP\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Startup\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTP\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Readiness\"\n            }\n          ]\n        }\n      ],\n      \"containers\": [\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\",\n            \"ephemeralStorage\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTPS\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Readiness\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTP\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Liveness\"\n            }\n          ]\n        },\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\",\n            \"ephemeralStorage\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTPS\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Startup\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": \"<string>\",\n                \"httpHeaders\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"value\": \"<string>\"\n                  }\n                ],\n                \"path\": \"<string>\",\n                \"port\": \"<integer>\",\n                \"scheme\": \"HTTPS\"\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": \"<string>\",\n                \"port\": \"<integer>\"\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"Readiness\"\n            }\n          ]\n        }\n      ],\n      \"scale\": {\n        \"minReplicas\": \"<integer>\",\n        \"maxReplicas\": \"<integer>\",\n        \"rules\": [\n          {\n            \"name\": \"<string>\",\n            \"azureQueue\": {\n              \"queueName\": \"<string>\",\n              \"queueLength\": \"<integer>\",\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            },\n            \"custom\": {\n              \"type\": \"<string>\",\n              \"metadata\": {\n                \"Excepteur80e\": \"<string>\"\n              },\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            },\n            \"http\": {\n              \"metadata\": {\n                \"labore_92b\": \"<string>\",\n                \"sint_96\": \"<string>\",\n                \"nostruda7\": \"<string>\"\n              },\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            },\n            \"tcp\": {\n              \"metadata\": {\n                \"tempor4\": \"<string>\"\n              },\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"azureQueue\": {\n              \"queueName\": \"<string>\",\n              \"queueLength\": \"<integer>\",\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            },\n            \"custom\": {\n              \"type\": \"<string>\",\n              \"metadata\": {\n                \"eiusmod_d1\": \"<string>\",\n                \"officia_33\": \"<string>\",\n                \"magna252\": \"<string>\"\n              },\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            },\n            \"http\": {\n              \"metadata\": {\n                \"enim43\": \"<string>\"\n              },\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            },\n            \"tcp\": {\n              \"metadata\": {\n                \"Ut_b5\": \"<string>\",\n                \"commodo_95_\": \"<string>\"\n              },\n              \"auth\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"triggerParameter\": \"<string>\"\n                }\n              ]\n            }\n          }\n        ]\n      },\n      \"volumes\": [\n        {\n          \"name\": \"<string>\",\n          \"storageType\": \"EmptyDir\",\n          \"storageName\": \"<string>\",\n          \"secrets\": [\n            {\n              \"secretRef\": \"<string>\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"secretRef\": \"<string>\",\n              \"path\": \"<string>\"\n            }\n          ],\n          \"mountOptions\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"storageType\": \"AzureFile\",\n          \"storageName\": \"<string>\",\n          \"secrets\": [\n            {\n              \"secretRef\": \"<string>\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"secretRef\": \"<string>\",\n              \"path\": \"<string>\"\n            }\n          ],\n          \"mountOptions\": \"<string>\"\n        }\n      ],\n      \"serviceBinds\": [\n        {\n          \"serviceId\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"serviceId\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    \"active\": \"<boolean>\",\n    \"replicas\": \"<integer>\",\n    \"trafficWeight\": \"<integer>\",\n    \"provisioningError\": \"<string>\",\n    \"healthState\": \"Unhealthy\",\n    \"provisioningState\": \"Failed\",\n    \"runningState\": \"Running\"\n  }\n}",
+                                                  "createdAt": "2026-07-28T01:08:54.000Z",
+                                                  "updatedAt": "2026-07-28T01:08:54.000Z",
+                                                  "uid": "35240-2feb918d-5cc3-4033-bb84-f49dfc98a5fe"
+                                                }
+                                              ],
+                                              "createdAt": "2026-07-28T01:08:54.000Z",
+                                              "updatedAt": "2026-07-28T01:08:54.000Z",
+                                              "uid": "35240-35f1adba-8b85-4ff6-9fe8-8eb44c878a0b"
+                                            }
+                                          ],
+                                          "id": "9a649411-ef3d-4a2e-874a-c20453445223",
+                                          "createdAt": "2026-07-28T01:08:54.000Z",
+                                          "updatedAt": "2026-07-28T01:08:54.000Z",
+                                          "uid": "35240-9a649411-ef3d-4a2e-874a-c20453445223"
+                                        },
+                                        {
+                                          "name": "Azure Container Apps List Revisions",
+                                          "id": "e243ac88-c726-46d4-ace2-111cabac6123",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions?api-version=2023-05-01&$filter=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "containerApps",
+                                                ":containerAppName",
+                                                "revisions"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                },
+                                                {
+                                                  "key": "$filter",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "d4455777-0c7f-4e4a-a12a-8f0c6458ae30",
+                                                  "key": "subscriptionId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The Azure subscription ID."
+                                                },
+                                                {
+                                                  "id": "18fc17db-0eb8-42eb-8a0f-3fb1f94e21d8",
+                                                  "key": "resourceGroupName",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The name of the resource group."
+                                                },
+                                                {
+                                                  "id": "78570400-6b94-4ce7-8531-0d9b4e72248c",
+                                                  "key": "containerAppName",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "Get the Revisions for a given Container App."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "8fa01ad0-d4a5-4a2c-a9d9-99c6289acc68",
+                                              "name": "Successful response",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: oauth2",
+                                                    "key": "Authorization",
+                                                    "value": "<token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/revisions?api-version=2023-05-01&$filter=<string>",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "subscriptions",
+                                                    ":subscriptionId",
+                                                    "resourceGroups",
+                                                    ":resourceGroupName",
+                                                    "providers",
+                                                    "Microsoft.App",
+                                                    "containerApps",
+                                                    ":containerAppName",
+                                                    "revisions"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "description": "(Required) Client API version.",
+                                                      "key": "api-version",
+                                                      "value": "2023-05-01"
+                                                    },
+                                                    {
+                                                      "key": "$filter",
+                                                      "value": "<string>"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "subscriptionId"
+                                                    },
+                                                    {
+                                                      "key": "resourceGroupName"
+                                                    },
+                                                    {
+                                                      "key": "containerAppName"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"value\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"properties\": {\n        \"createdTime\": \"<dateTime>\",\n        \"lastActiveTime\": \"<dateTime>\",\n        \"fqdn\": \"<string>\",\n        \"template\": {\n          \"revisionSuffix\": \"<string>\",\n          \"terminationGracePeriodSeconds\": \"<long>\",\n          \"initContainers\": [\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Liveness\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                }\n              ]\n            },\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Readiness\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Liveness\"\n                }\n              ]\n            }\n          ],\n          \"containers\": [\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Liveness\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                }\n              ]\n            },\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                }\n              ]\n            }\n          ],\n          \"scale\": {\n            \"minReplicas\": \"<integer>\",\n            \"maxReplicas\": \"<integer>\",\n            \"rules\": [\n              {\n                \"name\": \"<string>\",\n                \"azureQueue\": {\n                  \"queueName\": \"<string>\",\n                  \"queueLength\": \"<integer>\",\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"custom\": {\n                  \"type\": \"<string>\",\n                  \"metadata\": {\n                    \"sint_3\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"http\": {\n                  \"metadata\": {\n                    \"Utdd\": \"<string>\",\n                    \"sit_0cd\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"tcp\": {\n                  \"metadata\": {\n                    \"in_6c_\": \"<string>\",\n                    \"enim50\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              {\n                \"name\": \"<string>\",\n                \"azureQueue\": {\n                  \"queueName\": \"<string>\",\n                  \"queueLength\": \"<integer>\",\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"custom\": {\n                  \"type\": \"<string>\",\n                  \"metadata\": {\n                    \"tempore\": \"<string>\",\n                    \"eu_61b\": \"<string>\",\n                    \"commodod\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"http\": {\n                  \"metadata\": {\n                    \"nisi_65\": \"<string>\",\n                    \"commodo__7\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"tcp\": {\n                  \"metadata\": {\n                    \"elit_a44\": \"<string>\",\n                    \"dolor9\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                }\n              }\n            ]\n          },\n          \"volumes\": [\n            {\n              \"name\": \"<string>\",\n              \"storageType\": \"EmptyDir\",\n              \"storageName\": \"<string>\",\n              \"secrets\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                }\n              ],\n              \"mountOptions\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"storageType\": \"Secret\",\n              \"storageName\": \"<string>\",\n              \"secrets\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                }\n              ],\n              \"mountOptions\": \"<string>\"\n            }\n          ],\n          \"serviceBinds\": [\n            {\n              \"serviceId\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"serviceId\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        \"active\": \"<boolean>\",\n        \"replicas\": \"<integer>\",\n        \"trafficWeight\": \"<integer>\",\n        \"provisioningError\": \"<string>\",\n        \"healthState\": \"Healthy\",\n        \"provisioningState\": \"Provisioning\",\n        \"runningState\": \"Failed\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"properties\": {\n        \"createdTime\": \"<dateTime>\",\n        \"lastActiveTime\": \"<dateTime>\",\n        \"fqdn\": \"<string>\",\n        \"template\": {\n          \"revisionSuffix\": \"<string>\",\n          \"terminationGracePeriodSeconds\": \"<long>\",\n          \"initContainers\": [\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Readiness\"\n                }\n              ]\n            },\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Liveness\"\n                }\n              ]\n            }\n          ],\n          \"containers\": [\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Readiness\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTP\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Liveness\"\n                }\n              ]\n            },\n            {\n              \"image\": \"<string>\",\n              \"name\": \"<string>\",\n              \"command\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"args\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"env\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": \"<string>\",\n                  \"secretRef\": \"<string>\"\n                }\n              ],\n              \"resources\": {\n                \"cpu\": \"<number>\",\n                \"memory\": \"<string>\",\n                \"ephemeralStorage\": \"<string>\"\n              },\n              \"volumeMounts\": [\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                },\n                {\n                  \"volumeName\": \"<string>\",\n                  \"mountPath\": \"<string>\",\n                  \"subPath\": \"<string>\"\n                }\n              ],\n              \"probes\": [\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Readiness\"\n                },\n                {\n                  \"failureThreshold\": \"<integer>\",\n                  \"httpGet\": {\n                    \"host\": \"<string>\",\n                    \"httpHeaders\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"value\": \"<string>\"\n                      }\n                    ],\n                    \"path\": \"<string>\",\n                    \"port\": \"<integer>\",\n                    \"scheme\": \"HTTPS\"\n                  },\n                  \"initialDelaySeconds\": \"<integer>\",\n                  \"periodSeconds\": \"<integer>\",\n                  \"successThreshold\": \"<integer>\",\n                  \"tcpSocket\": {\n                    \"host\": \"<string>\",\n                    \"port\": \"<integer>\"\n                  },\n                  \"terminationGracePeriodSeconds\": \"<long>\",\n                  \"timeoutSeconds\": \"<integer>\",\n                  \"type\": \"Startup\"\n                }\n              ]\n            }\n          ],\n          \"scale\": {\n            \"minReplicas\": \"<integer>\",\n            \"maxReplicas\": \"<integer>\",\n            \"rules\": [\n              {\n                \"name\": \"<string>\",\n                \"azureQueue\": {\n                  \"queueName\": \"<string>\",\n                  \"queueLength\": \"<integer>\",\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"custom\": {\n                  \"type\": \"<string>\",\n                  \"metadata\": {\n                    \"magna84e\": \"<string>\",\n                    \"pariatur1d\": \"<string>\",\n                    \"est_\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"http\": {\n                  \"metadata\": {\n                    \"ullamco0f\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"tcp\": {\n                  \"metadata\": {\n                    \"esse_c\": \"<string>\",\n                    \"sint7\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                }\n              },\n              {\n                \"name\": \"<string>\",\n                \"azureQueue\": {\n                  \"queueName\": \"<string>\",\n                  \"queueLength\": \"<integer>\",\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"custom\": {\n                  \"type\": \"<string>\",\n                  \"metadata\": {\n                    \"irure_a\": \"<string>\",\n                    \"etaf9\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"http\": {\n                  \"metadata\": {\n                    \"Ut_\": \"<string>\",\n                    \"ead8\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                },\n                \"tcp\": {\n                  \"metadata\": {\n                    \"eiusmodbc\": \"<string>\"\n                  },\n                  \"auth\": [\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    },\n                    {\n                      \"secretRef\": \"<string>\",\n                      \"triggerParameter\": \"<string>\"\n                    }\n                  ]\n                }\n              }\n            ]\n          },\n          \"volumes\": [\n            {\n              \"name\": \"<string>\",\n              \"storageType\": \"AzureFile\",\n              \"storageName\": \"<string>\",\n              \"secrets\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                }\n              ],\n              \"mountOptions\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"storageType\": \"AzureFile\",\n              \"storageName\": \"<string>\",\n              \"secrets\": [\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                },\n                {\n                  \"secretRef\": \"<string>\",\n                  \"path\": \"<string>\"\n                }\n              ],\n              \"mountOptions\": \"<string>\"\n            }\n          ],\n          \"serviceBinds\": [\n            {\n              \"serviceId\": \"<string>\",\n              \"name\": \"<string>\"\n            },\n            {\n              \"serviceId\": \"<string>\",\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        \"active\": \"<boolean>\",\n        \"replicas\": \"<integer>\",\n        \"trafficWeight\": \"<integer>\",\n        \"provisioningError\": \"<string>\",\n        \"healthState\": \"Unhealthy\",\n        \"provisioningState\": \"Provisioned\",\n        \"runningState\": \"Stopped\"\n      }\n    }\n  ],\n  \"nextLink\": \"<string>\"\n}",
+                                              "createdAt": "2026-07-28T01:08:54.000Z",
+                                              "updatedAt": "2026-07-28T01:08:54.000Z",
+                                              "uid": "35240-8fa01ad0-d4a5-4a2c-a9d9-99c6289acc68"
+                                            }
+                                          ],
+                                          "createdAt": "2026-07-28T01:08:54.000Z",
+                                          "updatedAt": "2026-07-28T01:08:54.000Z",
+                                          "uid": "35240-e243ac88-c726-46d4-ace2-111cabac6123"
+                                        }
+                                      ],
+                                      "id": "9038b425-eed3-4048-8275-d7725c4119df",
+                                      "createdAt": "2026-07-28T01:08:54.000Z",
+                                      "updatedAt": "2026-07-28T01:08:54.000Z",
+                                      "uid": "35240-9038b425-eed3-4048-8275-d7725c4119df"
+                                    }
+                                  ],
+                                  "id": "55f217f8-4c6a-47ac-a97b-d0831968e46c",
+                                  "createdAt": "2026-07-28T01:08:54.000Z",
+                                  "updatedAt": "2026-07-28T01:08:54.000Z",
+                                  "uid": "35240-55f217f8-4c6a-47ac-a97b-d0831968e46c"
+                                }
+                              ],
+                              "id": "382d2b84-b431-461b-816c-fffe0d3c25be",
+                              "createdAt": "2026-07-28T01:08:54.000Z",
+                              "updatedAt": "2026-07-28T01:08:54.000Z",
+                              "uid": "35240-382d2b84-b431-461b-816c-fffe0d3c25be"
+                            }
+                          ],
+                          "id": "fa3a5400-2fa7-497e-b97f-92c5c1f3016a",
+                          "createdAt": "2026-07-28T01:08:54.000Z",
+                          "updatedAt": "2026-07-28T01:08:54.000Z",
+                          "uid": "35240-fa3a5400-2fa7-497e-b97f-92c5c1f3016a"
+                        }
+                      ],
+                      "id": "6194ce68-f53b-40f8-9682-21c7c50679fb",
+                      "createdAt": "2026-07-28T01:08:54.000Z",
+                      "updatedAt": "2026-07-28T01:08:54.000Z",
+                      "uid": "35240-6194ce68-f53b-40f8-9682-21c7c50679fb"
+                    }
+                  ],
+                  "id": "ae8cc375-c14a-4e8b-93e6-5a6fb0881acf",
+                  "createdAt": "2026-07-28T01:08:54.000Z",
+                  "updatedAt": "2026-07-28T01:08:54.000Z",
+                  "uid": "35240-ae8cc375-c14a-4e8b-93e6-5a6fb0881acf"
+                }
+              ],
+              "id": "867860a2-277f-4f72-8050-dc69aea8068e",
+              "createdAt": "2026-07-28T01:08:54.000Z",
+              "updatedAt": "2026-07-28T01:08:54.000Z",
+              "uid": "35240-867860a2-277f-4f72-8050-dc69aea8068e"
+            }
+          ],
+          "id": "ebe5bc46-4798-40ff-961e-a11f743b8335",
+          "createdAt": "2026-07-28T01:08:54.000Z",
+          "updatedAt": "2026-07-28T01:08:54.000Z",
+          "uid": "35240-ebe5bc46-4798-40ff-961e-a11f743b8335"
+        }
+      ],
+      "id": "a4eb46c8-327f-4de2-8d6f-ac2227405c37",
+      "createdAt": "2026-07-28T01:08:54.000Z",
+      "updatedAt": "2026-07-28T01:08:54.000Z",
+      "uid": "35240-a4eb46c8-327f-4de2-8d6f-ac2227405c37"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://management.azure.com"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "provider": "azure-container-apps",
+  "sources": [
+    "azure-container-apps-authentication-api-openapi.yml",
+    "azure-container-apps-container-apps-api-openapi.yml",
+    "azure-container-apps-jobs-api-openapi.yml",
+    "azure-container-apps-managed-environments-api-openapi.yml",
+    "azure-container-apps-revisions-api-openapi.yml"
+  ],
+  "outputs": [
+    "azure-container-apps-authentication-api-openapi.yml",
+    "azure-container-apps-container-apps-api-openapi.yml",
+    "azure-container-apps-jobs-api-openapi.yml",
+    "azure-container-apps-managed-environments-api-openapi.yml",
+    "azure-container-apps-revisions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

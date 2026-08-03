@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "1f728380-97d1-435e-b693-1ef90787045e",
+    "name": "Azure Container Apps Authentication API",
+    "description": "Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.\n\nContact Support:\n Name: Microsoft Azure",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:08:41.000Z",
+    "updatedAt": "2026-07-28T01:08:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1f728380-97d1-435e-b693-1ef90787045e"
+  },
+  "item": [
+    {
+      "name": "subscriptions",
+      "item": [
+        {
+          "name": "{subscriptionId}",
+          "item": [
+            {
+              "name": "resourceGroups",
+              "item": [
+                {
+                  "name": "{resourceGroupName}",
+                  "item": [
+                    {
+                      "name": "providers",
+                      "item": [
+                        {
+                          "name": "Microsoft.App",
+                          "item": [
+                            {
+                              "name": "containerApps",
+                              "item": [
+                                {
+                                  "name": "{containerAppName}",
+                                  "item": [
+                                    {
+                                      "name": "authConfigs",
+                                      "item": [
+                                        {
+                                          "name": "Azure Container Apps List Auth Configs",
+                                          "id": "34a40e7a-5c9e-46cc-befb-2bc11baaed59",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/authConfigs?api-version=2023-05-01",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "subscriptions",
+                                                ":subscriptionId",
+                                                "resourceGroups",
+                                                ":resourceGroupName",
+                                                "providers",
+                                                "Microsoft.App",
+                                                "containerApps",
+                                                ":containerAppName",
+                                                "authConfigs"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) Client API version.",
+                                                  "key": "api-version",
+                                                  "value": "2023-05-01"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "ae174727-6815-4af8-afda-87787fce3784",
+                                                  "key": "subscriptionId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The Azure subscription ID."
+                                                },
+                                                {
+                                                  "id": "1e6e9fac-a7a3-400f-afa8-9edf46610560",
+                                                  "key": "resourceGroupName",
+                                                  "value": "<string>",
+                                                  "description": "(Required) The name of the resource group."
+                                                },
+                                                {
+                                                  "id": "26cc8314-9413-4fe0-add8-c9e422ff0845",
+                                                  "key": "containerAppName",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "Get the Container App AuthConfigs in a given Container App."
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "6d625e56-200d-4dd4-9bb9-93d3cee8ea31",
+                                              "name": "Successful response",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  },
+                                                  {
+                                                    "description": "Added as a part of security scheme: oauth2",
+                                                    "key": "Authorization",
+                                                    "value": "<token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.App/containerApps/:containerAppName/authConfigs?api-version=2023-05-01",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "subscriptions",
+                                                    ":subscriptionId",
+                                                    "resourceGroups",
+                                                    ":resourceGroupName",
+                                                    "providers",
+                                                    "Microsoft.App",
+                                                    "containerApps",
+                                                    ":containerAppName",
+                                                    "authConfigs"
+                                                  ],
+                                                  "query": [
+                                                    {
+                                                      "description": "(Required) Client API version.",
+                                                      "key": "api-version",
+                                                      "value": "2023-05-01"
+                                                    }
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "subscriptionId"
+                                                    },
+                                                    {
+                                                      "key": "resourceGroupName"
+                                                    },
+                                                    {
+                                                      "key": "containerAppName"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "json",
+                                              "header": [
+                                                {
+                                                  "key": "Content-Type",
+                                                  "value": "application/json"
+                                                }
+                                              ],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": "{\n  \"value\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"properties\": {\n        \"platform\": {\n          \"enabled\": \"<boolean>\",\n          \"runtimeVersion\": \"<string>\"\n        },\n        \"globalValidation\": {\n          \"unauthenticatedClientAction\": \"Return403\",\n          \"redirectToProvider\": \"<string>\"\n        },\n        \"identityProviders\": {\n          \"azureActiveDirectory\": {\n            \"enabled\": \"<boolean>\",\n            \"registration\": {\n              \"openIdIssuer\": \"<string>\",\n              \"clientId\": \"<string>\",\n              \"clientSecretSettingName\": \"<string>\"\n            }\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"properties\": {\n        \"platform\": {\n          \"enabled\": \"<boolean>\",\n          \"runtimeVersion\": \"<string>\"\n        },\n        \"globalValidation\": {\n          \"unauthenticatedClientAction\": \"Return403\",\n          \"redirectToProvider\": \"<string>\"\n        },\n        \"identityProviders\": {\n          \"azureActiveDirectory\": {\n            \"enabled\": \"<boolean>\",\n            \"registration\": {\n              \"openIdIssuer\": \"<string>\",\n              \"clientId\": \"<string>\",\n              \"clientSecretSettingName\": \"<string>\"\n            }\n          }\n        }\n      }\n    }\n  ],\n  \"nextLink\": \"<string>\"\n}",
+                                              "createdAt": "2026-07-28T01:08:42.000Z",
+                                              "updatedAt": "2026-07-28T01:08:42.000Z",
+                                              "uid": "35240-6d625e56-200d-4dd4-9bb9-93d3cee8ea31"
+                                            }
+                                          ],
+                                          "createdAt": "2026-07-28T01:08:42.000Z",
+                                          "updatedAt": "2026-07-28T01:08:42.000Z",
+                                          "uid": "35240-34a40e7a-5c9e-46cc-befb-2bc11baaed59"
+                                        }
+                                      ],
+                                      "id": "459ab749-32aa-4a00-9e05-ff36117cf38f",
+                                      "createdAt": "2026-07-28T01:08:42.000Z",
+                                      "updatedAt": "2026-07-28T01:08:42.000Z",
+                                      "uid": "35240-459ab749-32aa-4a00-9e05-ff36117cf38f"
+                                    }
+                                  ],
+                                  "id": "786d074b-966a-4dac-b821-b41c0c6c2ec7",
+                                  "createdAt": "2026-07-28T01:08:42.000Z",
+                                  "updatedAt": "2026-07-28T01:08:42.000Z",
+                                  "uid": "35240-786d074b-966a-4dac-b821-b41c0c6c2ec7"
+                                }
+                              ],
+                              "id": "64547e7a-f432-4b22-b5bf-e62f43367943",
+                              "createdAt": "2026-07-28T01:08:42.000Z",
+                              "updatedAt": "2026-07-28T01:08:42.000Z",
+                              "uid": "35240-64547e7a-f432-4b22-b5bf-e62f43367943"
+                            }
+                          ],
+                          "id": "30ff1c10-83f2-48b5-86a1-44ea04ac7a57",
+                          "createdAt": "2026-07-28T01:08:42.000Z",
+                          "updatedAt": "2026-07-28T01:08:42.000Z",
+                          "uid": "35240-30ff1c10-83f2-48b5-86a1-44ea04ac7a57"
+                        }
+                      ],
+                      "id": "cc398dac-ceb1-46e2-9162-9333b7d97c02",
+                      "createdAt": "2026-07-28T01:08:42.000Z",
+                      "updatedAt": "2026-07-28T01:08:42.000Z",
+                      "uid": "35240-cc398dac-ceb1-46e2-9162-9333b7d97c02"
+                    }
+                  ],
+                  "id": "dc48e077-8dd1-484c-b549-76f09d3b67c6",
+                  "createdAt": "2026-07-28T01:08:42.000Z",
+                  "updatedAt": "2026-07-28T01:08:42.000Z",
+                  "uid": "35240-dc48e077-8dd1-484c-b549-76f09d3b67c6"
+                }
+              ],
+              "id": "ed975368-8f45-4cd6-a321-b69af12f1b74",
+              "createdAt": "2026-07-28T01:08:42.000Z",
+              "updatedAt": "2026-07-28T01:08:42.000Z",
+              "uid": "35240-ed975368-8f45-4cd6-a321-b69af12f1b74"
+            }
+          ],
+          "id": "b7c6a353-41ea-4732-8c67-294d2ea6da42",
+          "createdAt": "2026-07-28T01:08:42.000Z",
+          "updatedAt": "2026-07-28T01:08:42.000Z",
+          "uid": "35240-b7c6a353-41ea-4732-8c67-294d2ea6da42"
+        }
+      ],
+      "id": "c49a3ec1-bbd7-424e-867c-1a9642618946",
+      "createdAt": "2026-07-28T01:08:42.000Z",
+      "updatedAt": "2026-07-28T01:08:42.000Z",
+      "uid": "35240-c49a3ec1-bbd7-424e-867c-1a9642618946"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://management.azure.com"
+    }
+  ]
+}
