@@ -192,6 +192,17 @@ apis:
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/details/container-apps/
 common:
+  - type: IssueTracker
+    url: https://github.com/microsoft/azure-container-apps/issues
+  - type: Releases
+    url: https://github.com/microsoft/azure-container-apps/releases
+  - type: SecurityPolicy
+    url: https://github.com/microsoft/azure-container-apps/blob/main/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/microsoft/azure-container-apps/blob/main/CODE_OF_CONDUCT.md
+  - type: License
+    name: MIT
+    url: https://github.com/microsoft/azure-container-apps/blob/main/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/azure-container-apps/overview
   - type: AgenticAccess
