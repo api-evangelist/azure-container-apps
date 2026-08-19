@@ -1,0 +1,1120 @@
+{
+  "item": [
+    {
+      "id": "2c2ab7ab-7667-46b4-96ad-41b150c8a9f5",
+      "name": "Jobs",
+      "description": {
+        "content": "Manage container app jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6175f0ba-3867-4626-ace6-7ed79dba470f",
+          "name": "Azure Container Apps List Jobs by Resource Group",
+          "request": {
+            "name": "Azure Container Apps List Jobs by Resource Group",
+            "description": {
+              "content": "Get the Container Apps Jobs in a given resource group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.App",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2023-05-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The Azure subscription ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4cae1094-e295-46bb-839d-4b90c17dd343",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app\",\n  \"name\": \"my-container-app\",\n  \"type\": \"Microsoft.App/containerApps\",\n  \"location\": \"eastus\",\n  \"properties\": {\n    \"provisioningState\": \"Succeeded\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f2c2328-e6fe-4818-857e-5292896dcf7e",
+          "name": "Azure Container Apps Get a Job",
+          "request": {
+            "name": "Azure Container Apps Get a Job",
+            "description": {
+              "content": "Get the properties of a Container Apps Job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.App",
+                "jobs",
+                ":jobName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2023-05-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The Azure subscription ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31fb30e9-143a-4df6-bfa7-f64cfd41def2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app\",\n  \"name\": \"my-container-app\",\n  \"type\": \"Microsoft.App/containerApps\",\n  \"location\": \"eastus\",\n  \"properties\": {\n    \"provisioningState\": \"Succeeded\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab809c69-9f80-4b2f-8bf8-a9a405f872c1",
+          "name": "Azure Container Apps Create or Update a Job",
+          "request": {
+            "name": "Azure Container Apps Create or Update a Job",
+            "description": {
+              "content": "Create or Update a Container Apps Job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.App",
+                "jobs",
+                ":jobName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2023-05-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The Azure subscription ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"properties\": {\n    \"environmentId\": \"<string>\",\n    \"workloadProfileName\": \"<string>\",\n    \"configuration\": {\n      \"secrets\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"identity\": \"<string>\",\n          \"keyVaultUrl\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"identity\": \"<string>\",\n          \"keyVaultUrl\": \"<string>\"\n        }\n      ],\n      \"triggerType\": \"<string>\",\n      \"replicaTimeout\": \"<integer>\",\n      \"replicaRetryLimit\": \"<integer>\",\n      \"manualTriggerConfig\": {\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\"\n      },\n      \"scheduleTriggerConfig\": {\n        \"cronExpression\": \"<string>\",\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\"\n      },\n      \"eventTriggerConfig\": {\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\",\n        \"scale\": {\n          \"minExecutions\": \"<integer>\",\n          \"maxExecutions\": \"<integer>\",\n          \"pollingInterval\": \"<integer>\",\n          \"rules\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      },\n      \"registries\": [\n        {\n          \"server\": \"<string>\",\n          \"username\": \"<string>\",\n          \"passwordSecretRef\": \"<string>\",\n          \"identity\": \"<string>\"\n        },\n        {\n          \"server\": \"<string>\",\n          \"username\": \"<string>\",\n          \"passwordSecretRef\": \"<string>\",\n          \"identity\": \"<string>\"\n        }\n      ]\n    },\n    \"template\": {\n      \"containers\": [\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"initContainers\": [\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"image\": \"<string>\",\n          \"name\": \"<string>\",\n          \"command\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"args\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": \"<string>\",\n              \"secretRef\": \"<string>\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": \"<number>\",\n            \"memory\": \"<string>\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            },\n            {\n              \"volumeName\": \"<string>\",\n              \"mountPath\": \"<string>\",\n              \"subPath\": \"<string>\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"failureThreshold\": \"<integer>\",\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": \"<integer>\",\n              \"periodSeconds\": \"<integer>\",\n              \"successThreshold\": \"<integer>\",\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": \"<long>\",\n              \"timeoutSeconds\": \"<integer>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1404bdf-f5be-41da-b9eb-3df32271b1f4",
+              "name": "Job updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"properties\": {\n    \"environmentId\": \"<string>\",\n    \"workloadProfileName\": \"<string>\",\n    \"configuration\": {\n      \"secrets\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"identity\": \"string\",\n          \"keyVaultUrl\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"identity\": \"string\",\n          \"keyVaultUrl\": \"string\"\n        }\n      ],\n      \"triggerType\": \"<string>\",\n      \"replicaTimeout\": \"<integer>\",\n      \"replicaRetryLimit\": \"<integer>\",\n      \"manualTriggerConfig\": {\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\"\n      },\n      \"scheduleTriggerConfig\": {\n        \"cronExpression\": \"<string>\",\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\"\n      },\n      \"eventTriggerConfig\": {\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\",\n        \"scale\": {\n          \"minExecutions\": \"<integer>\",\n          \"maxExecutions\": \"<integer>\",\n          \"pollingInterval\": \"<integer>\",\n          \"rules\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      },\n      \"registries\": [\n        {\n          \"server\": \"<string>\",\n          \"username\": \"<string>\",\n          \"passwordSecretRef\": \"<string>\",\n          \"identity\": \"<string>\"\n        },\n        {\n          \"server\": \"<string>\",\n          \"username\": \"<string>\",\n          \"passwordSecretRef\": \"<string>\",\n          \"identity\": \"<string>\"\n        }\n      ]\n    },\n    \"template\": {\n      \"containers\": [\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 6162.2451107297575,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 8760,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 1057,\n              \"periodSeconds\": 5584,\n              \"successThreshold\": 7393,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 9478,\n              \"timeoutSeconds\": 627,\n              \"type\": \"Readiness\"\n            },\n            {\n              \"failureThreshold\": 124,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 1558,\n              \"periodSeconds\": 5144,\n              \"successThreshold\": 2178,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6797,\n              \"timeoutSeconds\": 4218,\n              \"type\": \"Startup\"\n            }\n          ]\n        },\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 2851.4859889543086,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 9817,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 4506,\n              \"periodSeconds\": 1608,\n              \"successThreshold\": 9372,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6733,\n              \"timeoutSeconds\": 6781,\n              \"type\": \"Readiness\"\n            },\n            {\n              \"failureThreshold\": 3423,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 9682,\n              \"periodSeconds\": 5507,\n              \"successThreshold\": 5261,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 4474,\n              \"timeoutSeconds\": 4345,\n              \"type\": \"Liveness\"\n            }\n          ]\n        }\n      ],\n      \"initContainers\": [\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 855.1033390806406,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 5644,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 2430,\n              \"periodSeconds\": 284,\n              \"successThreshold\": 3914,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 5299,\n              \"timeoutSeconds\": 6419,\n              \"type\": \"Startup\"\n            },\n            {\n              \"failureThreshold\": 6699,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 4815,\n              \"periodSeconds\": 4019,\n              \"successThreshold\": 5683,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6212,\n              \"timeoutSeconds\": 6961,\n              \"type\": \"Readiness\"\n            }\n          ]\n        },\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 8751.849202404812,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 161,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 83,\n              \"periodSeconds\": 9581,\n              \"successThreshold\": 2059,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 428,\n              \"timeoutSeconds\": 2509,\n              \"type\": \"Liveness\"\n            },\n            {\n              \"failureThreshold\": 4981,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 9594,\n              \"periodSeconds\": 9584,\n              \"successThreshold\": 9471,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6308,\n              \"timeoutSeconds\": 9938,\n              \"type\": \"Readiness\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app\",\n  \"name\": \"my-container-app\",\n  \"type\": \"Microsoft.App/containerApps\",\n  \"location\": \"eastus\",\n  \"properties\": {\n    \"provisioningState\": \"Succeeded\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfb32d62-32a7-48f7-9131-d7f2a8871021",
+              "name": "Job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"location\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"properties\": {\n    \"environmentId\": \"<string>\",\n    \"workloadProfileName\": \"<string>\",\n    \"configuration\": {\n      \"secrets\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"identity\": \"string\",\n          \"keyVaultUrl\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"identity\": \"string\",\n          \"keyVaultUrl\": \"string\"\n        }\n      ],\n      \"triggerType\": \"<string>\",\n      \"replicaTimeout\": \"<integer>\",\n      \"replicaRetryLimit\": \"<integer>\",\n      \"manualTriggerConfig\": {\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\"\n      },\n      \"scheduleTriggerConfig\": {\n        \"cronExpression\": \"<string>\",\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\"\n      },\n      \"eventTriggerConfig\": {\n        \"replicaCompletionCount\": \"<integer>\",\n        \"parallelism\": \"<integer>\",\n        \"scale\": {\n          \"minExecutions\": \"<integer>\",\n          \"maxExecutions\": \"<integer>\",\n          \"pollingInterval\": \"<integer>\",\n          \"rules\": [\n            \"<object>\",\n            \"<object>\"\n          ]\n        }\n      },\n      \"registries\": [\n        {\n          \"server\": \"<string>\",\n          \"username\": \"<string>\",\n          \"passwordSecretRef\": \"<string>\",\n          \"identity\": \"<string>\"\n        },\n        {\n          \"server\": \"<string>\",\n          \"username\": \"<string>\",\n          \"passwordSecretRef\": \"<string>\",\n          \"identity\": \"<string>\"\n        }\n      ]\n    },\n    \"template\": {\n      \"containers\": [\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 6162.2451107297575,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 8760,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 1057,\n              \"periodSeconds\": 5584,\n              \"successThreshold\": 7393,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 9478,\n              \"timeoutSeconds\": 627,\n              \"type\": \"Readiness\"\n            },\n            {\n              \"failureThreshold\": 124,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 1558,\n              \"periodSeconds\": 5144,\n              \"successThreshold\": 2178,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6797,\n              \"timeoutSeconds\": 4218,\n              \"type\": \"Startup\"\n            }\n          ]\n        },\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 2851.4859889543086,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 9817,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 4506,\n              \"periodSeconds\": 1608,\n              \"successThreshold\": 9372,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6733,\n              \"timeoutSeconds\": 6781,\n              \"type\": \"Readiness\"\n            },\n            {\n              \"failureThreshold\": 3423,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 9682,\n              \"periodSeconds\": 5507,\n              \"successThreshold\": 5261,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 4474,\n              \"timeoutSeconds\": 4345,\n              \"type\": \"Liveness\"\n            }\n          ]\n        }\n      ],\n      \"initContainers\": [\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 855.1033390806406,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 5644,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 2430,\n              \"periodSeconds\": 284,\n              \"successThreshold\": 3914,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 5299,\n              \"timeoutSeconds\": 6419,\n              \"type\": \"Startup\"\n            },\n            {\n              \"failureThreshold\": 6699,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 4815,\n              \"periodSeconds\": 4019,\n              \"successThreshold\": 5683,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6212,\n              \"timeoutSeconds\": 6961,\n              \"type\": \"Readiness\"\n            }\n          ]\n        },\n        {\n          \"image\": \"string\",\n          \"name\": \"string\",\n          \"command\": [\n            \"string\",\n            \"string\"\n          ],\n          \"args\": [\n            \"string\",\n            \"string\"\n          ],\n          \"env\": [\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"value\": \"string\",\n              \"secretRef\": \"string\"\n            }\n          ],\n          \"resources\": {\n            \"cpu\": 8751.849202404812,\n            \"memory\": \"string\"\n          },\n          \"volumeMounts\": [\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            },\n            {\n              \"volumeName\": \"string\",\n              \"mountPath\": \"string\",\n              \"subPath\": \"string\"\n            }\n          ],\n          \"probes\": [\n            {\n              \"failureThreshold\": 161,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 83,\n              \"periodSeconds\": 9581,\n              \"successThreshold\": 2059,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 428,\n              \"timeoutSeconds\": 2509,\n              \"type\": \"Liveness\"\n            },\n            {\n              \"failureThreshold\": 4981,\n              \"httpGet\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"httpHeaders\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"path\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"scheme\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"initialDelaySeconds\": 9594,\n              \"periodSeconds\": 9584,\n              \"successThreshold\": 9471,\n              \"tcpSocket\": {\n                \"host\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"port\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"terminationGracePeriodSeconds\": 6308,\n              \"timeoutSeconds\": 9938,\n              \"type\": \"Readiness\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app\",\n  \"name\": \"my-container-app\",\n  \"type\": \"Microsoft.App/containerApps\",\n  \"location\": \"eastus\",\n  \"properties\": {\n    \"provisioningState\": \"Succeeded\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7d99a33-e2e7-4900-8f65-b31da59c74b4",
+          "name": "Azure Container Apps Delete a Job",
+          "request": {
+            "name": "Azure Container Apps Delete a Job",
+            "description": {
+              "content": "Delete a Container Apps Job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.App",
+                "jobs",
+                ":jobName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2023-05-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The Azure subscription ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fef1668-b1de-4b9f-8af8-f88affe7c97e",
+              "name": "Job deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe4cfaee-ac05-45e9-a756-c8102295db29",
+              "name": "Delete request accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ba07314-91da-4e87-8832-62da8aa10e11",
+              "name": "Job does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14f5de68-0ded-4c74-a4d5-ba843b7d1a52",
+          "name": "Azure Container Apps Start a Job Execution",
+          "request": {
+            "name": "Azure Container Apps Start a Job Execution",
+            "description": {
+              "content": "Start a Container Apps Job execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.App",
+                "jobs",
+                ":jobName",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2023-05-01",
+                  "description": "(Required) Client API version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The Azure subscription ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"template\": {\n    \"containers\": [\n      {\n        \"image\": \"<string>\",\n        \"name\": \"<string>\",\n        \"command\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"args\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": \"<number>\",\n          \"memory\": \"<string>\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          },\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"image\": \"<string>\",\n        \"name\": \"<string>\",\n        \"command\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"args\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": \"<number>\",\n          \"memory\": \"<string>\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          },\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"initContainers\": [\n      {\n        \"image\": \"<string>\",\n        \"name\": \"<string>\",\n        \"command\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"args\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": \"<number>\",\n          \"memory\": \"<string>\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          },\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"image\": \"<string>\",\n        \"name\": \"<string>\",\n        \"command\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"args\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"secretRef\": \"<string>\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": \"<number>\",\n          \"memory\": \"<string>\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          },\n          {\n            \"volumeName\": \"<string>\",\n            \"mountPath\": \"<string>\",\n            \"subPath\": \"<string>\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"failureThreshold\": \"<integer>\",\n            \"httpGet\": {\n              \"host\": \"<string>\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"<string>\",\n              \"port\": \"<integer>\",\n              \"scheme\": \"<string>\"\n            },\n            \"initialDelaySeconds\": \"<integer>\",\n            \"periodSeconds\": \"<integer>\",\n            \"successThreshold\": \"<integer>\",\n            \"tcpSocket\": {\n              \"host\": \"<string>\",\n              \"port\": \"<integer>\"\n            },\n            \"terminationGracePeriodSeconds\": \"<long>\",\n            \"timeoutSeconds\": \"<integer>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0528b57f-49d0-4c48-864a-3e55e2c960f9",
+              "name": "Job execution started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template\": {\n    \"containers\": [\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 3311.448266316828,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 4630,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 3403,\n              \"scheme\": \"HTTP\"\n            },\n            \"initialDelaySeconds\": 9565,\n            \"periodSeconds\": 753,\n            \"successThreshold\": 6182,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 7725\n            },\n            \"terminationGracePeriodSeconds\": 5133,\n            \"timeoutSeconds\": 7880,\n            \"type\": \"Liveness\"\n          },\n          {\n            \"failureThreshold\": 7783,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 5485,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 6763,\n            \"periodSeconds\": 6116,\n            \"successThreshold\": 555,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 8921\n            },\n            \"terminationGracePeriodSeconds\": 809,\n            \"timeoutSeconds\": 3291,\n            \"type\": \"Liveness\"\n          }\n        ]\n      },\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 5740.270458778707,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 8784,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 1903,\n              \"scheme\": \"HTTP\"\n            },\n            \"initialDelaySeconds\": 6533,\n            \"periodSeconds\": 2749,\n            \"successThreshold\": 7973,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 2766\n            },\n            \"terminationGracePeriodSeconds\": 4709,\n            \"timeoutSeconds\": 2931,\n            \"type\": \"Readiness\"\n          },\n          {\n            \"failureThreshold\": 6163,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 4651,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 3145,\n            \"periodSeconds\": 128,\n            \"successThreshold\": 8216,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 8882\n            },\n            \"terminationGracePeriodSeconds\": 2204,\n            \"timeoutSeconds\": 1075,\n            \"type\": \"Readiness\"\n          }\n        ]\n      }\n    ],\n    \"initContainers\": [\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 3088.2648912147492,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 9205,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 1459,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 5228,\n            \"periodSeconds\": 7631,\n            \"successThreshold\": 3933,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 2190\n            },\n            \"terminationGracePeriodSeconds\": 5983,\n            \"timeoutSeconds\": 4599,\n            \"type\": \"Liveness\"\n          },\n          {\n            \"failureThreshold\": 3638,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 381,\n              \"scheme\": \"HTTP\"\n            },\n            \"initialDelaySeconds\": 3801,\n            \"periodSeconds\": 9376,\n            \"successThreshold\": 4496,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 4150\n            },\n            \"terminationGracePeriodSeconds\": 7793,\n            \"timeoutSeconds\": 4316,\n            \"type\": \"Readiness\"\n          }\n        ]\n      },\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 8183.130952338037,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 2263,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 1416,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 6900,\n            \"periodSeconds\": 9732,\n            \"successThreshold\": 3831,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 9401\n            },\n            \"terminationGracePeriodSeconds\": 1122,\n            \"timeoutSeconds\": 1224,\n            \"type\": \"Startup\"\n          },\n          {\n            \"failureThreshold\": 5690,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 2383,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 1134,\n            \"periodSeconds\": 1618,\n            \"successThreshold\": 8865,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 9944\n            },\n            \"terminationGracePeriodSeconds\": 8154,\n            \"timeoutSeconds\": 1259,\n            \"type\": \"Readiness\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.App/containerApps/my-container-app\",\n  \"name\": \"my-container-app\",\n  \"type\": \"Microsoft.App/containerApps\",\n  \"location\": \"eastus\",\n  \"properties\": {\n    \"provisioningState\": \"Succeeded\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "954fc173-cc4e-4851-ae3a-c6cc8da42eb8",
+              "name": "Start request accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.App",
+                    "jobs",
+                    ":jobName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2023-05-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The Azure subscription ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"template\": {\n    \"containers\": [\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 3311.448266316828,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 4630,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 3403,\n              \"scheme\": \"HTTP\"\n            },\n            \"initialDelaySeconds\": 9565,\n            \"periodSeconds\": 753,\n            \"successThreshold\": 6182,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 7725\n            },\n            \"terminationGracePeriodSeconds\": 5133,\n            \"timeoutSeconds\": 7880,\n            \"type\": \"Liveness\"\n          },\n          {\n            \"failureThreshold\": 7783,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 5485,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 6763,\n            \"periodSeconds\": 6116,\n            \"successThreshold\": 555,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 8921\n            },\n            \"terminationGracePeriodSeconds\": 809,\n            \"timeoutSeconds\": 3291,\n            \"type\": \"Liveness\"\n          }\n        ]\n      },\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 5740.270458778707,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 8784,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 1903,\n              \"scheme\": \"HTTP\"\n            },\n            \"initialDelaySeconds\": 6533,\n            \"periodSeconds\": 2749,\n            \"successThreshold\": 7973,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 2766\n            },\n            \"terminationGracePeriodSeconds\": 4709,\n            \"timeoutSeconds\": 2931,\n            \"type\": \"Readiness\"\n          },\n          {\n            \"failureThreshold\": 6163,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 4651,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 3145,\n            \"periodSeconds\": 128,\n            \"successThreshold\": 8216,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 8882\n            },\n            \"terminationGracePeriodSeconds\": 2204,\n            \"timeoutSeconds\": 1075,\n            \"type\": \"Readiness\"\n          }\n        ]\n      }\n    ],\n    \"initContainers\": [\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 3088.2648912147492,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 9205,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 1459,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 5228,\n            \"periodSeconds\": 7631,\n            \"successThreshold\": 3933,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 2190\n            },\n            \"terminationGracePeriodSeconds\": 5983,\n            \"timeoutSeconds\": 4599,\n            \"type\": \"Liveness\"\n          },\n          {\n            \"failureThreshold\": 3638,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 381,\n              \"scheme\": \"HTTP\"\n            },\n            \"initialDelaySeconds\": 3801,\n            \"periodSeconds\": 9376,\n            \"successThreshold\": 4496,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 4150\n            },\n            \"terminationGracePeriodSeconds\": 7793,\n            \"timeoutSeconds\": 4316,\n            \"type\": \"Readiness\"\n          }\n        ]\n      },\n      {\n        \"image\": \"string\",\n        \"name\": \"string\",\n        \"command\": [\n          \"string\",\n          \"string\"\n        ],\n        \"args\": [\n          \"string\",\n          \"string\"\n        ],\n        \"env\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"secretRef\": \"string\"\n          }\n        ],\n        \"resources\": {\n          \"cpu\": 8183.130952338037,\n          \"memory\": \"string\"\n        },\n        \"volumeMounts\": [\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          },\n          {\n            \"volumeName\": \"string\",\n            \"mountPath\": \"string\",\n            \"subPath\": \"string\"\n          }\n        ],\n        \"probes\": [\n          {\n            \"failureThreshold\": 2263,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 1416,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 6900,\n            \"periodSeconds\": 9732,\n            \"successThreshold\": 3831,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 9401\n            },\n            \"terminationGracePeriodSeconds\": 1122,\n            \"timeoutSeconds\": 1224,\n            \"type\": \"Startup\"\n          },\n          {\n            \"failureThreshold\": 5690,\n            \"httpGet\": {\n              \"host\": \"string\",\n              \"httpHeaders\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"path\": \"string\",\n              \"port\": 2383,\n              \"scheme\": \"HTTPS\"\n            },\n            \"initialDelaySeconds\": 1134,\n            \"periodSeconds\": 1618,\n            \"successThreshold\": 8865,\n            \"tcpSocket\": {\n              \"host\": \"string\",\n              \"port\": 9944\n            },\n            \"terminationGracePeriodSeconds\": 8154,\n            \"timeoutSeconds\": 1259,\n            \"type\": \"Readiness\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2921bd78-5948-4dca-a196-7420f8eb146f",
+    "name": "Azure Container Apps Authentication Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.\n\nContact Support:\n Name: Microsoft Azure",
+      "type": "text/plain"
+    }
+  }
+}
