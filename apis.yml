@@ -100,6 +100,8 @@ apis:
   description: Manage container app jobs
   humanURL: https://azure.microsoft.com/en-us/products/container-apps
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
