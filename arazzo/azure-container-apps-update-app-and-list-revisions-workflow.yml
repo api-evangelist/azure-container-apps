@@ -12,7 +12,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: containerAppsApi
-  url: ../openapi/azure-container-apps-openapi.yml
+  url: ../openapi/azure-container-apps-container-apps-api-openapi.yml
+  type: openapi
+- name: revisionsApi
+  url: ../openapi/azure-container-apps-revisions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: update-app-and-list-revisions

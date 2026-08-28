@@ -11,8 +11,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
+- name: authenticationApi
+  url: ../openapi/azure-container-apps-authentication-api-openapi.yml
+  type: openapi
 - name: containerAppsApi
-  url: ../openapi/azure-container-apps-openapi.yml
+  url: ../openapi/azure-container-apps-container-apps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: audit-app-security

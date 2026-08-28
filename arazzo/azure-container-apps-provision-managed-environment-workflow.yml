@@ -12,8 +12,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: containerAppsApi
-  url: ../openapi/azure-container-apps-openapi.yml
+- name: managedEnvironmentsApi
+  url: ../openapi/azure-container-apps-managed-environments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-managed-environment

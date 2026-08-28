@@ -10,8 +10,8 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: containerAppsApi
-  url: ../openapi/azure-container-apps-openapi.yml
+- name: jobsApi
+  url: ../openapi/azure-container-apps-jobs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: run-existing-job
