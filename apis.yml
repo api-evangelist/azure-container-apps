@@ -1,5 +1,6 @@
 aid: azure-container-apps
 name: Azure Container Apps
+x-parent: microsoft-azure
 description: >-
   Azure Container Apps is a serverless container service for running microservices and containerized applications with
   built-in autoscaling, traffic splitting, and Dapr integration. It enables developers to deploy containers without
@@ -40,7 +41,7 @@ tags:
   - Kubernetes
   - Microservices
   - Serverless
-url: https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/apis.yml
+url: https://learn.microsoft.com/en-us/azure/container-apps/
 created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.23'
