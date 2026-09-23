@@ -1,11 +1,7 @@
 {
   "provider": "azure-container-apps",
   "sources": [
-    "azure-container-apps-authentication-api-openapi.yml",
-    "azure-container-apps-container-apps-api-openapi.yml",
-    "azure-container-apps-jobs-api-openapi.yml",
-    "azure-container-apps-managed-environments-api-openapi.yml",
-    "azure-container-apps-revisions-api-openapi.yml"
+    "_original/azure-container-apps-openapi.yml"
   ],
   "outputs": [
     "azure-container-apps-authentication-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "azure-container-apps-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "azure-container-apps-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "azure-container-apps-container-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "azure-container-apps-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "azure-container-apps-managed-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "azure-container-apps-revisions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

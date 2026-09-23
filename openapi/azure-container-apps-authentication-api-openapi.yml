@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Azure Container Apps Authentication API
   description: Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.
@@ -63,20 +63,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    ResourceGroupName:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: The name of the resource group.
-      schema:
-        type: string
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -85,6 +71,20 @@ components:
       schema:
         type: string
         default: '2023-05-01'
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
+    ResourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group.
+      schema:
+        type: string
   schemas:
     AuthConfig:
       type: object

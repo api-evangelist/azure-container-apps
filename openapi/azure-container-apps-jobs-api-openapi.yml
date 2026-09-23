@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Azure Container Apps Authentication Jobs API
+  title: Azure Container Apps Jobs API
   description: Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.
   version: '2023-05-01'
   contact:
@@ -221,140 +221,50 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    ResourceGroupName:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: The name of the resource group.
-      schema:
-        type: string
-    ApiVersion:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2023-05-01'
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
   schemas:
-    Job:
+    JobCollection:
       type: object
       properties:
-        id:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextLink:
           type: string
           readOnly: true
+    JobExecution:
+      type: object
+      properties:
         name:
           type: string
-          readOnly: true
+        id:
+          type: string
         type:
           type: string
-          readOnly: true
-        location:
-          type: string
-        tags:
-          type: object
-          additionalProperties:
-            type: string
         properties:
           type: object
           properties:
-            provisioningState:
+            status:
               type: string
               readOnly: true
               enum:
-              - InProgress
-              - Succeeded
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
               - Failed
-              - Canceled
-              - Deleting
-            environmentId:
+              - Unknown
+              - Succeeded
+            startTime:
               type: string
-            workloadProfileName:
+              format: date-time
+              readOnly: true
+            endTime:
               type: string
-            configuration:
-              type: object
-              properties:
-                secrets:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Secret'
-                triggerType:
-                  type: string
-                  enum:
-                  - Schedule
-                  - Event
-                  - Manual
-                replicaTimeout:
-                  type: integer
-                replicaRetryLimit:
-                  type: integer
-                manualTriggerConfig:
-                  type: object
-                  properties:
-                    replicaCompletionCount:
-                      type: integer
-                    parallelism:
-                      type: integer
-                scheduleTriggerConfig:
-                  type: object
-                  properties:
-                    cronExpression:
-                      type: string
-                    replicaCompletionCount:
-                      type: integer
-                    parallelism:
-                      type: integer
-                eventTriggerConfig:
-                  type: object
-                  properties:
-                    replicaCompletionCount:
-                      type: integer
-                    parallelism:
-                      type: integer
-                    scale:
-                      type: object
-                      properties:
-                        minExecutions:
-                          type: integer
-                        maxExecutions:
-                          type: integer
-                        pollingInterval:
-                          type: integer
-                        rules:
-                          type: array
-                          items:
-                            type: object
-                registries:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      server:
-                        type: string
-                      username:
-                        type: string
-                      passwordSecretRef:
-                        type: string
-                      identity:
-                        type: string
+              format: date-time
+              readOnly: true
             template:
               $ref: '#/components/schemas/JobExecutionTemplate'
-            outboundIpAddresses:
-              type: array
-              readOnly: true
-              items:
-                type: string
-            eventStreamEndpoint:
-              type: string
-              readOnly: true
     JobExecutionTemplate:
       type: object
       properties:
@@ -467,6 +377,116 @@ components:
                 - Liveness
                 - Readiness
                 - Startup
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+              - InProgress
+              - Succeeded
+              - Failed
+              - Canceled
+              - Deleting
+            environmentId:
+              type: string
+            workloadProfileName:
+              type: string
+            configuration:
+              type: object
+              properties:
+                secrets:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Secret'
+                triggerType:
+                  type: string
+                  enum:
+                  - Schedule
+                  - Event
+                  - Manual
+                replicaTimeout:
+                  type: integer
+                replicaRetryLimit:
+                  type: integer
+                manualTriggerConfig:
+                  type: object
+                  properties:
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                scheduleTriggerConfig:
+                  type: object
+                  properties:
+                    cronExpression:
+                      type: string
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                eventTriggerConfig:
+                  type: object
+                  properties:
+                    replicaCompletionCount:
+                      type: integer
+                    parallelism:
+                      type: integer
+                    scale:
+                      type: object
+                      properties:
+                        minExecutions:
+                          type: integer
+                        maxExecutions:
+                          type: integer
+                        pollingInterval:
+                          type: integer
+                        rules:
+                          type: array
+                          items:
+                            type: object
+                registries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      server:
+                        type: string
+                      username:
+                        type: string
+                      passwordSecretRef:
+                        type: string
+                      identity:
+                        type: string
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
+            outboundIpAddresses:
+              type: array
+              readOnly: true
+              items:
+                type: string
+            eventStreamEndpoint:
+              type: string
+              readOnly: true
     Secret:
       type: object
       properties:
@@ -478,49 +498,29 @@ components:
           type: string
         keyVaultUrl:
           type: string
-    JobCollection:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        nextLink:
-          type: string
-          readOnly: true
-    JobExecution:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        properties:
-          type: object
-          properties:
-            status:
-              type: string
-              readOnly: true
-              enum:
-              - Running
-              - Processing
-              - Stopped
-              - Degraded
-              - Failed
-              - Unknown
-              - Succeeded
-            startTime:
-              type: string
-              format: date-time
-              readOnly: true
-            endTime:
-              type: string
-              format: date-time
-              readOnly: true
-            template:
-              $ref: '#/components/schemas/JobExecutionTemplate'
+  parameters:
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
+    ApiVersion:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2023-05-01'
+    ResourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group.
+      schema:
+        type: string
   securitySchemes:
     azure_auth:
       type: oauth2

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Azure Authentication Container Apps API
+  title: Azure Container Apps API
   description: Azure Container Apps allows you to run microservices and containerized applications on a serverless platform. The API provides operations for managing container apps, managed environments, revisions, jobs, and related resources through Azure Resource Manager.
   version: '2023-05-01'
   contact:
@@ -293,358 +293,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ContainerAppCollection:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContainerApp'
-        nextLink:
-          type: string
-          readOnly: true
-    Template:
-      type: object
-      description: Container App versioned application definition.
-      properties:
-        revisionSuffix:
-          type: string
-        terminationGracePeriodSeconds:
-          type: integer
-          format: int64
-        initContainers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        containers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        scale:
-          type: object
-          properties:
-            minReplicas:
-              type: integer
-            maxReplicas:
-              type: integer
-            rules:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  azureQueue:
-                    type: object
-                    properties:
-                      queueName:
-                        type: string
-                      queueLength:
-                        type: integer
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-                  custom:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                      metadata:
-                        type: object
-                        additionalProperties:
-                          type: string
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-                  http:
-                    type: object
-                    properties:
-                      metadata:
-                        type: object
-                        additionalProperties:
-                          type: string
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-                  tcp:
-                    type: object
-                    properties:
-                      metadata:
-                        type: object
-                        additionalProperties:
-                          type: string
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-        volumes:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              storageType:
-                type: string
-                enum:
-                - AzureFile
-                - EmptyDir
-                - Secret
-              storageName:
-                type: string
-              secrets:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    secretRef:
-                      type: string
-                    path:
-                      type: string
-              mountOptions:
-                type: string
-        serviceBinds:
-          type: array
-          items:
-            type: object
-            properties:
-              serviceId:
-                type: string
-              name:
-                type: string
-    ContainerAppSecret:
-      type: object
-      properties:
-        name:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-    Container:
-      type: object
-      properties:
-        image:
-          type: string
-        name:
-          type: string
-        command:
-          type: array
-          items:
-            type: string
-        args:
-          type: array
-          items:
-            type: string
-        env:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-              secretRef:
-                type: string
-        resources:
-          type: object
-          properties:
-            cpu:
-              type: number
-            memory:
-              type: string
-            ephemeralStorage:
-              type: string
-              readOnly: true
-        volumeMounts:
-          type: array
-          items:
-            type: object
-            properties:
-              volumeName:
-                type: string
-              mountPath:
-                type: string
-              subPath:
-                type: string
-        probes:
-          type: array
-          items:
-            type: object
-            properties:
-              failureThreshold:
-                type: integer
-              httpGet:
-                type: object
-                properties:
-                  host:
-                    type: string
-                  httpHeaders:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        value:
-                          type: string
-                  path:
-                    type: string
-                  port:
-                    type: integer
-                  scheme:
-                    type: string
-                    enum:
-                    - HTTP
-                    - HTTPS
-              initialDelaySeconds:
-                type: integer
-              periodSeconds:
-                type: integer
-              successThreshold:
-                type: integer
-              tcpSocket:
-                type: object
-                properties:
-                  host:
-                    type: string
-                  port:
-                    type: integer
-              terminationGracePeriodSeconds:
-                type: integer
-                format: int64
-              timeoutSeconds:
-                type: integer
-              type:
-                type: string
-                enum:
-                - Liveness
-                - Readiness
-                - Startup
-    Secret:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        identity:
-          type: string
-        keyVaultUrl:
-          type: string
-    ContainerApp:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        type:
-          type: string
-          readOnly: true
-        location:
-          type: string
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        identity:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - None
-              - SystemAssigned
-              - UserAssigned
-              - SystemAssigned,UserAssigned
-            principalId:
-              type: string
-              readOnly: true
-            tenantId:
-              type: string
-              readOnly: true
-            userAssignedIdentities:
-              type: object
-              additionalProperties:
-                type: object
-                properties:
-                  principalId:
-                    type: string
-                    readOnly: true
-                  clientId:
-                    type: string
-                    readOnly: true
-        properties:
-          type: object
-          properties:
-            provisioningState:
-              type: string
-              readOnly: true
-              enum:
-              - InProgress
-              - Succeeded
-              - Failed
-              - Canceled
-              - Deleting
-            managedEnvironmentId:
-              type: string
-              description: Resource ID of the Container App's environment.
-            environmentId:
-              type: string
-              description: Resource ID of the environment.
-            workloadProfileName:
-              type: string
-            latestRevisionName:
-              type: string
-              readOnly: true
-            latestReadyRevisionName:
-              type: string
-              readOnly: true
-            latestRevisionFqdn:
-              type: string
-              readOnly: true
-            customDomainVerificationId:
-              type: string
-              readOnly: true
-            outboundIpAddresses:
-              type: array
-              readOnly: true
-              items:
-                type: string
-            eventStreamEndpoint:
-              type: string
-              readOnly: true
-            configuration:
-              $ref: '#/components/schemas/Configuration'
-            template:
-              $ref: '#/components/schemas/Template'
     Configuration:
       type: object
       description: Non-versioned Container App configuration properties.
@@ -804,12 +452,364 @@ components:
               type: boolean
         maxInactiveRevisions:
           type: integer
+    Container:
+      type: object
+      properties:
+        image:
+          type: string
+        name:
+          type: string
+        command:
+          type: array
+          items:
+            type: string
+        args:
+          type: array
+          items:
+            type: string
+        env:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              secretRef:
+                type: string
+        resources:
+          type: object
+          properties:
+            cpu:
+              type: number
+            memory:
+              type: string
+            ephemeralStorage:
+              type: string
+              readOnly: true
+        volumeMounts:
+          type: array
+          items:
+            type: object
+            properties:
+              volumeName:
+                type: string
+              mountPath:
+                type: string
+              subPath:
+                type: string
+        probes:
+          type: array
+          items:
+            type: object
+            properties:
+              failureThreshold:
+                type: integer
+              httpGet:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  httpHeaders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        value:
+                          type: string
+                  path:
+                    type: string
+                  port:
+                    type: integer
+                  scheme:
+                    type: string
+                    enum:
+                    - HTTP
+                    - HTTPS
+              initialDelaySeconds:
+                type: integer
+              periodSeconds:
+                type: integer
+              successThreshold:
+                type: integer
+              tcpSocket:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  port:
+                    type: integer
+              terminationGracePeriodSeconds:
+                type: integer
+                format: int64
+              timeoutSeconds:
+                type: integer
+              type:
+                type: string
+                enum:
+                - Liveness
+                - Readiness
+                - Startup
+    Template:
+      type: object
+      description: Container App versioned application definition.
+      properties:
+        revisionSuffix:
+          type: string
+        terminationGracePeriodSeconds:
+          type: integer
+          format: int64
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        scale:
+          type: object
+          properties:
+            minReplicas:
+              type: integer
+            maxReplicas:
+              type: integer
+            rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  azureQueue:
+                    type: object
+                    properties:
+                      queueName:
+                        type: string
+                      queueLength:
+                        type: integer
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  custom:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  http:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  tcp:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+        volumes:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              storageType:
+                type: string
+                enum:
+                - AzureFile
+                - EmptyDir
+                - Secret
+              storageName:
+                type: string
+              secrets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    secretRef:
+                      type: string
+                    path:
+                      type: string
+              mountOptions:
+                type: string
+        serviceBinds:
+          type: array
+          items:
+            type: object
+            properties:
+              serviceId:
+                type: string
+              name:
+                type: string
+    Secret:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        identity:
+          type: string
+        keyVaultUrl:
+          type: string
+    ContainerAppSecret:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    ContainerAppCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContainerApp'
+        nextLink:
+          type: string
+          readOnly: true
+    ContainerApp:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        identity:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - None
+              - SystemAssigned
+              - UserAssigned
+              - SystemAssigned,UserAssigned
+            principalId:
+              type: string
+              readOnly: true
+            tenantId:
+              type: string
+              readOnly: true
+            userAssignedIdentities:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  principalId:
+                    type: string
+                    readOnly: true
+                  clientId:
+                    type: string
+                    readOnly: true
+        properties:
+          type: object
+          properties:
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+              - InProgress
+              - Succeeded
+              - Failed
+              - Canceled
+              - Deleting
+            managedEnvironmentId:
+              type: string
+              description: Resource ID of the Container App's environment.
+            environmentId:
+              type: string
+              description: Resource ID of the environment.
+            workloadProfileName:
+              type: string
+            latestRevisionName:
+              type: string
+              readOnly: true
+            latestReadyRevisionName:
+              type: string
+              readOnly: true
+            latestRevisionFqdn:
+              type: string
+              readOnly: true
+            customDomainVerificationId:
+              type: string
+              readOnly: true
+            outboundIpAddresses:
+              type: array
+              readOnly: true
+              items:
+                type: string
+            eventStreamEndpoint:
+              type: string
+              readOnly: true
+            configuration:
+              $ref: '#/components/schemas/Configuration'
+            template:
+              $ref: '#/components/schemas/Template'
   parameters:
-    ResourceGroupName:
-      name: resourceGroupName
+    SubscriptionId:
+      name: subscriptionId
       in: path
       required: true
-      description: The name of the resource group.
+      description: The Azure subscription ID.
       schema:
         type: string
     ApiVersion:
@@ -820,11 +820,11 @@ components:
       schema:
         type: string
         default: '2023-05-01'
-    SubscriptionId:
-      name: subscriptionId
+    ResourceGroupName:
+      name: resourceGroupName
       in: path
       required: true
-      description: The Azure subscription ID.
+      description: The name of the resource group.
       schema:
         type: string
   securitySchemes:
