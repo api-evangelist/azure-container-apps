@@ -293,6 +293,107 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Container:
+      type: object
+      properties:
+        image:
+          type: string
+        name:
+          type: string
+        command:
+          type: array
+          items:
+            type: string
+        args:
+          type: array
+          items:
+            type: string
+        env:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              secretRef:
+                type: string
+        resources:
+          type: object
+          properties:
+            cpu:
+              type: number
+            memory:
+              type: string
+            ephemeralStorage:
+              type: string
+              readOnly: true
+        volumeMounts:
+          type: array
+          items:
+            type: object
+            properties:
+              volumeName:
+                type: string
+              mountPath:
+                type: string
+              subPath:
+                type: string
+        probes:
+          type: array
+          items:
+            type: object
+            properties:
+              failureThreshold:
+                type: integer
+              httpGet:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  httpHeaders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        value:
+                          type: string
+                  path:
+                    type: string
+                  port:
+                    type: integer
+                  scheme:
+                    type: string
+                    enum:
+                    - HTTP
+                    - HTTPS
+              initialDelaySeconds:
+                type: integer
+              periodSeconds:
+                type: integer
+              successThreshold:
+                type: integer
+              tcpSocket:
+                type: object
+                properties:
+                  host:
+                    type: string
+                  port:
+                    type: integer
+              terminationGracePeriodSeconds:
+                type: integer
+                format: int64
+              timeoutSeconds:
+                type: integer
+              type:
+                type: string
+                enum:
+                - Liveness
+                - Readiness
+                - Startup
     Configuration:
       type: object
       description: Non-versioned Container App configuration properties.
@@ -452,107 +553,27 @@ components:
               type: boolean
         maxInactiveRevisions:
           type: integer
-    Container:
+    ContainerAppCollection:
       type: object
       properties:
-        image:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContainerApp'
+        nextLink:
           type: string
+          readOnly: true
+    Secret:
+      type: object
+      properties:
         name:
           type: string
-        command:
-          type: array
-          items:
-            type: string
-        args:
-          type: array
-          items:
-            type: string
-        env:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-              secretRef:
-                type: string
-        resources:
-          type: object
-          properties:
-            cpu:
-              type: number
-            memory:
-              type: string
-            ephemeralStorage:
-              type: string
-              readOnly: true
-        volumeMounts:
-          type: array
-          items:
-            type: object
-            properties:
-              volumeName:
-                type: string
-              mountPath:
-                type: string
-              subPath:
-                type: string
-        probes:
-          type: array
-          items:
-            type: object
-            properties:
-              failureThreshold:
-                type: integer
-              httpGet:
-                type: object
-                properties:
-                  host:
-                    type: string
-                  httpHeaders:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        value:
-                          type: string
-                  path:
-                    type: string
-                  port:
-                    type: integer
-                  scheme:
-                    type: string
-                    enum:
-                    - HTTP
-                    - HTTPS
-              initialDelaySeconds:
-                type: integer
-              periodSeconds:
-                type: integer
-              successThreshold:
-                type: integer
-              tcpSocket:
-                type: object
-                properties:
-                  host:
-                    type: string
-                  port:
-                    type: integer
-              terminationGracePeriodSeconds:
-                type: integer
-                format: int64
-              timeoutSeconds:
-                type: integer
-              type:
-                type: string
-                enum:
-                - Liveness
-                - Readiness
-                - Startup
+        value:
+          type: string
+        identity:
+          type: string
+        keyVaultUrl:
+          type: string
     Template:
       type: object
       description: Container App versioned application definition.
@@ -685,36 +706,6 @@ components:
                 type: string
               name:
                 type: string
-    Secret:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        identity:
-          type: string
-        keyVaultUrl:
-          type: string
-    ContainerAppSecret:
-      type: object
-      properties:
-        name:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-    ContainerAppCollection:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContainerApp'
-        nextLink:
-          type: string
-          readOnly: true
     ContainerApp:
       type: object
       properties:
@@ -804,14 +795,16 @@ components:
               $ref: '#/components/schemas/Configuration'
             template:
               $ref: '#/components/schemas/Template'
+    ContainerAppSecret:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
   parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -825,6 +818,13 @@ components:
       in: path
       required: true
       description: The name of the resource group.
+      schema:
+        type: string
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
       schema:
         type: string
   securitySchemes:

@@ -63,6 +63,13 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    ResourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group.
+      schema:
+        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -76,13 +83,6 @@ components:
       in: path
       required: true
       description: The Azure subscription ID.
-      schema:
-        type: string
-    ResourceGroupName:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: The name of the resource group.
       schema:
         type: string
   schemas:

@@ -232,50 +232,6 @@ components:
         nextLink:
           type: string
           readOnly: true
-    JobExecution:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        properties:
-          type: object
-          properties:
-            status:
-              type: string
-              readOnly: true
-              enum:
-              - Running
-              - Processing
-              - Stopped
-              - Degraded
-              - Failed
-              - Unknown
-              - Succeeded
-            startTime:
-              type: string
-              format: date-time
-              readOnly: true
-            endTime:
-              type: string
-              format: date-time
-              readOnly: true
-            template:
-              $ref: '#/components/schemas/JobExecutionTemplate'
-    JobExecutionTemplate:
-      type: object
-      properties:
-        containers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        initContainers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
     Container:
       type: object
       properties:
@@ -377,6 +333,28 @@ components:
                 - Liveness
                 - Readiness
                 - Startup
+    Secret:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        identity:
+          type: string
+        keyVaultUrl:
+          type: string
+    JobExecutionTemplate:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
     Job:
       type: object
       properties:
@@ -487,25 +465,40 @@ components:
             eventStreamEndpoint:
               type: string
               readOnly: true
-    Secret:
+    JobExecution:
       type: object
       properties:
         name:
           type: string
-        value:
+        id:
           type: string
-        identity:
+        type:
           type: string
-        keyVaultUrl:
-          type: string
+        properties:
+          type: object
+          properties:
+            status:
+              type: string
+              readOnly: true
+              enum:
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
+              - Failed
+              - Unknown
+              - Succeeded
+            startTime:
+              type: string
+              format: date-time
+              readOnly: true
+            endTime:
+              type: string
+              format: date-time
+              readOnly: true
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
   parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -519,6 +512,13 @@ components:
       in: path
       required: true
       description: The name of the resource group.
+      schema:
+        type: string
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
       schema:
         type: string
   securitySchemes:

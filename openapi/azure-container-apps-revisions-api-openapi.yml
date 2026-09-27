@@ -192,16 +192,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    RevisionCollection:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        nextLink:
-          type: string
-          readOnly: true
     Container:
       type: object
       properties:
@@ -303,72 +293,6 @@ components:
                 - Liveness
                 - Readiness
                 - Startup
-    Revision:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        type:
-          type: string
-          readOnly: true
-        properties:
-          type: object
-          properties:
-            createdTime:
-              type: string
-              format: date-time
-              readOnly: true
-            lastActiveTime:
-              type: string
-              format: date-time
-              readOnly: true
-            fqdn:
-              type: string
-              readOnly: true
-            template:
-              $ref: '#/components/schemas/Template'
-            active:
-              type: boolean
-              readOnly: true
-            replicas:
-              type: integer
-              readOnly: true
-            trafficWeight:
-              type: integer
-              readOnly: true
-            provisioningError:
-              type: string
-              readOnly: true
-            healthState:
-              type: string
-              readOnly: true
-              enum:
-              - Healthy
-              - Unhealthy
-              - None
-            provisioningState:
-              type: string
-              readOnly: true
-              enum:
-              - Provisioning
-              - Provisioned
-              - Failed
-              - Deprovisioning
-              - Deprovisioned
-            runningState:
-              type: string
-              readOnly: true
-              enum:
-              - Running
-              - Processing
-              - Stopped
-              - Degraded
-              - Failed
-              - Unknown
     Template:
       type: object
       description: Container App versioned application definition.
@@ -501,14 +425,83 @@ components:
                 type: string
               name:
                 type: string
+    Revision:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        properties:
+          type: object
+          properties:
+            createdTime:
+              type: string
+              format: date-time
+              readOnly: true
+            lastActiveTime:
+              type: string
+              format: date-time
+              readOnly: true
+            fqdn:
+              type: string
+              readOnly: true
+            template:
+              $ref: '#/components/schemas/Template'
+            active:
+              type: boolean
+              readOnly: true
+            replicas:
+              type: integer
+              readOnly: true
+            trafficWeight:
+              type: integer
+              readOnly: true
+            provisioningError:
+              type: string
+              readOnly: true
+            healthState:
+              type: string
+              readOnly: true
+              enum:
+              - Healthy
+              - Unhealthy
+              - None
+            provisioningState:
+              type: string
+              readOnly: true
+              enum:
+              - Provisioning
+              - Provisioned
+              - Failed
+              - Deprovisioning
+              - Deprovisioned
+            runningState:
+              type: string
+              readOnly: true
+              enum:
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
+              - Failed
+              - Unknown
+    RevisionCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        nextLink:
+          type: string
+          readOnly: true
   parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -522,6 +515,13 @@ components:
       in: path
       required: true
       description: The name of the resource group.
+      schema:
+        type: string
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
       schema:
         type: string
   securitySchemes:
