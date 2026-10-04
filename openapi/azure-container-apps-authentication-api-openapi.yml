@@ -115,13 +115,6 @@ components:
                         clientSecretSettingName:
                           type: string
   parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -130,6 +123,13 @@ components:
       schema:
         type: string
         default: '2023-05-01'
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
     ResourceGroupName:
       name: resourceGroupName
       in: path

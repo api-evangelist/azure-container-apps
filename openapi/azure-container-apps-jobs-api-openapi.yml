@@ -221,7 +221,95 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
+    ApiVersion:
+      name: api-version
+      in: query
+      required: true
+      description: Client API version.
+      schema:
+        type: string
+        default: '2023-05-01'
+    ResourceGroupName:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group.
+      schema:
+        type: string
   schemas:
+    Secret:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        identity:
+          type: string
+        keyVaultUrl:
+          type: string
+    JobExecution:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        properties:
+          type: object
+          properties:
+            status:
+              type: string
+              readOnly: true
+              enum:
+              - Running
+              - Processing
+              - Stopped
+              - Degraded
+              - Failed
+              - Unknown
+              - Succeeded
+            startTime:
+              type: string
+              format: date-time
+              readOnly: true
+            endTime:
+              type: string
+              format: date-time
+              readOnly: true
+            template:
+              $ref: '#/components/schemas/JobExecutionTemplate'
+    JobExecutionTemplate:
+      type: object
+      properties:
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+    JobCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextLink:
+          type: string
+          readOnly: true
     Job:
       type: object
       properties:
@@ -332,60 +420,6 @@ components:
             eventStreamEndpoint:
               type: string
               readOnly: true
-    Secret:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        identity:
-          type: string
-        keyVaultUrl:
-          type: string
-    JobExecution:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-        properties:
-          type: object
-          properties:
-            status:
-              type: string
-              readOnly: true
-              enum:
-              - Running
-              - Processing
-              - Stopped
-              - Degraded
-              - Failed
-              - Unknown
-              - Succeeded
-            startTime:
-              type: string
-              format: date-time
-              readOnly: true
-            endTime:
-              type: string
-              format: date-time
-              readOnly: true
-            template:
-              $ref: '#/components/schemas/JobExecutionTemplate'
-    JobCollection:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        nextLink:
-          type: string
-          readOnly: true
     Container:
       type: object
       properties:
@@ -487,40 +521,6 @@ components:
                 - Liveness
                 - Readiness
                 - Startup
-    JobExecutionTemplate:
-      type: object
-      properties:
-        containers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        initContainers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-  parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
-    ApiVersion:
-      name: api-version
-      in: query
-      required: true
-      description: Client API version.
-      schema:
-        type: string
-        default: '2023-05-01'
-    ResourceGroupName:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: The name of the resource group.
-      schema:
-        type: string
   securitySchemes:
     azure_auth:
       type: oauth2
