@@ -209,6 +209,9 @@ apis:
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/details/container-apps/
 common:
+  - type: CapabilityMap
+    url: capabilities/azure-container-apps-capability-edges.yml
+    name: Azure Container Apps Business Capability Map
   - type: IssueTracker
     url: https://github.com/microsoft/azure-container-apps/issues
   - type: Releases
