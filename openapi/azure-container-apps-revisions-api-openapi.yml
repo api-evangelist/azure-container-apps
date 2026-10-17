@@ -192,148 +192,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Template:
-      type: object
-      description: Container App versioned application definition.
-      properties:
-        revisionSuffix:
-          type: string
-        terminationGracePeriodSeconds:
-          type: integer
-          format: int64
-        initContainers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        containers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Container'
-        scale:
-          type: object
-          properties:
-            minReplicas:
-              type: integer
-            maxReplicas:
-              type: integer
-            rules:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  azureQueue:
-                    type: object
-                    properties:
-                      queueName:
-                        type: string
-                      queueLength:
-                        type: integer
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-                  custom:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                      metadata:
-                        type: object
-                        additionalProperties:
-                          type: string
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-                  http:
-                    type: object
-                    properties:
-                      metadata:
-                        type: object
-                        additionalProperties:
-                          type: string
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-                  tcp:
-                    type: object
-                    properties:
-                      metadata:
-                        type: object
-                        additionalProperties:
-                          type: string
-                      auth:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            secretRef:
-                              type: string
-                            triggerParameter:
-                              type: string
-        volumes:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              storageType:
-                type: string
-                enum:
-                - AzureFile
-                - EmptyDir
-                - Secret
-              storageName:
-                type: string
-              secrets:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    secretRef:
-                      type: string
-                    path:
-                      type: string
-              mountOptions:
-                type: string
-        serviceBinds:
-          type: array
-          items:
-            type: object
-            properties:
-              serviceId:
-                type: string
-              name:
-                type: string
-    RevisionCollection:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Revision'
-        nextLink:
-          type: string
-          readOnly: true
     Revision:
       type: object
       properties:
@@ -501,14 +359,149 @@ components:
                 - Liveness
                 - Readiness
                 - Startup
+    RevisionCollection:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        nextLink:
+          type: string
+          readOnly: true
+    Template:
+      type: object
+      description: Container App versioned application definition.
+      properties:
+        revisionSuffix:
+          type: string
+        terminationGracePeriodSeconds:
+          type: integer
+          format: int64
+        initContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Container'
+        scale:
+          type: object
+          properties:
+            minReplicas:
+              type: integer
+            maxReplicas:
+              type: integer
+            rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  azureQueue:
+                    type: object
+                    properties:
+                      queueName:
+                        type: string
+                      queueLength:
+                        type: integer
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  custom:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  http:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+                  tcp:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        additionalProperties:
+                          type: string
+                      auth:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            secretRef:
+                              type: string
+                            triggerParameter:
+                              type: string
+        volumes:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              storageType:
+                type: string
+                enum:
+                - AzureFile
+                - EmptyDir
+                - Secret
+              storageName:
+                type: string
+              secrets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    secretRef:
+                      type: string
+                    path:
+                      type: string
+              mountOptions:
+                type: string
+        serviceBinds:
+          type: array
+          items:
+            type: object
+            properties:
+              serviceId:
+                type: string
+              name:
+                type: string
   parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The Azure subscription ID.
-      schema:
-        type: string
     ApiVersion:
       name: api-version
       in: query
@@ -517,6 +510,13 @@ components:
       schema:
         type: string
         default: '2023-05-01'
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The Azure subscription ID.
+      schema:
+        type: string
     ResourceGroupName:
       name: resourceGroupName
       in: path
