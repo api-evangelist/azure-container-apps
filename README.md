@@ -1,4 +1,4 @@
-# Azure Container Apps (azure-container-apps)
+# Azure Container Apps
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,82 +66,193 @@
 
 Azure Container Apps is a serverless container service for running microservices and containerized applications with built-in autoscaling, traffic splitting, and Dapr integration. It enables developers to deploy containers without managing complex infrastructure while supporting event-driven architectures and microservices patterns.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/apis.yml)
+**Areas:** Microsoft Azure · Containers · Dapr · Kubernetes · Microservices · Serverless
 
-## Scope
+## Azure Container Apps on APIs.io
 
-- **Type:** Index
+Everything profiled for Azure Container Apps is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/azure-container-apps/](https://apis.io/providers/azure-container-apps/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Azure
-- Containers
-- Dapr
-- Kubernetes
-- Microservices
-- Serverless
+- [Azure Container Apps Authentication API](https://apis.io/apis/azure-container-apps/azure-container-apps-authentication-api/) — Manage container app authentication
+- [Azure Container Apps Container Apps API](https://apis.io/apis/azure-container-apps/azure-container-apps-container-apps-api/) — Manage container apps
+- [Azure Container Apps Jobs API](https://apis.io/apis/azure-container-apps/azure-container-apps-jobs-api/) — Manage container app jobs
+- [Azure Container Apps Managed Environments API](https://apis.io/apis/azure-container-apps/azure-container-apps-managed-environments-api/) — Manage container app environments
+- [Azure Container Apps Revisions API](https://apis.io/apis/azure-container-apps/azure-container-apps-revisions-api/) — Manage container app revisions
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (13)
 
-### Azure Container Apps
+Multi-step workflows that chain operations into a business task.
 
-Azure Container Apps is a serverless container service for running microservices and containerized applications with built-in autoscaling, traffic splitting, and Dapr integration. It enables developers to deploy containers without managing complex infrastructure while supporting event-driven architectures and microservices patterns.
+- [Azure Container Apps Activate Latest Revision](https://apis.io/arazzos/azure-container-apps/azure-container-apps-activate-latest-revision-workflow/)
+- [Azure Container Apps Audit App Security](https://apis.io/arazzos/azure-container-apps/azure-container-apps-audit-app-security-workflow/)
+- [Azure Container Apps Decommission App](https://apis.io/arazzos/azure-container-apps/azure-container-apps-decommission-app-workflow/)
+- [Azure Container Apps Deploy App Into New Environment](https://apis.io/arazzos/azure-container-apps/azure-container-apps-deploy-app-into-new-environment-workflow/)
+- [Azure Container Apps Enable Dapr Sidecar](https://apis.io/arazzos/azure-container-apps/azure-container-apps-enable-dapr-sidecar-workflow/)
+- [Azure Container Apps Provision and Run Job](https://apis.io/arazzos/azure-container-apps/azure-container-apps-provision-and-run-job-workflow/)
+- [Azure Container Apps Provision Container App](https://apis.io/arazzos/azure-container-apps/azure-container-apps-provision-container-app-workflow/)
+- [Azure Container Apps Provision Managed Environment](https://apis.io/arazzos/azure-container-apps/azure-container-apps-provision-managed-environment-workflow/)
+- [Azure Container Apps Restart Active Revision](https://apis.io/arazzos/azure-container-apps/azure-container-apps-restart-active-revision-workflow/)
+- [Azure Container Apps Rotate and Verify Secrets](https://apis.io/arazzos/azure-container-apps/azure-container-apps-rotate-and-verify-secrets-workflow/)
+- [Azure Container Apps Run Existing Job](https://apis.io/arazzos/azure-container-apps/azure-container-apps-run-existing-job-workflow/)
+- [Azure Container Apps Shift Revision Traffic](https://apis.io/arazzos/azure-container-apps/azure-container-apps-shift-revision-traffic-workflow/)
+- [Azure Container Apps Update App and List Revisions](https://apis.io/arazzos/azure-container-apps/azure-container-apps-update-app-and-list-revisions-workflow/)
 
-- **Human URL:** [https://azure.microsoft.com/en-us/products/container-apps](https://azure.microsoft.com/en-us/products/container-apps)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Azure
-- Containers
-- Kubernetes
-- Microservices
-- Serverless
+- [Azure Container Apps Agentic Access](https://apis.io/agentic-access/azure-container-apps/azure-container-apps-agentic-access/)
 
-#### Properties
+#### JSON Schema (12)
 
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/openapi/azure-container-apps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-container-app-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-managed-environment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-schema/azure-container-apps-revision-schema.json) — [JSON Schema](https://json-schema.org/specification)
+The data models the API reads and writes.
+
+- [AuthConfig](https://apis.io/schemas/azure-container-apps/azure-container-apps-auth-config/)
+- [Configuration](https://apis.io/schemas/azure-container-apps/azure-container-apps-configuration/)
+- [Container](https://apis.io/schemas/azure-container-apps/azure-container-apps-container/)
+- [ContainerApp](https://apis.io/schemas/azure-container-apps/azure-container-apps-container-app/)
+- [ContainerAppSecret](https://apis.io/schemas/azure-container-apps/azure-container-apps-container-app-secret/)
+- [Job](https://apis.io/schemas/azure-container-apps/azure-container-apps-job/)
+- [JobExecution](https://apis.io/schemas/azure-container-apps/azure-container-apps-job-execution/)
+- [JobExecutionTemplate](https://apis.io/schemas/azure-container-apps/azure-container-apps-job-execution-template/)
+- [ManagedEnvironment](https://apis.io/schemas/azure-container-apps/azure-container-apps-managed-environment/)
+- [Revision](https://apis.io/schemas/azure-container-apps/azure-container-apps-revision/)
+- [Secret](https://apis.io/schemas/azure-container-apps/azure-container-apps-secret/)
+- [Template](https://apis.io/schemas/azure-container-apps/azure-container-apps-template/)
+
+#### JSON Structure (12)
+
+Data models expressed in JSON Structure.
+
+- [Azure Container Apps Auth Config Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-auth-config-structure/)
+- [Azure Container Apps Configuration Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-configuration-structure/)
+- [Azure Container Apps Container App Secret Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-container-app-secret-structure/)
+- [Azure Container Apps Container App Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-container-app-structure/)
+- [Azure Container Apps Container Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-container-structure/)
+- [Azure Container Apps Job Execution Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-job-execution-structure/)
+- [Azure Container Apps Job Execution Template Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-job-execution-template-structure/)
+- [Azure Container Apps Job Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-job-structure/)
+- [Azure Container Apps Managed Environment Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-managed-environment-structure/)
+- [Azure Container Apps Revision Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-revision-structure/)
+- [Azure Container Apps Secret Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-secret-structure/)
+- [Azure Container Apps Template Structure](https://apis.io/json-structure/azure-container-apps/azure-container-apps-template-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Azure Container Apps Context](https://apis.io/jsonld/azure-container-apps/azure-container-apps-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Azure Container Apps Vocabulary](https://apis.io/vocabularies/azure-container-apps/azure-container-apps-vocabulary/)
+
+#### Examples (12)
+
+Example requests and responses.
+
+- [Azure Container Apps Auth Config Example](https://apis.io/examples/azure-container-apps/azure-container-apps-auth-config-example/)
+- [Azure Container Apps Configuration Example](https://apis.io/examples/azure-container-apps/azure-container-apps-configuration-example/)
+- [Azure Container Apps Container App Example](https://apis.io/examples/azure-container-apps/azure-container-apps-container-app-example/)
+- [Azure Container Apps Container App Secret Example](https://apis.io/examples/azure-container-apps/azure-container-apps-container-app-secret-example/)
+- [Azure Container Apps Container Example](https://apis.io/examples/azure-container-apps/azure-container-apps-container-example/)
+- [Azure Container Apps Job Example](https://apis.io/examples/azure-container-apps/azure-container-apps-job-example/)
+- [Azure Container Apps Job Execution Example](https://apis.io/examples/azure-container-apps/azure-container-apps-job-execution-example/)
+- [Azure Container Apps Job Execution Template Example](https://apis.io/examples/azure-container-apps/azure-container-apps-job-execution-template-example/)
+- [Azure Container Apps Managed Environment Example](https://apis.io/examples/azure-container-apps/azure-container-apps-managed-environment-example/)
+- [Azure Container Apps Revision Example](https://apis.io/examples/azure-container-apps/azure-container-apps-revision-example/)
+- [Azure Container Apps Secret Example](https://apis.io/examples/azure-container-apps/azure-container-apps-secret-example/)
+- [Azure Container Apps Template Example](https://apis.io/examples/azure-container-apps/azure-container-apps-template-example/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Azure Container Apps API](https://apis.io/collections/azure-container-apps/open-azure-container-apps/)
+- [Azure Container Apps Authentication API](https://apis.io/collections/azure-container-apps/open-azure-container-apps-authentication-api/)
+- [Azure Authentication Container Apps API](https://apis.io/collections/azure-container-apps/open-azure-container-apps-container-apps-api/)
+- [Azure Container Apps Authentication Jobs API](https://apis.io/collections/azure-container-apps/open-azure-container-apps-jobs-api/)
+- [Azure Container Apps Authentication Managed Environments API](https://apis.io/collections/azure-container-apps/open-azure-container-apps-managed-environments-api/)
+- [Azure Container Apps Authentication Revisions API](https://apis.io/collections/azure-container-apps/open-azure-container-apps-revisions-api/)
+- [Azure Container Apps Authentication API](https://apis.io/collections/azure-container-apps/postman-azure-container-apps-authentication-api/)
+- [Azure Authentication Container Apps API](https://apis.io/collections/azure-container-apps/postman-azure-container-apps-container-apps-api/)
+- [Azure Container Apps Authentication Jobs API](https://apis.io/collections/azure-container-apps/postman-azure-container-apps-jobs-api/)
+- [Azure Container Apps Authentication Managed Environments API](https://apis.io/collections/azure-container-apps/postman-azure-container-apps-managed-environments-api/)
+- [Azure Container Apps Authentication Revisions API](https://apis.io/collections/azure-container-apps/postman-azure-container-apps-revisions-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Azure Container Apps — jsonschema rules](https://apis.io/rules/azure-container-apps/azure-container-apps-jsonschema-spectral-rules/)
+- [Azure Container Apps API Rules](https://apis.io/rules/azure-container-apps/azure-container-apps-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Azure Container Apps Authentication](https://apis.io/security/azure-container-apps/azure-container-apps-authentication/)
+- [Azure Container Apps Domain Security](https://apis.io/security/azure-container-apps/azure-container-apps-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Azure Container Apps Scopes](https://apis.io/scopes/azure-container-apps/azure-container-apps-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Azure Container Apps Plans Pricing](https://apis.io/plans/azure-container-apps/azure-container-apps-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Azure Container Apps Rate Limits](https://apis.io/rate-limits/azure-container-apps/azure-container-apps-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Azure Container Apps Finops](https://apis.io/finops/azure-container-apps/azure-container-apps-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Documentation](https://learn.microsoft.com/en-us/azure/container-apps/)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/container-apps/get-started)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/resource-manager/containerapps/operation-groups)
-- [Authentication](https://learn.microsoft.com/en-us/azure/container-apps/authentication)
+- [Getting started](https://learn.microsoft.com/en-us/azure/container-apps/get-started)
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/container-apps/)
-- [Postman Collection](collections/azure-container-apps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-container-apps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://portal.azure.com)
-- [Documentation](https://learn.microsoft.com/en-us/azure/container-apps/)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/container-apps/get-started)
-- [GitHub Repository](https://github.com/microsoft/azure-container-apps)
-- [GitHub Organization](https://github.com/Azure)
-- [Blog](https://techcommunity.microsoft.com/blog/appsonazureblog/)
-- [Pricing](https://azure.microsoft.com/en-us/pricing/details/container-apps/)
-- [Status Page](https://status.azure.com/)
-- [Terms of Service](https://azure.microsoft.com/en-us/support/legal/)
-- [Privacy Policy](https://privacy.microsoft.com/en-us/privacystatement)
-- [Sign Up](https://azure.microsoft.com/en-us/free/)
 - [Support](https://azure.microsoft.com/en-us/support/)
-- [F A Q](https://learn.microsoft.com/en-us/azure/container-apps/faq)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/rules/azure-container-apps-spectral-rules.yml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/vocabulary/azure-container-apps-vocabulary.yaml)
-- [JSON-LD](https://raw.githubusercontent.com/api-evangelist/azure-container-apps/refs/heads/main/json-ld/azure-container-apps-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [L L Ms Txt](https://portal.azure.com/llms.txt)
+- [Blog](https://techcommunity.microsoft.com/blog/appsonazureblog/)
+- [Terms of service](https://azure.microsoft.com/en-us/support/legal/)
+- [Privacy policy](https://privacy.microsoft.com/en-us/privacystatement)
+- [GitHub](https://github.com/Azure)
+- [Status](https://status.azure.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Azure Container Apps: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/azure-container-apps/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
